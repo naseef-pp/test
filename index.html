@@ -243,7 +243,186 @@
     /* Cells — 42% grayscale on desktop (inactive) */
     .lb-cell{position:relative;overflow:hidden;cursor:pointer;flex-shrink:0}
     .lb-cell img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(42%);transition:transform .6s ease,filter .6s ease}
-    .lb-overlay{position:absolute;inset:0;backgrou    </div>
+    .lb-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,16,.82) 0%,transparent 55%);opacity:0;transition:opacity .45s;display:flex;align-items:flex-end;padding:1rem 1.1rem;pointer-events:none}
+    .lb-tag{font-size:.6rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#D4A953}
+    /* Active cell */
+    .lb-cell.active img{transform:scale(1.05);filter:grayscale(0%)}
+    .lb-cell.active .lb-overlay{opacity:1}
+    /* Panel layouts */
+    .lb-panel-1 .lb-cell{width:280px}
+    .lb-panel-2 .lb-col-a{display:flex;height:100%}
+    .lb-panel-2 .lb-col-a .lb-cell{width:240px}
+    .lb-panel-2 .lb-col-b{display:flex;flex-direction:column;gap:6px;height:100%}
+    .lb-panel-2 .lb-col-b .lb-cell{width:200px;height:calc(50% - 3px)}
+    .lb-panel-3 .lb-cell{width:280px}
+    .lb-panel-4{flex-direction:column;flex-wrap:wrap;gap:6px;width:532px}
+    .lb-panel-4 .lb-cell{width:calc(50% - 3px);height:calc(50% - 3px)}
+    .lb-panel-5{gap:6px}
+    .lb-panel-5 .lb-cell-wide{width:260px}
+    .lb-panel-5 .lb-col-mid{display:flex;flex-direction:column;gap:6px;height:100%}
+    .lb-panel-5 .lb-col-mid .lb-cell{width:200px;height:calc(50% - 3px)}
+    .lb-panel-5 .lb-cell-tall{width:220px}
+    #lookbook-bottom-pad{height:2rem}
+
+    /* ══ LIGHTBOX ════════════════════════════════════════════ */
+    #lightbox{position:fixed;inset:0;background:rgba(8,8,16,.96);z-index:200;display:none;align-items:center;justify-content:center;backdrop-filter:blur(10px)}
+    #lightbox.open{display:flex}
+    #lightbox img{max-width:85vw;max-height:88vh;object-fit:contain;border:1px solid rgba(212,169,83,.2)}
+    #lb-close{position:absolute;top:1.5rem;right:2rem;color:#7A7060;font-size:1.5rem;cursor:pointer;transition:color .3s;background:none;border:none;font-family:inherit}
+    #lb-close:hover{color:#D4A953}
+    #lb-prev,#lb-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(8,8,16,.7);border:1px solid rgba(212,169,83,.2);color:#D4A953;width:3rem;height:3rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;font-size:1.1rem}
+    #lb-prev:hover,#lb-next:hover{background:rgba(212,169,83,.15);border-color:#D4A953}
+    #lb-prev{left:1.5rem}
+    #lb-next{right:1.5rem}
+    .lb-caption{position:absolute;bottom:1.5rem;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:#7A7060}
+
+    /* ══ TRAINING ════════════════════════════════════════════ */
+    #training{padding:7rem 0;background:#080810}
+    .training-box{border:1px solid rgba(212,169,83,.12);padding:2.5rem;background:linear-gradient(135deg,#0E0E1C 0%,#080810 100%);position:relative;overflow:hidden;margin-bottom:1.5rem}
+    .training-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,#D4A953,#C0392B)}
+    /* Skill tags — hover glow ONLY, cursor stays default */
+    .skill-tag{padding:.3rem .7rem;border:1px solid rgba(212,169,83,.2);font-size:.65rem;color:#7A7060;letter-spacing:.1em;transition:border-color .3s,background .3s,color .3s;cursor:default}
+    .skill-tag:hover{border-color:#D4A953;background:rgba(212,169,83,.08);color:#F5EDD8}
+    .quote-box{border-left:2px solid #D4A953;padding:1.5rem 1.75rem;background:rgba(212,169,83,.04)}
+    .certificate-wrap{position:relative;border:1px solid rgba(212,169,83,.15);padding:1.25rem;background:rgba(14,14,28,.5)}
+    .certificate-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,#D4A953,transparent)}
+    .certificate-wrap img{width:100%;display:block;filter:sepia(15%) contrast(1.05);transition:filter .4s}
+    .certificate-wrap:hover img{filter:sepia(0%) contrast(1.08)}
+    .cert-corner{position:absolute;width:20px;height:20px;border-color:#D4A953;border-style:solid;pointer-events:none;z-index:2}
+    .cert-corner.tl{top:.5rem;left:.5rem;border-width:1.5px 0 0 1.5px}
+    .cert-corner.tr{top:.5rem;right:.5rem;border-width:1.5px 1.5px 0 0}
+    .cert-corner.bl{bottom:.5rem;left:.5rem;border-width:0 0 1.5px 1.5px}
+    .cert-corner.br{bottom:.5rem;right:.5rem;border-width:0 1.5px 1.5px 0}
+
+    /* ══ CONTACT ═════════════════════════════════════════════ */
+    #contact{padding:7rem 0;background:#0E0E1C;position:relative;overflow:hidden}
+    #contact::before{content:'CONTACT';position:absolute;bottom:-2rem;right:-1rem;font-family:'Bebas Neue',cursive;font-size:11rem;color:rgba(212,169,83,.022);pointer-events:none;letter-spacing:.1em;user-select:none}
+    .contact-link{display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;border:1px solid rgba(212,169,83,.12);background:rgba(8,8,16,.5);transition:all .3s;text-decoration:none}
+    .contact-link:hover{border-color:rgba(212,169,83,.45);background:rgba(212,169,83,.06);transform:translateX(4px)}
+    .contact-link-icon{width:2.5rem;height:2.5rem;border:1px solid rgba(212,169,83,.25);display:flex;align-items:center;justify-content:center;color:#D4A953;flex-shrink:0;transition:background .3s,color .3s}
+    .contact-link:hover .contact-link-icon{background:#D4A953;color:#080810}
+    .contact-link-label{font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#7A7060;margin-bottom:.15rem}
+    .contact-link-val{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:#F5EDD8}
+    .form-group{margin-bottom:1.5rem}
+    .form-input{width:100%;background:rgba(8,8,16,.7);border:1px solid rgba(212,169,83,.15);padding:1rem 1.25rem;color:#F5EDD8;font-family:'DM Sans',sans-serif;font-size:.875rem;outline:none;transition:border-color .3s}
+    .form-input::placeholder{color:rgba(122,112,96,.6)}
+    .form-input:focus{border-color:#D4A953}
+    textarea.form-input{resize:none;min-height:130px}
+
+    /* ══ FOOTER ══════════════════════════════════════════════
+       Desktop: [Actor · Director]  [Social Icons]  [© copy  ↑]
+       Mobile:  [Actor · Director]
+                [Social Icons ·············· ↑]
+                [© copy]                                      */
+    footer{background:#080810;border-top:1px solid rgba(212,169,83,.08);padding:1.75rem 4rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
+    .footer-tagline{font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;color:rgba(212,169,83,.35)}
+    /* Center — social icons */
+    .footer-center{display:flex;align-items:center;gap:.75rem}
+    .social-icon{display:flex;align-items:center;justify-content:center;width:2.2rem;height:2.2rem;border:1px solid rgba(212,169,83,.2);color:#7A7060;text-decoration:none;transition:all .3s}
+    .social-icon:hover{border-color:#D4A953;color:#D4A953;background:rgba(212,169,83,.06)}
+    .social-icon svg{width:15px;height:15px}
+    /* Right — copyright + back-to-top */
+    .footer-right{display:flex;align-items:center;gap:.75rem}
+    .footer-copy{font-size:.7rem;color:#7A7060;letter-spacing:.1em}
+    .back-to-top{display:flex;align-items:center;justify-content:center;width:2.2rem;height:2.2rem;border:1px solid rgba(212,169,83,.2);color:#7A7060;text-decoration:none;transition:all .3s;flex-shrink:0}
+    .back-to-top:hover{border-color:#D4A953;color:#D4A953;background:rgba(212,169,83,.06)}
+    /* Desktop: mobile-btt hidden */
+    .mobile-btt{display:none}
+    /* Desktop: desktop-btt shown in footer-right */
+    .desktop-btt{display:flex}
+
+    /* ══ MOBILE MENU ═════════════════════════════════════════ */
+    #mobile-menu{position:fixed;inset:0;background:rgba(8,8,16,.97);backdrop-filter:blur(16px);z-index:98;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;transform:translateX(100%);transition:transform .4s cubic-bezier(.76,0,.24,1)}
+    #mobile-menu.open{transform:translateX(0)}
+    .mobile-nav-link{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:700;color:#7A7060;text-decoration:none;letter-spacing:.05em;transition:color .3s}
+    .mobile-nav-link:hover{color:#D4A953}
+    #hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:99;background:none;border:none;padding:0}
+    #hamburger span{display:block;width:22px;height:1.5px;background:#F5EDD8;transition:all .3s}
+    #hamburger.active span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+    #hamburger.active span:nth-child(2){opacity:0}
+    #hamburger.active span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+    .count-num{display:inline-block}
+
+    /* ══ RESPONSIVE ══════════════════════════════════════════ */
+    @media(max-width:900px){
+      /* Hero mobile */
+      #hero{grid-template-columns:1fr}
+      .hero-image-panel{position:absolute;inset:0;z-index:0}
+      .hero-image-panel img{opacity:.75}
+      .hero-bg-overlay{background:linear-gradient(to top,rgba(8,8,16,.97) 0%,rgba(8,8,16,.85) 38%,rgba(8,8,16,.35) 68%,rgba(8,8,16,.1) 100%)}
+      .hero-top-grad{background:linear-gradient(to bottom,rgba(8,8,16,.55),transparent)}
+      .hero-content{position:relative;z-index:4;padding:0 2rem 5rem}
+      .hero-line-left{display:none}
+      .scroll-indicator{display:none}
+      /* Nav */
+      #navbar{padding:1rem 1.5rem}
+      #navbar.scrolled{padding:.75rem 1.5rem}
+      .desktop-nav{display:none!important}
+      #hamburger{display:flex}
+      /* Layout */
+      .two-col{grid-template-columns:1fr;gap:3rem}
+      .container{padding:0 1.5rem}
+      /* Lookbook mobile — auto height, fixed track height */
+      .lookbook-scroll-outer{height:auto;min-height:unset;max-height:unset;padding-bottom:1rem}
+      .lookbook-track{height:360px}
+      .lb-panel{height:360px}
+      /* Mobile lookbook: slight desaturation on inactive (user approved) */
+      .lb-cell img{filter:grayscale(28%)}
+      /* Active cell on mobile: full color + zoom + overlay */
+      .lb-cell.active img{transform:scale(1.05);filter:grayscale(0%)}
+      .lb-cell.active .lb-overlay{opacity:1}
+      /* Mobile lookbook cell sizes */
+      .lb-panel-1 .lb-cell{width:210px}
+      .lb-panel-2 .lb-col-a .lb-cell{width:175px}
+      .lb-panel-2 .lb-col-b .lb-cell{width:145px}
+      .lb-panel-3 .lb-cell{width:195px}
+      .lb-panel-4{width:378px}
+      .lb-panel-5 .lb-cell-wide{width:185px}
+      .lb-panel-5 .lb-col-mid .lb-cell{width:155px}
+      .lb-panel-5 .lb-cell-tall{width:165px}
+      /* Film card mobile */
+      .film-card{flex:0 0 260px}
+      /* Footer mobile:
+         [Actor · Director]
+         [● ● ● ●] [                    ] [↑ far right]
+         [© 2025]
+      */
+      footer{padding:1.5rem;flex-direction:column;align-items:center;text-align:center;gap:1rem}
+      .footer-center{position:relative;width:100%;justify-content:center}
+      .footer-right{width:100%;justify-content:center}
+      /* Mobile back-to-top: absolutely on far right of social icons row */
+      .mobile-btt{display:flex;position:absolute;right:0;top:50%;transform:translateY(-50%)}
+      .desktop-btt{display:none}
+    }
+    @media(max-width:480px){
+      .lb-panel{height:280px}
+      .lookbook-track{height:280px}
+      .lb-panel-1 .lb-cell{width:170px}
+      .lb-panel-2 .lb-col-a .lb-cell{width:145px}
+      .lb-panel-2 .lb-col-b .lb-cell{width:120px}
+      .lb-panel-3 .lb-cell{width:158px}
+      .lb-panel-4{width:298px}
+      .lb-panel-5 .lb-cell-wide{width:155px}
+      .lb-panel-5 .lb-col-mid .lb-cell{width:130px}
+      .lb-panel-5 .lb-cell-tall{width:140px}
+    }
+  </style>
+</head>
+<body>
+
+<div id="grain"></div>
+<div id="cursor-outer"></div>
+<div id="cursor-inner"></div>
+
+<!-- ══ LANGUAGE VIDEO MODAL ══════════════════════════════════ -->
+<div id="lang-modal" role="dialog" aria-modal="true" aria-label="Language Introduction">
+  <div class="lang-modal-inner">
+    <button id="lang-modal-close" aria-label="Close">&#10005;</button>
+    <div class="lang-modal-video">
+      <div id="yt-player-container">
+        <div id="yt-player"></div>
+      </div>
+    </div>
     <p class="lang-modal-label" id="lang-modal-label"></p>
   </div>
 </div>
@@ -273,7 +452,6 @@
     <span></span><span></span><span></span>
   </button>
 </nav>
-
 <div id="mobile-menu">
   <a href="#filmography" class="mobile-nav-link" onclick="toggleMenu()">Filmography</a>
   <a href="#about"       class="mobile-nav-link" onclick="toggleMenu()">About</a>
@@ -288,7 +466,6 @@
   <div class="hero-bg-overlay"></div>
   <div class="hero-line hero-line-left" style="left:33.3%;"></div>
   <div class="hero-line hero-line-right" style="left:66.6%;"></div>
-
   <div class="hero-content">
     <p class="hero-eyebrow">Actor &amp; Filmmaker</p>
     <h1 class="hero-name">Naseef<br /><em>P P</em></h1>
@@ -305,7 +482,6 @@
       <a href="#contact" class="btn-secondary">Get in Touch</a>
     </div>
   </div>
-
   <div class="hero-image-panel">
     <img src="images/gallery/Mango_2.jpg" alt="Naseef P P" />
     <div class="frame-corner tl"></div>
@@ -357,8 +533,10 @@
     </div>
   </div>
 
-  <!-- Constrained scroll with feather fade -->
+  <!-- Full-width scroll wrapper with feather fades (widths set by JS) -->
   <div class="scroll-section-outer">
+    <div class="scroll-feather feather-left"></div>
+    <div class="scroll-feather feather-right"></div>
     <div class="film-scroll-container" id="filmScroll">
       <div class="film-scroll-track" id="filmTrack">
 
@@ -367,7 +545,6 @@
           <div class="film-card-img">
             <img src="images/featured-soothravakyam-poster.jpg" alt="Soothravakyam" />
             <div class="film-card-overlay">
-              <!-- Description only — no title in hover overlay -->
               <p style="font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;color:#F5EDD8;line-height:1.5;">Lead role in a dramatic Malayalam feature</p>
             </div>
           </div>
@@ -384,7 +561,7 @@
           <div class="film-card-img">
             <img src="images/poster_shilpa.jpeg" alt="Shilpa" />
             <div class="film-card-overlay">
-              <p style="font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;color:#F5EDD8;line-height:1.5;">Hero in a Tamil language short</p>
+              <p style="font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;color:#F5EDD8;line-height:1.5;">Hero in a Tamil language short film</p>
             </div>
           </div>
           <span class="film-badge badge-short">Short</span>
@@ -475,7 +652,7 @@
           </div>
         </div>
 
-        <div style="flex:0 0 2rem;"></div>
+        <div style="flex:0 0 1px;"></div>
       </div>
     </div>
   </div>
@@ -485,7 +662,6 @@
 <section id="about">
   <div class="container">
     <div class="two-col">
-      <!-- Left -->
       <div>
         <p class="section-label reveal">02 / About</p>
         <h2 class="section-title reveal delay-1">A Face Built<br />for the <em>Screen</em></h2>
@@ -496,35 +672,17 @@
         <p class="reveal delay-3" style="color:#7A7060;font-size:.95rem;line-height:1.9;margin-bottom:1.75rem;">
           Having led roles across Malayalam feature films, Tamil short films, and Malayalam shorts, Naseef is building a multi-lingual, multi-genre career that bridges regional and international cinema. He has also served as a recurring model for <strong style="color:#F5EDD8;">Saral Home's advertising campaign</strong>, bringing the same screen presence to brand storytelling.
         </p>
-
         <!-- Language badges — clickable, open intro videos -->
         <div class="reveal delay-4" style="margin-bottom:1.75rem;">
-          <p style="font-size:.65rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:#7A7060;margin-bottom:.5rem;">Languages</p>
-          <p style="font-size:.62rem;color:rgba(122,112,96,.6);letter-spacing:.08em;margin-bottom:.75rem;">Click to hear an introduction</p>
+          <p style="font-size:.65rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:#7A7060;margin-bottom:.4rem;">Languages</p>
+          <p style="font-size:.62rem;color:rgba(122,112,96,.55);letter-spacing:.06em;margin-bottom:.75rem;">Click to hear an introduction</p>
           <div style="display:flex;flex-wrap:wrap;gap:.5rem;">
-            <span class="lang-badge"
-              data-video="https://www.youtube.com/embed/emDvy9XawP4?autoplay=1&rel=0"
-              data-label="English Introduction">
-              🇬🇧 English
-            </span>
-            <span class="lang-badge"
-              data-video="https://www.youtube.com/embed/tHgNfsobaJc?autoplay=1&rel=0"
-              data-label="Malayalam Introduction">
-              🇮🇳 Malayalam
-            </span>
-            <span class="lang-badge"
-              data-video="https://www.youtube.com/embed/aGizTuPs9fY?autoplay=1&rel=0"
-              data-label="Hindi Introduction">
-              🇮🇳 Hindi
-            </span>
-            <span class="lang-badge"
-              data-video="https://www.youtube.com/embed/mGeZB0aWpm4?autoplay=1&rel=0"
-              data-label="Tamil Introduction">
-              🇮🇳 Tamil
-            </span>
+            <span class="lang-badge" data-videoid="c6k5ZNzTsw0" data-label="English Introduction">🇬🇧 English</span>
+            <span class="lang-badge" data-videoid="tHgNfsobaJc" data-label="Malayalam Introduction">🇮🇳 Malayalam</span>
+            <span class="lang-badge" data-videoid="aGizTuPs9fY" data-label="Hindi Introduction">🇮🇳 Hindi</span>
+            <span class="lang-badge" data-videoid="mGeZB0aWpm4" data-label="Tamil Introduction">🇮🇳 Tamil</span>
           </div>
         </div>
-
         <!-- Training mini-box -->
         <div class="about-training-box reveal delay-5">
           <p style="font-size:.6rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:#D4A953;margin-bottom:.5rem;">Training</p>
@@ -532,29 +690,15 @@
           <p style="font-size:.75rem;color:#7A7060;">Nova Film Institute, Ernakulam</p>
         </div>
       </div>
-
-      <!-- Right -->
       <div>
-        <!-- Stats — cursor stays default -->
+        <!-- Stat cards — cursor stays default -->
         <div class="reveal delay-1" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem;">
-          <div class="stat-card">
-            <div class="stat-number count-num" data-target="4">0</div>
-            <div class="stat-label">Screen Credits</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number count-num" data-target="4">0</div>
-            <div class="stat-label">Languages</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number count-num" data-target="3">0</div>
-            <div class="stat-label">Films Directed</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number count-num" data-target="3">0</div>
-            <div class="stat-label">Years Active</div>
-          </div>
+          <div class="stat-card"><div class="stat-number count-num" data-target="4">0</div><div class="stat-label">Screen Credits</div></div>
+          <div class="stat-card"><div class="stat-number count-num" data-target="4">0</div><div class="stat-label">Languages</div></div>
+          <div class="stat-card"><div class="stat-number count-num" data-target="3">0</div><div class="stat-label">Films Directed</div></div>
+          <div class="stat-card"><div class="stat-number count-num" data-target="3">0</div><div class="stat-label">Years Active</div></div>
         </div>
-        <!-- Physical profile -->
+        <!-- Physical profile — hover treatment, default cursor -->
         <div class="profile-table reveal delay-2">
           <p style="font-size:.6rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:#D4A953;margin-bottom:1rem;">Physical Profile</p>
           <div class="profile-row"><span class="profile-key">Age Range</span><span class="profile-val">18 – 28 years</span></div>
@@ -569,7 +713,7 @@
   </div>
 </section>
 
-<!-- ═══════════════════ STILLS & FRAMES (Lookbook) ══════════ -->
+<!-- ═══════════════════ STILLS & FRAMES ══════════════════════ -->
 <section id="lookbook">
   <div class="container">
     <p class="section-label reveal">03 / Stills &amp; Frames</p>
@@ -579,8 +723,9 @@
     </div>
   </div>
 
-  <!-- Constrained scroll with feather fade -->
   <div class="scroll-section-outer">
+    <div class="scroll-feather feather-left"></div>
+    <div class="scroll-feather feather-right"></div>
     <div class="lookbook-scroll-outer" id="lookScroll">
       <div class="lookbook-track">
 
@@ -666,7 +811,7 @@
           </div>
         </div>
 
-        <div style="flex:0 0 4rem;"></div>
+        <div style="flex:0 0 1px;"></div>
       </div>
     </div>
   </div>
@@ -683,10 +828,8 @@
       <div class="reveal delay-1">
         <p style="font-size:.6rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:#7A7060;margin-bottom:1rem;">Certificate of Completion</p>
         <div class="certificate-wrap">
-          <div class="cert-corner tl"></div>
-          <div class="cert-corner tr"></div>
-          <div class="cert-corner bl"></div>
-          <div class="cert-corner br"></div>
+          <div class="cert-corner tl"></div><div class="cert-corner tr"></div>
+          <div class="cert-corner bl"></div><div class="cert-corner br"></div>
           <img src="images/certificate-nova-acting-course.jpg" alt="Nova Film Institute Certificate" />
         </div>
         <p style="font-size:.7rem;color:#7A7060;text-align:center;margin-top:.75rem;letter-spacing:.1em;">Nova Film Institute · Ernakulam · Screen Acting</p>
@@ -730,21 +873,15 @@
         </p>
         <div style="display:flex;flex-direction:column;gap:.75rem;">
           <a href="mailto:naseefppactor@gmail.com" class="contact-link reveal delay-2">
-            <div class="contact-link-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </div>
+            <div class="contact-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
             <div><p class="contact-link-label">Email</p><p class="contact-link-val">naseefppactor@gmail.com</p></div>
           </a>
           <a href="https://wa.me/917907885626" target="_blank" rel="noopener" class="contact-link reveal delay-3">
-            <div class="contact-link-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-            </div>
+            <div class="contact-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
             <div><p class="contact-link-label">WhatsApp</p><p class="contact-link-val">+91 79078 85626</p></div>
           </a>
           <a href="https://www.instagram.com/naseef_pp/" target="_blank" rel="noopener" class="contact-link reveal delay-4">
-            <div class="contact-link-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            </div>
+            <div class="contact-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
             <div><p class="contact-link-label">Instagram</p><p class="contact-link-val">@naseef_pp</p></div>
           </a>
         </div>
@@ -779,13 +916,12 @@
 </section>
 
 <!-- ════════════════════════ FOOTER ══════════════════════════ -->
-<!-- Desktop: [Actor · Director] ——— [Social Icons] ——— [Copyright · ↑] -->
-<!-- Mobile:  Actor·Director / [Social Icons ············· ↑] / Copyright -->
 <footer>
-  <!-- Left -->
+  <!-- Left: tagline -->
   <div class="footer-tagline">Actor · Director</div>
 
-  <!-- Center: social icons -->
+  <!-- Center: social icons
+       mobile-btt lives here, positioned absolutely at far right -->
   <div class="footer-center">
     <a href="mailto:naseefppactor@gmail.com" class="social-icon" title="Email" aria-label="Email">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -799,269 +935,337 @@
     <a href="https://www.linkedin.com/in/naseef-pp/" target="_blank" rel="noopener" class="social-icon" title="LinkedIn" aria-label="LinkedIn">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
     </a>
-    <!-- Back to top — far right of this row on mobile -->
-    <a href="#hero" class="back-to-top" aria-label="Back to top">
+    <!-- MOBILE ONLY: back-to-top at far right of this row -->
+    <a href="#hero" class="back-to-top mobile-btt" aria-label="Back to top">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
     </a>
   </div>
 
-  <!-- Right -->
+  <!-- Right: copyright + DESKTOP ONLY back-to-top -->
   <div class="footer-right">
     <span class="footer-copy">© 2025 Naseef P P</span>
+    <a href="#hero" class="back-to-top desktop-btt" aria-label="Back to top">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+    </a>
   </div>
 </footer>
 
 <!-- ════════════════════════ JAVASCRIPT ══════════════════════ -->
 <script>
-  /* ── CURSOR ───────────────────────────────────────────── */
-  const curO = document.getElementById('cursor-outer');
-  const curI = document.getElementById('cursor-inner');
-  let ox=0,oy=0,tx=0,ty=0;
-  document.addEventListener('mousemove', e => {
-    tx=e.clientX; ty=e.clientY;
-    curI.style.left=tx+'px'; curI.style.top=ty+'px';
+/* ══ CURSOR ════════════════════════════════════════════════ */
+const curO = document.getElementById('cursor-outer');
+const curI = document.getElementById('cursor-inner');
+let ox=0,oy=0,tx=0,ty=0;
+document.addEventListener('mousemove', e=>{
+  tx=e.clientX; ty=e.clientY;
+  curI.style.left=tx+'px'; curI.style.top=ty+'px';
+});
+(function loop(){
+  ox+=(tx-ox)*.12; oy+=(ty-oy)*.12;
+  curO.style.left=ox+'px'; curO.style.top=oy+'px';
+  requestAnimationFrame(loop);
+})();
+/* Cursor scale — interactive elements only
+   NOT: stat cards, skill tags, profile table */
+document.querySelectorAll('a,button,.film-card,.lb-cell,.lang-badge').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ curO.style.transform='translate(-50%,-50%) scale(1.8)'; curO.style.borderColor='#C0392B'; });
+  el.addEventListener('mouseleave',()=>{ curO.style.transform='translate(-50%,-50%) scale(1)'; curO.style.borderColor='#D4A953'; });
+});
+
+/* ══ NAV ═══════════════════════════════════════════════════ */
+const nav=document.getElementById('navbar');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+
+/* ══ MOBILE MENU ═══════════════════════════════════════════ */
+function toggleMenu(){
+  document.getElementById('mobile-menu').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('active');
+}
+
+/* ══ TYPEWRITER ════════════════════════════════════════════ */
+const roles=['Lead in Soothravakyam','Hero in Shilpa','Hero in Oru Middleclass Padam','Lead in Favorite Spot'];
+let ri=0,tci=0,del=false;
+const tw=document.getElementById('typewriter');
+function type(){
+  const cur=roles[ri];
+  if(!del){ tw.textContent=cur.substring(0,tci+1); tci++; if(tci===cur.length){del=true;setTimeout(type,1800);return;} setTimeout(type,65); }
+  else{ tw.textContent=cur.substring(0,tci-1); tci--; if(tci===0){del=false;ri=(ri+1)%roles.length;setTimeout(type,300);return;} setTimeout(type,30); }
+}
+setTimeout(type,1200);
+
+/* ══ SCROLL REVEAL ═════════════════════════════════════════ */
+const revObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);} });
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+/* ══ COUNT-UP ══════════════════════════════════════════════ */
+const cntObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const t=parseInt(e.target.getAttribute('data-target'));let c=0;
+    const tmr=setInterval(()=>{ c+=t/40; if(c>=t){c=t;clearInterval(tmr);} e.target.textContent=Math.floor(c)+'+'; },35);
+    cntObs.unobserve(e.target);
   });
-  (function loop(){
-    ox+=(tx-ox)*.12; oy+=(ty-oy)*.12;
-    curO.style.left=ox+'px'; curO.style.top=oy+'px';
-    requestAnimationFrame(loop);
-  })();
-  /* Cursor scale — interactive elements only
-     NOT: stat cards, skill tags, profile table */
-  document.querySelectorAll('a, button, .film-card, .lb-cell, .lang-badge').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      curO.style.transform='translate(-50%,-50%) scale(1.8)';
-      curO.style.borderColor='#C0392B';
+},{threshold:.5});
+document.querySelectorAll('.count-num').forEach(el=>cntObs.observe(el));
+
+/* ══ SCROLL TRACK PADDING + FEATHER SYNC ══════════════════
+   Reads the container's actual left offset from the viewport
+   and applies that as padding-left/right to both scroll tracks
+   and as width to the feather overlay divs.
+   This ensures cards start exactly at the title's left edge. */
+function syncScrollPadding(){
+  const ref=document.querySelector('.container');
+  if(!ref)return;
+  const leftPad=Math.max(Math.round(ref.getBoundingClientRect().left),16);
+  const filmTrack=document.getElementById('filmTrack');
+  const lookTrack=document.querySelector('.lookbook-track');
+  if(filmTrack){ filmTrack.style.paddingLeft=leftPad+'px'; filmTrack.style.paddingRight=leftPad+'px'; }
+  if(lookTrack){ lookTrack.style.paddingLeft=leftPad+'px'; lookTrack.style.paddingRight=leftPad+'px'; }
+  document.querySelectorAll('.scroll-feather').forEach(f=>{ f.style.width=leftPad+'px'; });
+}
+syncScrollPadding();
+window.addEventListener('resize',syncScrollPadding);
+
+/* ══ YOUTUBE IFRAME API ════════════════════════════════════
+   Using the official YT IFrame API to detect video end.
+   onYouTubeIframeAPIReady is called automatically by the
+   YouTube script when it finishes loading.               */
+let ytAPIReady=false;
+let ytPlayer=null;
+
+window.onYouTubeIframeAPIReady=function(){ ytAPIReady=true; };
+
+const langModal   =document.getElementById('lang-modal');
+const langLabel   =document.getElementById('lang-modal-label');
+const langModalClose=document.getElementById('lang-modal-close');
+
+function openLangModal(videoId,label){
+  langModal.classList.add('open');
+  document.body.style.overflow='hidden';
+  langLabel.textContent=label;
+  // Reset container — destroy previous player
+  if(ytPlayer){ try{ytPlayer.destroy();}catch(e){} ytPlayer=null; }
+  document.getElementById('yt-player-container').innerHTML='<div id="yt-player"></div>';
+  if(ytAPIReady){
+    ytPlayer=new YT.Player('yt-player',{
+      videoId:videoId,
+      width:'100%',height:'100%',
+      playerVars:{autoplay:1,rel:0,playsinline:1,modestbranding:1},
+      events:{
+        onStateChange:function(event){
+          // YT.PlayerState.ENDED === 0
+          if(event.data===0) closeLangModal();
+        }
+      }
     });
-    el.addEventListener('mouseleave', () => {
-      curO.style.transform='translate(-50%,-50%) scale(1)';
-      curO.style.borderColor='#D4A953';
-    });
-  });
-
-  /* ── NAVBAR ──────────────────────────────────────────── */
-  const nav = document.getElementById('navbar');
-  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60), { passive:true });
-
-  /* ── MOBILE MENU ─────────────────────────────────────── */
-  function toggleMenu() {
-    document.getElementById('mobile-menu').classList.toggle('open');
-    document.getElementById('hamburger').classList.toggle('active');
+  } else {
+    // Fallback: plain iframe if API hasn't loaded yet
+    document.getElementById('yt-player-container').innerHTML=
+      '<iframe src="https://www.youtube.com/embed/'+videoId+'?autoplay=1&rel=0&playsinline=1" '+
+      'allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" '+
+      'allowfullscreen style="width:100%;height:100%;border:none;"></iframe>';
   }
+}
+function closeLangModal(){
+  langModal.classList.remove('open');
+  document.body.style.overflow='';
+  if(ytPlayer){ try{ytPlayer.stopVideo();}catch(e){} }
+  // Clear iframe to stop audio
+  document.getElementById('yt-player-container').innerHTML='<div id="yt-player"></div>';
+}
+document.querySelectorAll('.lang-badge').forEach(b=>{
+  b.addEventListener('click',()=>openLangModal(b.getAttribute('data-videoid'),b.getAttribute('data-label')));
+});
+langModalClose.addEventListener('click',closeLangModal);
+langModal.addEventListener('click',e=>{ if(e.target===langModal)closeLangModal(); });
+/* ESC key — works when focus is outside the iframe */
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&langModal.classList.contains('open')) closeLangModal();
+});
 
-  /* ── TYPEWRITER ──────────────────────────────────────── */
-  const roles = ['Lead in Soothravakyam','Hero in Shilpa','Hero in Oru Middleclass Padam','Lead in Favorite Spot'];
-  let ri=0,ci=0,del=false;
-  const tw = document.getElementById('typewriter');
-  function type() {
-    const cur = roles[ri];
-    if (!del) {
-      tw.textContent = cur.substring(0,ci+1); ci++;
-      if (ci===cur.length) { del=true; setTimeout(type,1800); return; }
-      setTimeout(type,65);
-    } else {
-      tw.textContent = cur.substring(0,ci-1); ci--;
-      if (ci===0) { del=false; ri=(ri+1)%roles.length; setTimeout(type,300); return; }
-      setTimeout(type,30);
-    }
-  }
-  setTimeout(type,1200);
+/* ══ FILMOGRAPHY — ACTIVE CARD SYSTEM ═════════════════════ */
+const filmCards=Array.from(document.querySelectorAll('.film-card'));
+const filmScroll=document.getElementById('filmScroll');
+let filmMouseDX=0,filmDragged=false;
+let filmScrollRAF=null;
 
-  /* ── SCROLL REVEAL ───────────────────────────────────── */
-  const ro = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); } });
-  }, { threshold:.1 });
-  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+function setActiveFilm(card){
+  filmCards.forEach(c=>c.classList.remove('active'));
+  if(card) card.classList.add('active');
+}
+/* First card active on load */
+setActiveFilm(filmCards[0]);
 
-  /* ── COUNT-UP ────────────────────────────────────────── */
-  const cob = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      const t = parseInt(e.target.getAttribute('data-target')); let c=0;
-      const tmr = setInterval(() => { c+=t/40; if(c>=t){c=t;clearInterval(tmr);} e.target.textContent=Math.floor(c)+'+'; },35);
-      cob.unobserve(e.target);
-    });
-  }, { threshold:.5 });
-  document.querySelectorAll('.count-num').forEach(el => cob.observe(el));
-
-  /* ── LANGUAGE VIDEO MODAL ────────────────────────────── */
-  const langModal    = document.getElementById('lang-modal');
-  const langIframe   = document.getElementById('lang-iframe');
-  const langLabel    = document.getElementById('lang-modal-label');
-  const langClose    = document.getElementById('lang-modal-close');
-
-  function openLangModal(videoUrl, label) {
-    langIframe.src = videoUrl;
-    langLabel.textContent = label;
-    langModal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeLangModal() {
-    langModal.classList.remove('open');
-    langIframe.src = ''; // stops video playback
-    document.body.style.overflow = '';
-  }
-
-  document.querySelectorAll('.lang-badge').forEach(badge => {
-    badge.addEventListener('click', () => {
-      openLangModal(
-        badge.getAttribute('data-video'),
-        badge.getAttribute('data-label')
-      );
-    });
+/* Desktop: hover transfers, persists on mouse leave */
+filmCards.forEach(card=>{
+  card.addEventListener('mouseenter',()=>{
+    if(window.innerWidth>900) setActiveFilm(card);
   });
-  langClose.addEventListener('click', closeLangModal);
-  langModal.addEventListener('click', e => { if(e.target===langModal) closeLangModal(); });
-  document.addEventListener('keydown', e => {
-    if (e.key==='Escape' && langModal.classList.contains('open')) closeLangModal();
+});
+
+/* Click to open link — only if not a drag */
+filmScroll.addEventListener('mousedown',e=>{ filmMouseDX=e.clientX; filmDragged=false; });
+filmScroll.addEventListener('mousemove',e=>{ if(Math.abs(e.clientX-filmMouseDX)>5)filmDragged=true; });
+filmScroll.addEventListener('click',e=>{
+  if(filmDragged)return;
+  const card=e.target.closest('.film-card');
+  if(!card)return;
+  const href=card.getAttribute('data-href');
+  if(href) window.open(href,'_blank','noopener');
+});
+
+/* Drag to scroll — filmography */
+let fIsDown=false,fStartX,fScrollLeft;
+filmScroll.addEventListener('mousedown',e=>{ fIsDown=true; fStartX=e.pageX-filmScroll.offsetLeft; fScrollLeft=filmScroll.scrollLeft; });
+filmScroll.addEventListener('mouseleave',()=>fIsDown=false);
+filmScroll.addEventListener('mouseup',()=>fIsDown=false);
+filmScroll.addEventListener('mousemove',e=>{
+  if(!fIsDown)return; e.preventDefault();
+  filmScroll.scrollLeft=fScrollLeft-(e.pageX-filmScroll.offsetLeft-fStartX)*1.8;
+});
+
+/* Mobile: center card detection — rAF throttled for performance
+   Edge fix: at scroll=0 → first card active; at max scroll → last card active */
+function _doFilmActiveUpdate(){
+  filmScrollRAF=null;
+  if(window.innerWidth>900)return;
+  const sl=filmScroll.scrollLeft;
+  const maxSl=filmScroll.scrollWidth-filmScroll.clientWidth;
+  // Edge cases
+  if(sl<=8){ setActiveFilm(filmCards[0]); return; }
+  if(sl>=maxSl-8){ setActiveFilm(filmCards[filmCards.length-1]); return; }
+  const rect=filmScroll.getBoundingClientRect();
+  const center=rect.left+rect.width/2;
+  let closest=null,minDist=Infinity;
+  filmCards.forEach(card=>{
+    const cr=card.getBoundingClientRect();
+    const dist=Math.abs(cr.left+cr.width/2-center);
+    if(dist<minDist){minDist=dist;closest=card;}
   });
+  if(closest) setActiveFilm(closest);
+}
+function updateFilmActive(){
+  if(filmScrollRAF)return;
+  filmScrollRAF=requestAnimationFrame(_doFilmActiveUpdate);
+}
+filmScroll.addEventListener('scroll',updateFilmActive,{passive:true});
+filmScroll.addEventListener('touchmove',updateFilmActive,{passive:true});
+filmScroll.addEventListener('touchend',()=>setTimeout(_doFilmActiveUpdate,80));
 
-  /* Auto-close when YouTube video ends via postMessage API */
-  window.addEventListener('message', e => {
-    try {
-      const data = JSON.parse(e.data);
-      /* YouTube player state 0 = ended */
-      if (data.event==='onStateChange' && data.info===0) closeLangModal();
-    } catch(err) {}
+/* ══ LOOKBOOK — ACTIVE SYSTEM ══════════════════════════════
+   Desktop: hover on cell → that cell active, persists on leave.
+            First cell active on load.
+   Mobile:  Panel-level activation — when a panel's center
+            is closest to screen center, ALL cells in that
+            panel become active (handles stacked images).
+            rAF-throttled for performance.
+            Edge fix: scroll start → panel[0]; scroll end → last panel. */
+const lbCells=Array.from(document.querySelectorAll('.lb-cell'));
+const lbPanels=Array.from(document.querySelectorAll('.lb-panel'));
+const lookScroll=document.getElementById('lookScroll');
+let lbScrollRAF=null;
+
+function setActiveLbCell(cell){
+  lbCells.forEach(c=>c.classList.remove('active'));
+  if(cell) cell.classList.add('active');
+}
+function setActiveLbPanel(panel){
+  lbCells.forEach(c=>c.classList.remove('active'));
+  if(panel) panel.querySelectorAll('.lb-cell').forEach(c=>c.classList.add('active'));
+}
+
+/* Desktop: first cell active on load */
+if(window.innerWidth>900) setActiveLbCell(lbCells[0]);
+/* Mobile: first panel active on load */
+else setActiveLbPanel(lbPanels[0]);
+
+/* Desktop hover */
+lbCells.forEach(cell=>{
+  cell.addEventListener('mouseenter',()=>{
+    if(window.innerWidth>900) setActiveLbCell(cell);
   });
+});
 
-  /* ── FILMOGRAPHY — ACTIVE CARD SYSTEM ────────────────── */
-  const filmCards  = Array.from(document.querySelectorAll('.film-card'));
-  const filmScroll = document.getElementById('filmScroll');
-  let filmMouseDownX = 0, filmDragged = false;
-
-  function setActiveFilmCard(card) {
-    filmCards.forEach(c => c.classList.remove('active'));
-    if (card) card.classList.add('active');
-  }
-  setActiveFilmCard(filmCards[0]);
-
-  /* Desktop: hover transfers, persists on leave */
-  filmCards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      if (window.innerWidth > 900) setActiveFilmCard(card);
-    });
+function _doLbActiveUpdate(){
+  lbScrollRAF=null;
+  if(window.innerWidth>900)return;
+  const sl=lookScroll.scrollLeft;
+  const maxSl=lookScroll.scrollWidth-lookScroll.clientWidth;
+  // Edge cases
+  if(sl<=8){ setActiveLbPanel(lbPanels[0]); return; }
+  if(sl>=maxSl-8){ setActiveLbPanel(lbPanels[lbPanels.length-1]); return; }
+  const rect=lookScroll.getBoundingClientRect();
+  const center=rect.left+rect.width/2;
+  let closestPanel=null,minDist=Infinity;
+  lbPanels.forEach(panel=>{
+    const pr=panel.getBoundingClientRect();
+    const dist=Math.abs(pr.left+pr.width/2-center);
+    if(dist<minDist){minDist=dist;closestPanel=panel;}
   });
+  if(closestPanel) setActiveLbPanel(closestPanel);
+}
+function updateLbActive(){
+  if(lbScrollRAF)return;
+  lbScrollRAF=requestAnimationFrame(_doLbActiveUpdate);
+}
+lookScroll.addEventListener('scroll',updateLbActive,{passive:true});
+lookScroll.addEventListener('touchmove',updateLbActive,{passive:true});
+lookScroll.addEventListener('touchend',()=>setTimeout(_doLbActiveUpdate,80));
 
-  /* Click to open link — drag-safe */
-  filmScroll.addEventListener('mousedown', e => { filmMouseDownX=e.clientX; filmDragged=false; });
-  filmScroll.addEventListener('mousemove', e => { if(Math.abs(e.clientX-filmMouseDownX)>5) filmDragged=true; });
-  filmScroll.addEventListener('click', e => {
-    if (filmDragged) return;
-    const card = e.target.closest('.film-card');
-    if (!card) return;
-    const href = card.getAttribute('data-href');
-    if (href) window.open(href,'_blank','noopener');
-  });
+/* ══ LIGHTBOX ══════════════════════════════════════════════ */
+const lb=document.getElementById('lightbox');
+const lbImg=document.getElementById('lb-img');
+const lbCap=document.getElementById('lb-caption');
+let lbCur=0,lbMouseDX=0,lbDragged=false;
 
-  /* Drag to scroll — filmography */
-  let filmIsDown=false, filmStartX, filmScrollLeft;
-  filmScroll.addEventListener('mousedown', e => { filmIsDown=true; filmStartX=e.pageX-filmScroll.offsetLeft; filmScrollLeft=filmScroll.scrollLeft; });
-  filmScroll.addEventListener('mouseleave', () => filmIsDown=false);
-  filmScroll.addEventListener('mouseup',    () => filmIsDown=false);
-  filmScroll.addEventListener('mousemove',  e => {
-    if (!filmIsDown) return; e.preventDefault();
-    filmScroll.scrollLeft = filmScrollLeft - (e.pageX-filmScroll.offsetLeft-filmStartX)*1.8;
-  });
+function openLB(i){ lbCur=i; lbImg.src=lbCells[i].getAttribute('data-src'); lbCap.textContent=lbCells[i].getAttribute('data-tag'); lb.classList.add('open'); document.body.style.overflow='hidden'; }
+function closeLB(){ lb.classList.remove('open'); document.body.style.overflow=''; }
 
-  /* Mobile: center card active on scroll/touch */
-  function updateFilmActiveOnScroll() {
-    if (window.innerWidth > 900) return;
-    const containerRect = filmScroll.getBoundingClientRect();
-    const center = containerRect.left + containerRect.width/2;
-    let closest=null, closestDist=Infinity;
-    filmCards.forEach(card => {
-      const rect = card.getBoundingClientRect();
-      const dist = Math.abs(rect.left + rect.width/2 - center);
-      if (dist < closestDist) { closestDist=dist; closest=card; }
-    });
-    if (closest) setActiveFilmCard(closest);
-  }
-  filmScroll.addEventListener('scroll',   updateFilmActiveOnScroll, { passive:true });
-  filmScroll.addEventListener('touchmove',updateFilmActiveOnScroll, { passive:true });
-  filmScroll.addEventListener('touchend', () => setTimeout(updateFilmActiveOnScroll,80));
+lookScroll.addEventListener('mousedown',e=>{ lbMouseDX=e.clientX; lbDragged=false; });
+lookScroll.addEventListener('mousemove',e=>{ if(Math.abs(e.clientX-lbMouseDX)>5)lbDragged=true; });
+lookScroll.addEventListener('click',e=>{
+  if(lbDragged)return;
+  const cell=e.target.closest('.lb-cell');
+  if(!cell)return;
+  const idx=lbCells.indexOf(cell);
+  if(idx>-1)openLB(idx);
+});
+document.getElementById('lb-close').addEventListener('click',closeLB);
+document.getElementById('lb-prev').addEventListener('click',()=>openLB((lbCur-1+lbCells.length)%lbCells.length));
+document.getElementById('lb-next').addEventListener('click',()=>openLB((lbCur+1)%lbCells.length));
+lb.addEventListener('click',e=>{ if(e.target===lb)closeLB(); });
+document.addEventListener('keydown',e=>{
+  if(!lb.classList.contains('open'))return;
+  if(e.key==='Escape') closeLB();
+  if(e.key==='ArrowLeft') openLB((lbCur-1+lbCells.length)%lbCells.length);
+  if(e.key==='ArrowRight') openLB((lbCur+1)%lbCells.length);
+});
 
-  /* ── LOOKBOOK — ACTIVE CELL SYSTEM (desktop only) ────── */
-  const lbCells   = Array.from(document.querySelectorAll('.lb-cell'));
-  const lookScroll = document.getElementById('lookScroll');
+/* Drag to scroll — lookbook */
+let lkIsDown=false,lkStartX,lkScrollLeft;
+lookScroll.addEventListener('mousedown',e=>{ lkIsDown=true; lkStartX=e.pageX-lookScroll.offsetLeft; lkScrollLeft=lookScroll.scrollLeft; });
+lookScroll.addEventListener('mouseleave',()=>lkIsDown=false);
+lookScroll.addEventListener('mouseup',()=>lkIsDown=false);
+lookScroll.addEventListener('mousemove',e=>{
+  if(!lkIsDown)return; e.preventDefault();
+  lookScroll.scrollLeft=lkScrollLeft-(e.pageX-lookScroll.offsetLeft-lkStartX)*1.8;
+});
 
-  function setActiveLbCell(cell) {
-    lbCells.forEach(c => c.classList.remove('active'));
-    if (cell) cell.classList.add('active');
-  }
-  /* First cell active on load (desktop only) */
-  if (window.innerWidth > 900) setActiveLbCell(lbCells[0]);
+/* ══ HERO PARALLAX ═════════════════════════════════════════ */
+window.addEventListener('scroll',()=>{
+  const img=document.querySelector('.hero-image-panel img');
+  if(img) img.style.transform=`translateY(${window.scrollY*.18}px)`;
+},{passive:true});
 
-  lbCells.forEach(cell => {
-    cell.addEventListener('mouseenter', () => {
-      if (window.innerWidth > 900) setActiveLbCell(cell);
-    });
-  });
-  /* Mobile: all full color — no active system */
-
-  /* ── LIGHTBOX ────────────────────────────────────────── */
-  const lb    = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lb-img');
-  const lbCap = document.getElementById('lb-caption');
-  let lbCur=0, lbMouseDownX=0, lbDragged=false;
-
-  function openLB(i) {
-    lbCur=i;
-    lbImg.src=lbCells[i].getAttribute('data-src');
-    lbCap.textContent=lbCells[i].getAttribute('data-tag');
-    lb.classList.add('open');
-    document.body.style.overflow='hidden';
-  }
-  function closeLB() { lb.classList.remove('open'); document.body.style.overflow=''; }
-
-  lookScroll.addEventListener('mousedown', e => { lbMouseDownX=e.clientX; lbDragged=false; });
-  lookScroll.addEventListener('mousemove', e => { if(Math.abs(e.clientX-lbMouseDownX)>5) lbDragged=true; });
-  lookScroll.addEventListener('click', e => {
-    if (lbDragged) return;
-    const cell = e.target.closest('.lb-cell');
-    if (!cell) return;
-    const idx = lbCells.indexOf(cell);
-    if (idx > -1) openLB(idx);
-  });
-
-  document.getElementById('lb-close').addEventListener('click', closeLB);
-  document.getElementById('lb-prev').addEventListener('click', () => openLB((lbCur-1+lbCells.length)%lbCells.length));
-  document.getElementById('lb-next').addEventListener('click', () => openLB((lbCur+1)%lbCells.length));
-  lb.addEventListener('click', e => { if(e.target===lb) closeLB(); });
-  document.addEventListener('keydown', e => {
-    if (!lb.classList.contains('open')) return;
-    if (e.key==='Escape')     closeLB();
-    if (e.key==='ArrowLeft')  openLB((lbCur-1+lbCells.length)%lbCells.length);
-    if (e.key==='ArrowRight') openLB((lbCur+1)%lbCells.length);
-  });
-
-  /* Drag to scroll — lookbook */
-  let lkIsDown=false, lkStartX, lkScrollLeft;
-  lookScroll.addEventListener('mousedown', e => { lkIsDown=true; lkStartX=e.pageX-lookScroll.offsetLeft; lkScrollLeft=lookScroll.scrollLeft; });
-  lookScroll.addEventListener('mouseleave', () => lkIsDown=false);
-  lookScroll.addEventListener('mouseup',    () => lkIsDown=false);
-  lookScroll.addEventListener('mousemove',  e => {
-    if (!lkIsDown) return; e.preventDefault();
-    lookScroll.scrollLeft = lkScrollLeft - (e.pageX-lookScroll.offsetLeft-lkStartX)*1.8;
-  });
-
-  /* ── HERO PARALLAX ───────────────────────────────────── */
-  window.addEventListener('scroll', () => {
-    const img = document.querySelector('.hero-image-panel img');
-    if (img) img.style.transform = `translateY(${window.scrollY*.18}px)`;
-  }, { passive:true });
-
-  /* ── FORM ────────────────────────────────────────────── */
-  function handleForm(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('button[type="submit"]');
-    btn.textContent='Sending...'; btn.disabled=true;
-    setTimeout(() => {
-      btn.textContent='✓ Sent';
-      document.getElementById('form-success').style.display='block';
-      e.target.reset();
-    },1200);
-  }
+/* ══ FORM ══════════════════════════════════════════════════ */
+function handleForm(e){
+  e.preventDefault();
+  const btn=e.target.querySelector('button[type="submit"]');
+  btn.textContent='Sending...'; btn.disabled=true;
+  setTimeout(()=>{ btn.textContent='✓ Sent'; document.getElementById('form-success').style.display='block'; e.target.reset(); },1200);
+}
 </script>
 </body>
 </html>
