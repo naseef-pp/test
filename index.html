@@ -5,416 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Naseef P P — Actor · Director</title>
 
-  <!-- YouTube IFrame API — required for video-end auto-close -->
+  <!-- YouTube IFrame API — required for language intro videos -->
   <script src="https://www.youtube.com/iframe_api"></script>
 
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          colors: { void:'#080810',reel:'#0E0E1C',gold:'#D4A953',crimson:'#C0392B',ivory:'#F5EDD8',ash:'#7A7060' },
-          fontFamily: { display:['"Cormorant Garamond"','serif'], poster:['"Bebas Neue"','cursive'], body:['"DM Sans"','sans-serif'] }
+          colors: {
+            void:'#080810', reel:'#0E0E1C', gold:'#D4A953',
+            crimson:'#C0392B', ivory:'#F5EDD8', ash:'#7A7060'
+          },
+          fontFamily: {
+            display:['"Cormorant Garamond"','serif'],
+            poster:['"Bebas Neue"','cursive'],
+            body:['"DM Sans"','sans-serif']
+          }
         }
       }
     }
   </script>
 
-  <style>
-    /* ══ RESET ══════════════════════════════════════════════ */
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{background:#080810;color:#F5EDD8;font-family:'DM Sans',sans-serif;overflow-x:hidden;cursor:none}
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-    /* ══ CURSOR ═════════════════════════════════════════════ */
-    #cursor-outer{position:fixed;width:36px;height:36px;border:1.5px solid #D4A953;border-radius:50%;pointer-events:none;z-index:9999;transition:transform .15s ease,border-color .2s;transform:translate(-50%,-50%)}
-    #cursor-inner{position:fixed;width:6px;height:6px;background:#D4A953;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
-
-    /* ══ GRAIN ══════════════════════════════════════════════ */
-    #grain{position:fixed;inset:-200%;width:400%;height:400%;pointer-events:none;z-index:1;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain .8s steps(2) infinite}
-    @keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-3%,-4%)}50%{transform:translate(4%,2%)}75%{transform:translate(-2%,5%)}100%{transform:translate(3%,-3%)}}
-
-    /* ══ SCROLLBAR ══════════════════════════════════════════ */
-    ::-webkit-scrollbar{width:4px}
-    ::-webkit-scrollbar-track{background:#080810}
-    ::-webkit-scrollbar-thumb{background:#D4A953;border-radius:2px}
-
-    /* ══ NAV ════════════════════════════════════════════════ */
-    #navbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.5rem 3rem;display:flex;align-items:center;justify-content:space-between;transition:background .4s,padding .4s}
-    #navbar.scrolled{background:rgba(8,8,16,.92);backdrop-filter:blur(14px);padding:1rem 3rem;border-bottom:1px solid rgba(212,169,83,.12)}
-    .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;letter-spacing:.05em;color:#F5EDD8;text-decoration:none}
-    .nav-logo span{color:#D4A953}
-    .glitch{position:relative;display:inline-block}
-    .glitch::before,.glitch::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%;opacity:0}
-    .glitch:hover::before{opacity:.6;color:#C0392B;clip:rect(0,900px,20px,0);animation:gt .4s steps(2) infinite;left:2px}
-    .glitch:hover::after{opacity:.6;color:#D4A953;clip:rect(30px,900px,60px,0);animation:gb .4s steps(2) infinite;left:-2px}
-    @keyframes gt{0%{clip:rect(0,900px,10px,0)}50%{clip:rect(15px,900px,25px,0)}100%{clip:rect(5px,900px,18px,0)}}
-    @keyframes gb{0%{clip:rect(35px,900px,55px,0)}50%{clip:rect(20px,900px,40px,0)}100%{clip:rect(40px,900px,60px,0)}}
-    .nav-link{font-size:.75rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:#7A7060;text-decoration:none;position:relative;transition:color .3s}
-    .nav-link::after{content:'';position:absolute;bottom:-3px;left:0;right:100%;height:1px;background:#D4A953;transition:right .3s}
-    .nav-link:hover{color:#D4A953}
-    .nav-link:hover::after{right:0}
-
-    /* ══ HERO ═══════════════════════════════════════════════ */
-    #hero{position:relative;height:100vh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
-    .hero-top-grad{position:absolute;top:0;left:0;right:0;height:190px;background:linear-gradient(to bottom,rgba(8,8,16,.72),transparent);z-index:3;pointer-events:none}
-    .hero-bg-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(8,8,16,1) 0%,rgba(8,8,16,.88) 45%,rgba(8,8,16,.18) 75%,rgba(8,8,16,.5) 100%);z-index:1}
-    .hero-line{position:absolute;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,#D4A953 30%,#D4A953 70%,transparent);z-index:2}
-    .hero-line-left{opacity:.3}
-    .hero-line-right{opacity:.3}
-    .hero-content{position:relative;z-index:4;display:flex;flex-direction:column;justify-content:flex-end;padding:0 4rem 5rem 4rem}
-    .hero-eyebrow{font-size:.7rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:#D4A953;margin-bottom:1.2rem;display:flex;align-items:center;gap:.75rem;opacity:0;animation:fadeUp .8s ease .4s forwards}
-    .hero-eyebrow::before{content:'';display:inline-block;width:2rem;height:1px;background:#D4A953}
-    .hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,7vw,6.5rem);font-weight:700;line-height:.92;color:#F5EDD8;margin-bottom:1rem;opacity:0;animation:fadeUp .9s ease .6s forwards}
-    .hero-name em{font-style:italic;color:#D4A953}
-    .hero-subrole{font-family:'Bebas Neue',cursive;font-size:clamp(.75rem,1.2vw,1rem);letter-spacing:.35em;color:#7A7060;margin-bottom:1.75rem;opacity:0;animation:fadeUp .9s ease .75s forwards}
-    .hero-subrole span{color:rgba(212,169,83,.4);margin:0 .5rem}
-    .typewriter-wrap{display:flex;align-items:center;gap:.5rem;height:1.5rem;margin-bottom:3rem;opacity:0;animation:fadeUp .9s ease .9s forwards}
-    .typewriter-prefix{font-size:.8rem;color:#7A7060;letter-spacing:.1em;font-weight:300}
-    #typewriter{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:#D4A953;border-right:2px solid #D4A953;white-space:nowrap;overflow:hidden;animation:blink .75s step-end infinite}
-    @keyframes blink{50%{border-color:transparent}}
-    .hero-cta-group{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:fadeUp .9s ease 1.05s forwards}
-    .btn-primary{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;background:#D4A953;color:#080810;font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:all .3s;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%)}
-    .btn-primary:hover{background:#F5EDD8;transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,169,83,.25)}
-    .btn-secondary{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border:1px solid rgba(212,169,83,.35);color:#D4A953;font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:all .3s}
-    .btn-secondary:hover{border-color:#D4A953;background:rgba(212,169,83,.08)}
-    .hero-image-panel{position:relative;z-index:2;overflow:hidden}
-    .hero-image-panel img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(15%) contrast(1.05);transition:filter .5s}
-    .hero-image-panel:hover img{filter:grayscale(0%) contrast(1.08)}
-    .frame-corner{position:absolute;width:28px;height:28px;border-color:#D4A953;border-style:solid;z-index:5;pointer-events:none}
-    .frame-corner.tl{top:1rem;left:1rem;border-width:2px 0 0 2px}
-    .frame-corner.tr{top:1rem;right:1rem;border-width:2px 2px 0 0}
-    .frame-corner.bl{bottom:1rem;left:1rem;border-width:0 0 2px 2px}
-    .frame-corner.br{bottom:1rem;right:1rem;border-width:0 2px 2px 0}
-    .scroll-indicator{position:absolute;bottom:2.5rem;right:2rem;z-index:6;display:flex;flex-direction:column;align-items:center;gap:.75rem;opacity:0;animation:fadeIn 1s ease 1.6s forwards}
-    .scroll-text{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(245,237,216,.5);writing-mode:vertical-rl}
-    .scroll-line{width:1px;height:55px;background:linear-gradient(to bottom,rgba(212,169,83,.8),transparent);animation:sp 2s ease infinite}
-    @keyframes sp{0%,100%{opacity:.4;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.15)}}
-
-    /* ══ LANGUAGE VIDEO MODAL ════════════════════════════════ */
-    #lang-modal{position:fixed;inset:0;background:rgba(8,8,16,.95);z-index:300;display:none;align-items:center;justify-content:center;backdrop-filter:blur(12px)}
-    #lang-modal.open{display:flex}
-    .lang-modal-inner{position:relative;width:min(360px,90vw)}
-    /* YouTube Shorts 9:16 ratio */
-    .lang-modal-video{position:relative;width:100%;padding-top:177.78%;background:#0E0E1C;border:1px solid rgba(212,169,83,.2)}
-    #yt-player-container{position:absolute;inset:0}
-    /* YT API injects iframe into #yt-player — make it fill container */
-    #yt-player{width:100%;height:100%}
-    #yt-player iframe{width:100%!important;height:100%!important}
-    #lang-modal-close{position:absolute;top:-2.75rem;right:0;color:#7A7060;font-size:1.6rem;cursor:pointer;transition:color .3s;background:none;border:none;line-height:1;padding:.25rem .5rem}
-    #lang-modal-close:hover{color:#D4A953}
-    .lang-modal-label{text-align:center;margin-top:.75rem;font-size:.65rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:#7A7060}
-
-    /* ══ ANIMATIONS ══════════════════════════════════════════ */
-    @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-    .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
-    .reveal.visible{opacity:1;transform:translateY(0)}
-    .delay-1{transition-delay:.1s}.delay-2{transition-delay:.2s}.delay-3{transition-delay:.3s}
-    .delay-4{transition-delay:.4s}.delay-5{transition-delay:.5s}.delay-6{transition-delay:.6s}
-
-    /* ══ TICKER ═════════════════════════════════════════════ */
-    .ticker-wrap{background:#D4A953;overflow:hidden;padding:.6rem 0;white-space:nowrap}
-    .ticker-track{display:inline-flex;animation:ticker 24s linear infinite}
-    .ticker-item{font-family:'Bebas Neue',cursive;font-size:.9rem;letter-spacing:.2em;color:#080810;padding:0 3rem}
-    .ticker-sep{color:rgba(8,8,16,.35);padding:0 .5rem}
-    @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-
-    /* ══ SECTION LABELS ═════════════════════════════════════ */
-    .section-label{font-size:.65rem;font-weight:600;letter-spacing:.35em;text-transform:uppercase;color:#D4A953;display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}
-    .section-label::before{content:'';display:block;width:2rem;height:1px;background:#D4A953}
-    .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:700;line-height:1.05;color:#F5EDD8}
-    .section-title em{font-style:italic;color:#D4A953}
-    .gold-divider{width:3rem;height:1px;background:linear-gradient(to right,#D4A953,transparent);margin:1.5rem 0}
-    .container{max-width:1200px;margin:0 auto;padding:0 4rem}
-    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
-
-    /* ══ SCROLL SECTION WRAPPER ══════════════════════════════
-       Full-width wrapper that holds the scroll container.
-       Feather divs (.scroll-feather) sit inside and are
-       positioned absolutely. Width of feathers is set by JS
-       to match the container's left offset exactly.         */
-    .scroll-section-outer{position:relative;overflow:hidden}
-
-    /* Feather overlays — color must match section bg exactly */
-    .scroll-feather{
-      position:absolute;top:0;bottom:0;
-      z-index:8;pointer-events:none;
-      width:4rem; /* overridden by JS */
-    }
-    .scroll-feather.feather-left{left:0}
-    .scroll-feather.feather-right{right:0}
-    /* Filmography bg at scroll area ≈ #0E0E1C */
-    #filmography .feather-left{background:linear-gradient(to right,#0E0E1C,transparent)}
-    #filmography .feather-right{background:linear-gradient(to left,#0E0E1C,transparent)}
-    /* Lookbook bg at scroll area ≈ #0c0c1a */
-    #lookbook .feather-left{background:linear-gradient(to right,#0c0c1a,transparent)}
-    #lookbook .feather-right{background:linear-gradient(to left,#0c0c1a,transparent)}
-
-    /* ══ FILMOGRAPHY ════════════════════════════════════════ */
-    #filmography{padding:7rem 0;background:linear-gradient(180deg,#080810 0%,#0E0E1C 50%,#080810 100%)}
-    .film-scroll-container{overflow-x:auto;padding:2rem 0 2.5rem;scrollbar-width:thin;scrollbar-color:#D4A953 transparent;cursor:grab}
-    .film-scroll-container:active{cursor:grabbing}
-    /* padding-left/right set dynamically by JS */
-    .film-scroll-track{display:flex;gap:1.5rem;width:max-content}
-
-    /* Film card */
-    .film-card{flex:0 0 300px;background:#0E0E1C;border:1px solid rgba(212,169,83,.1);position:relative;overflow:hidden;cursor:pointer;transition:transform .45s ease,border-color .45s ease,box-shadow .45s ease}
-    /* Gold top line — acting cards */
-    .film-card:not(.dir-card)::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,#D4A953,transparent);z-index:2}
-    /* Crimson top line — director cards */
-    .film-card.dir-card{border-color:rgba(192,57,43,.15);background:#100a0a}
-    .film-card.dir-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,#C0392B,transparent);z-index:2}
-    .film-card-img{position:relative;aspect-ratio:2/3;overflow:hidden}
-    /* Inactive: 58% grayscale */
-    .film-card-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(58%) contrast(1.02);transition:transform .55s ease,filter .55s ease}
-    /* Overlay — description only, no title */
-    .film-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,16,.95) 0%,rgba(8,8,16,.2) 60%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;opacity:0;transition:opacity .45s ease}
-    .dir-card .film-card-overlay{background:linear-gradient(to top,rgba(16,4,4,.95) 0%,rgba(8,8,16,.2) 60%,transparent 100%)}
-    .film-card-body{padding:1.25rem}
-    .film-year{font-family:'Bebas Neue',cursive;font-size:.8rem;letter-spacing:.25em;color:#D4A953;margin-bottom:.4rem}
-    .dir-card .film-year{color:#C0392B}
-    .film-title{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:#F5EDD8;margin-bottom:.3rem;line-height:1.2}
-    .film-role{font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#7A7060}
-    .dir-card .film-role{color:rgba(192,57,43,.8)}
-    /* Format badges */
-    .film-badge{position:absolute;top:.75rem;right:.75rem;padding:.2rem .65rem;font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;z-index:3}
-    .badge-feature{background:#C0392B;color:#F5EDD8}
-    .badge-short{background:#D4A953;color:#080810}
-    .badge-music{background:transparent;border:1px solid #F5EDD8;color:#F5EDD8}
-    /* Active state (JS-applied) */
-    .film-card.active{transform:translateY(-8px);border-color:rgba(212,169,83,.45);box-shadow:0 12px 40px rgba(0,0,0,.4)}
-    .film-card.dir-card.active{border-color:rgba(192,57,43,.5)}
-    .film-card.active .film-card-img img{transform:scale(1.07);filter:grayscale(0%) contrast(1.08)}
-    .film-card.active .film-card-overlay{opacity:1}
-    /* Mobile: reduced lift */
-    @media(max-width:900px){.film-card.active{transform:translateY(-4px)}}
-
-    /* ══ ABOUT ══════════════════════════════════════════════ */
-    #about{padding:7rem 0;background:#080810;position:relative}
-    #about::before{content:'NASEEF';position:absolute;top:50%;left:-1rem;transform:translateY(-50%) rotate(-90deg);font-family:'Bebas Neue',cursive;font-size:10rem;color:rgba(212,169,83,.022);pointer-events:none;white-space:nowrap;letter-spacing:.2em;user-select:none}
-    .stat-card{border:1px solid rgba(212,169,83,.15);padding:1.5rem;position:relative;background:rgba(14,14,28,.5);transition:border-color .3s,background .3s;cursor:default}
-    .stat-card:hover{border-color:rgba(212,169,83,.45);background:rgba(14,14,28,.9)}
-    .stat-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:#D4A953;transition:height .4s}
-    .stat-card:hover::before{height:100%}
-    .stat-number{font-family:'Bebas Neue',cursive;font-size:3rem;color:#D4A953;line-height:1;margin-bottom:.25rem}
-    .stat-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:#7A7060;font-weight:500}
-    /* Language badges — clickable */
-    .lang-badge{display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .85rem;border:1px solid rgba(212,169,83,.25);font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#D4A953;transition:all .3s;cursor:pointer;position:relative}
-    .lang-badge:hover{background:rgba(212,169,83,.1);border-color:#D4A953}
-    .lang-badge::after{content:'▶';font-size:.45rem;opacity:.45;margin-left:.25rem}
-    .profile-table{border:1px solid rgba(212,169,83,.12);padding:1.75rem;background:rgba(14,14,28,.4);transition:border-color .4s,background .4s;cursor:default}
-    .profile-table:hover{border-color:rgba(212,169,83,.4);background:rgba(14,14,28,.75)}
-    .profile-row{display:flex;justify-content:space-between;align-items:center;padding:.8rem 0;border-bottom:1px solid rgba(212,169,83,.08);transition:border-color .3s}
-    .profile-table:hover .profile-row{border-color:rgba(212,169,83,.14)}
-    .profile-row:last-child{border-bottom:none}
-    .profile-key{font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#7A7060;transition:color .3s}
-    .profile-val{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:#F5EDD8;transition:color .3s}
-    .profile-table:hover .profile-key{color:#9A9080}
-    .profile-table:hover .profile-val{color:#fff}
-    .about-training-box{border:1px solid rgba(212,169,83,.15);padding:1.25rem;background:rgba(14,14,28,.4);position:relative}
-    .about-training-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,#D4A953,#C0392B)}
-
-    /* ══ LOOKBOOK — HORIZONTAL SCROLL ═══════════════════════ */
-    #lookbook{padding:7rem 0 0;background:linear-gradient(180deg,#080810 0%,#0E0E1C 60%,#080810 100%)}
-    /* Full viewport height minus header area */
-    .lookbook-scroll-outer{
-      overflow-x:auto;
-      height:calc(100vh - 16rem);
-      min-height:380px;
-      max-height:680px;
-      padding-bottom:1rem;
-      scrollbar-width:thin;
-      scrollbar-color:#D4A953 transparent;
-      cursor:grab;
-      -webkit-overflow-scrolling:touch;
-    }
-    .lookbook-scroll-outer:active{cursor:grabbing}
-    /* padding-left/right set by JS to match container */
-    .lookbook-track{display:flex;gap:0;align-items:stretch;width:max-content;height:100%}
-    /* Panel */
-    .lb-panel{display:flex;align-items:stretch;gap:6px;margin-right:24px;position:relative;height:100%}
-    .lb-panel:last-child{margin-right:0}
-    .lb-panel+.lb-panel::before{content:'';position:absolute;left:-13px;top:10%;height:80%;width:1px;background:linear-gradient(to bottom,transparent,rgba(212,169,83,.28),transparent);pointer-events:none}
-    /* Cells — 42% grayscale on desktop (inactive) */
-    .lb-cell{position:relative;overflow:hidden;cursor:pointer;flex-shrink:0}
-    .lb-cell img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(42%);transition:transform .6s ease,filter .6s ease}
-    .lb-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,16,.82) 0%,transparent 55%);opacity:0;transition:opacity .45s;display:flex;align-items:flex-end;padding:1rem 1.1rem;pointer-events:none}
-    .lb-tag{font-size:.6rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#D4A953}
-    /* Active cell */
-    .lb-cell.active img{transform:scale(1.05);filter:grayscale(0%)}
-    .lb-cell.active .lb-overlay{opacity:1}
-    /* Panel layouts */
-    .lb-panel-1 .lb-cell{width:280px}
-    .lb-panel-2 .lb-col-a{display:flex;height:100%}
-    .lb-panel-2 .lb-col-a .lb-cell{width:240px}
-    .lb-panel-2 .lb-col-b{display:flex;flex-direction:column;gap:6px;height:100%}
-    .lb-panel-2 .lb-col-b .lb-cell{width:200px;height:calc(50% - 3px)}
-    .lb-panel-3 .lb-cell{width:280px}
-    .lb-panel-4{flex-direction:column;flex-wrap:wrap;gap:6px;width:532px}
-    .lb-panel-4 .lb-cell{width:calc(50% - 3px);height:calc(50% - 3px)}
-    .lb-panel-5{gap:6px}
-    .lb-panel-5 .lb-cell-wide{width:260px}
-    .lb-panel-5 .lb-col-mid{display:flex;flex-direction:column;gap:6px;height:100%}
-    .lb-panel-5 .lb-col-mid .lb-cell{width:200px;height:calc(50% - 3px)}
-    .lb-panel-5 .lb-cell-tall{width:220px}
-    #lookbook-bottom-pad{height:2rem}
-
-    /* ══ LIGHTBOX ════════════════════════════════════════════ */
-    #lightbox{position:fixed;inset:0;background:rgba(8,8,16,.96);z-index:200;display:none;align-items:center;justify-content:center;backdrop-filter:blur(10px)}
-    #lightbox.open{display:flex}
-    #lightbox img{max-width:85vw;max-height:88vh;object-fit:contain;border:1px solid rgba(212,169,83,.2)}
-    #lb-close{position:absolute;top:1.5rem;right:2rem;color:#7A7060;font-size:1.5rem;cursor:pointer;transition:color .3s;background:none;border:none;font-family:inherit}
-    #lb-close:hover{color:#D4A953}
-    #lb-prev,#lb-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(8,8,16,.7);border:1px solid rgba(212,169,83,.2);color:#D4A953;width:3rem;height:3rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;font-size:1.1rem}
-    #lb-prev:hover,#lb-next:hover{background:rgba(212,169,83,.15);border-color:#D4A953}
-    #lb-prev{left:1.5rem}
-    #lb-next{right:1.5rem}
-    .lb-caption{position:absolute;bottom:1.5rem;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:#7A7060}
-
-    /* ══ TRAINING ════════════════════════════════════════════ */
-    #training{padding:7rem 0;background:#080810}
-    .training-box{border:1px solid rgba(212,169,83,.12);padding:2.5rem;background:linear-gradient(135deg,#0E0E1C 0%,#080810 100%);position:relative;overflow:hidden;margin-bottom:1.5rem}
-    .training-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,#D4A953,#C0392B)}
-    /* Skill tags — hover glow ONLY, cursor stays default */
-    .skill-tag{padding:.3rem .7rem;border:1px solid rgba(212,169,83,.2);font-size:.65rem;color:#7A7060;letter-spacing:.1em;transition:border-color .3s,background .3s,color .3s;cursor:default}
-    .skill-tag:hover{border-color:#D4A953;background:rgba(212,169,83,.08);color:#F5EDD8}
-    .quote-box{border-left:2px solid #D4A953;padding:1.5rem 1.75rem;background:rgba(212,169,83,.04)}
-    .certificate-wrap{position:relative;border:1px solid rgba(212,169,83,.15);padding:1.25rem;background:rgba(14,14,28,.5)}
-    .certificate-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,#D4A953,transparent)}
-    .certificate-wrap img{width:100%;display:block;filter:sepia(15%) contrast(1.05);transition:filter .4s}
-    .certificate-wrap:hover img{filter:sepia(0%) contrast(1.08)}
-    .cert-corner{position:absolute;width:20px;height:20px;border-color:#D4A953;border-style:solid;pointer-events:none;z-index:2}
-    .cert-corner.tl{top:.5rem;left:.5rem;border-width:1.5px 0 0 1.5px}
-    .cert-corner.tr{top:.5rem;right:.5rem;border-width:1.5px 1.5px 0 0}
-    .cert-corner.bl{bottom:.5rem;left:.5rem;border-width:0 0 1.5px 1.5px}
-    .cert-corner.br{bottom:.5rem;right:.5rem;border-width:0 1.5px 1.5px 0}
-
-    /* ══ CONTACT ═════════════════════════════════════════════ */
-    #contact{padding:7rem 0;background:#0E0E1C;position:relative;overflow:hidden}
-    #contact::before{content:'CONTACT';position:absolute;bottom:-2rem;right:-1rem;font-family:'Bebas Neue',cursive;font-size:11rem;color:rgba(212,169,83,.022);pointer-events:none;letter-spacing:.1em;user-select:none}
-    .contact-link{display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;border:1px solid rgba(212,169,83,.12);background:rgba(8,8,16,.5);transition:all .3s;text-decoration:none}
-    .contact-link:hover{border-color:rgba(212,169,83,.45);background:rgba(212,169,83,.06);transform:translateX(4px)}
-    .contact-link-icon{width:2.5rem;height:2.5rem;border:1px solid rgba(212,169,83,.25);display:flex;align-items:center;justify-content:center;color:#D4A953;flex-shrink:0;transition:background .3s,color .3s}
-    .contact-link:hover .contact-link-icon{background:#D4A953;color:#080810}
-    .contact-link-label{font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#7A7060;margin-bottom:.15rem}
-    .contact-link-val{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:#F5EDD8}
-    .form-group{margin-bottom:1.5rem}
-    .form-input{width:100%;background:rgba(8,8,16,.7);border:1px solid rgba(212,169,83,.15);padding:1rem 1.25rem;color:#F5EDD8;font-family:'DM Sans',sans-serif;font-size:.875rem;outline:none;transition:border-color .3s}
-    .form-input::placeholder{color:rgba(122,112,96,.6)}
-    .form-input:focus{border-color:#D4A953}
-    textarea.form-input{resize:none;min-height:130px}
-
-    /* ══ FOOTER ══════════════════════════════════════════════
-       Desktop: [Actor · Director]  [Social Icons]  [© copy  ↑]
-       Mobile:  [Actor · Director]
-                [Social Icons ·············· ↑]
-                [© copy]                                      */
-    footer{background:#080810;border-top:1px solid rgba(212,169,83,.08);padding:1.75rem 4rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
-    .footer-tagline{font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;color:rgba(212,169,83,.35)}
-    /* Center — social icons */
-    .footer-center{display:flex;align-items:center;gap:.75rem}
-    .social-icon{display:flex;align-items:center;justify-content:center;width:2.2rem;height:2.2rem;border:1px solid rgba(212,169,83,.2);color:#7A7060;text-decoration:none;transition:all .3s}
-    .social-icon:hover{border-color:#D4A953;color:#D4A953;background:rgba(212,169,83,.06)}
-    .social-icon svg{width:15px;height:15px}
-    /* Right — copyright + back-to-top */
-    .footer-right{display:flex;align-items:center;gap:.75rem}
-    .footer-copy{font-size:.7rem;color:#7A7060;letter-spacing:.1em}
-    .back-to-top{display:flex;align-items:center;justify-content:center;width:2.2rem;height:2.2rem;border:1px solid rgba(212,169,83,.2);color:#7A7060;text-decoration:none;transition:all .3s;flex-shrink:0}
-    .back-to-top:hover{border-color:#D4A953;color:#D4A953;background:rgba(212,169,83,.06)}
-    /* Desktop: mobile-btt hidden */
-    .mobile-btt{display:none}
-    /* Desktop: desktop-btt shown in footer-right */
-    .desktop-btt{display:flex}
-
-    /* ══ MOBILE MENU ═════════════════════════════════════════ */
-    #mobile-menu{position:fixed;inset:0;background:rgba(8,8,16,.97);backdrop-filter:blur(16px);z-index:98;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;transform:translateX(100%);transition:transform .4s cubic-bezier(.76,0,.24,1)}
-    #mobile-menu.open{transform:translateX(0)}
-    .mobile-nav-link{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:700;color:#7A7060;text-decoration:none;letter-spacing:.05em;transition:color .3s}
-    .mobile-nav-link:hover{color:#D4A953}
-    #hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:99;background:none;border:none;padding:0}
-    #hamburger span{display:block;width:22px;height:1.5px;background:#F5EDD8;transition:all .3s}
-    #hamburger.active span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
-    #hamburger.active span:nth-child(2){opacity:0}
-    #hamburger.active span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
-    .count-num{display:inline-block}
-
-    /* ══ RESPONSIVE ══════════════════════════════════════════ */
-    @media(max-width:900px){
-      /* Hero mobile */
-      #hero{grid-template-columns:1fr}
-      .hero-image-panel{position:absolute;inset:0;z-index:0}
-      .hero-image-panel img{opacity:.75}
-      .hero-bg-overlay{background:linear-gradient(to top,rgba(8,8,16,.97) 0%,rgba(8,8,16,.85) 38%,rgba(8,8,16,.35) 68%,rgba(8,8,16,.1) 100%)}
-      .hero-top-grad{background:linear-gradient(to bottom,rgba(8,8,16,.55),transparent)}
-      .hero-content{position:relative;z-index:4;padding:0 2rem 5rem}
-      .hero-line-left{display:none}
-      .scroll-indicator{display:none}
-      /* Nav */
-      #navbar{padding:1rem 1.5rem}
-      #navbar.scrolled{padding:.75rem 1.5rem}
-      .desktop-nav{display:none!important}
-      #hamburger{display:flex}
-      /* Layout */
-      .two-col{grid-template-columns:1fr;gap:3rem}
-      .container{padding:0 1.5rem}
-      /* Lookbook mobile — auto height, fixed track height */
-      .lookbook-scroll-outer{height:auto;min-height:unset;max-height:unset;padding-bottom:1rem}
-      .lookbook-track{height:360px}
-      .lb-panel{height:360px}
-      /* Mobile lookbook: slight desaturation on inactive (user approved) */
-      .lb-cell img{filter:grayscale(28%)}
-      /* Active cell on mobile: full color + zoom + overlay */
-      .lb-cell.active img{transform:scale(1.05);filter:grayscale(0%)}
-      .lb-cell.active .lb-overlay{opacity:1}
-      /* Mobile lookbook cell sizes */
-      .lb-panel-1 .lb-cell{width:210px}
-      .lb-panel-2 .lb-col-a .lb-cell{width:175px}
-      .lb-panel-2 .lb-col-b .lb-cell{width:145px}
-      .lb-panel-3 .lb-cell{width:195px}
-      .lb-panel-4{width:378px}
-      .lb-panel-5 .lb-cell-wide{width:185px}
-      .lb-panel-5 .lb-col-mid .lb-cell{width:155px}
-      .lb-panel-5 .lb-cell-tall{width:165px}
-      /* Film card mobile */
-      .film-card{flex:0 0 260px}
-      /* Footer mobile:
-         [Actor · Director]
-         [● ● ● ●] [                    ] [↑ far right]
-         [© 2025]
-      */
-      footer{padding:1.5rem;flex-direction:column;align-items:center;text-align:center;gap:1rem}
-      .footer-center{position:relative;width:100%;justify-content:center}
-      .footer-right{width:100%;justify-content:center}
-      /* Mobile back-to-top: absolutely on far right of social icons row */
-      .mobile-btt{display:flex;position:absolute;right:0;top:50%;transform:translateY(-50%)}
-      .desktop-btt{display:none}
-    }
-    @media(max-width:480px){
-      .lb-panel{height:280px}
-      .lookbook-track{height:280px}
-      .lb-panel-1 .lb-cell{width:170px}
-      .lb-panel-2 .lb-col-a .lb-cell{width:145px}
-      .lb-panel-2 .lb-col-b .lb-cell{width:120px}
-      .lb-panel-3 .lb-cell{width:158px}
-      .lb-panel-4{width:298px}
-      .lb-panel-5 .lb-cell-wide{width:155px}
-      .lb-panel-5 .lb-col-mid .lb-cell{width:130px}
-      .lb-panel-5 .lb-cell-tall{width:140px}
-    }
-  </style>
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
+<!-- ── FILM GRAIN ──────────────────────────────────────── -->
 <div id="grain"></div>
+
+<!-- ── CUSTOM CURSOR ──────────────────────────────────── -->
 <div id="cursor-outer"></div>
 <div id="cursor-inner"></div>
 
-<!-- ══ LANGUAGE VIDEO MODAL ══════════════════════════════════ -->
+<!-- ════════════════════════════════════════════════════
+     LANGUAGE VIDEO MODAL
+════════════════════════════════════════════════════ -->
 <div id="lang-modal" role="dialog" aria-modal="true" aria-label="Language Introduction">
   <div class="lang-modal-inner">
     <button id="lang-modal-close" aria-label="Close">&#10005;</button>
@@ -427,62 +60,77 @@
   </div>
 </div>
 
-<!-- ══ LIGHTBOX ══════════════════════════════════════════════ -->
+<!-- ════════════════════════════════════════════════════
+     LIGHTBOX
+════════════════════════════════════════════════════ -->
 <div id="lightbox" role="dialog" aria-modal="true">
   <button id="lb-close" aria-label="Close">&times;</button>
   <button id="lb-prev" aria-label="Previous">&#8592;</button>
-  <img id="lb-img" src="" alt="Lookbook" />
+  <img id="lb-img" src="" alt="Gallery" />
   <button id="lb-next" aria-label="Next">&#8594;</button>
   <p class="lb-caption" id="lb-caption"></p>
 </div>
 
-<!-- ════════════════════════ NAV ════════════════════════════ -->
+<!-- ════════════════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════════════════ -->
 <nav id="navbar">
   <a href="#hero" class="nav-logo">
     <span class="glitch" data-text="Naseef">Naseef</span> <span>P P</span>
   </a>
+
+  <!-- Desktop nav -->
   <div class="desktop-nav" style="display:flex;align-items:center;gap:2rem;">
     <a href="#filmography" class="nav-link">Filmography</a>
     <a href="#about"       class="nav-link">About</a>
-    <a href="#lookbook"    class="nav-link">Stills &amp; Frames</a>
-    <a href="#training"    class="nav-link">Training</a>
+    <a href="#stills"      class="nav-link">Stills &amp; Frames</a>
     <a href="#contact"     class="nav-link">Contact</a>
   </div>
-  <button id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+
+  <button id="hamburger" onclick="toggleMenu()" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
+
+<!-- Mobile menu -->
 <div id="mobile-menu">
   <a href="#filmography" class="mobile-nav-link" onclick="toggleMenu()">Filmography</a>
   <a href="#about"       class="mobile-nav-link" onclick="toggleMenu()">About</a>
-  <a href="#lookbook"    class="mobile-nav-link" onclick="toggleMenu()">Stills &amp; Frames</a>
-  <a href="#training"    class="mobile-nav-link" onclick="toggleMenu()">Training</a>
+  <a href="#stills"      class="mobile-nav-link" onclick="toggleMenu()">Stills &amp; Frames</a>
   <a href="#contact"     class="mobile-nav-link" onclick="toggleMenu()">Contact</a>
 </div>
 
-<!-- ═══════════════════════ HERO ═════════════════════════════ -->
+<!-- ════════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════ -->
 <section id="hero">
   <div class="hero-top-grad"></div>
   <div class="hero-bg-overlay"></div>
+
+  <!-- Left line — hidden on mobile -->
   <div class="hero-line hero-line-left" style="left:33.3%;"></div>
+  <!-- Right line — always visible -->
   <div class="hero-line hero-line-right" style="left:66.6%;"></div>
+
+  <!-- Content -->
   <div class="hero-content">
-    <p class="hero-eyebrow">Actor &amp; Filmmaker</p>
     <h1 class="hero-name">Naseef<br /><em>P P</em></h1>
-    <p class="hero-subrole">Feature Films <span>·</span> Short Films <span>·</span> Series</p>
-    <div class="typewriter-wrap">
-      <span class="typewriter-prefix">Played —</span>
-      <span id="typewriter"></span>
-    </div>
+    <!-- Actor & Filmmaker now sits under name -->
+    <p class="hero-subtitle">Actor &amp; Filmmaker</p>
     <div class="hero-cta-group">
       <a href="#filmography" class="btn-primary">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="5 3 19 12 5 21 5 3"/>
+        </svg>
         View Filmography
       </a>
       <a href="#contact" class="btn-secondary">Get in Touch</a>
     </div>
   </div>
+
+  <!-- Hero image -->
   <div class="hero-image-panel">
+    <!-- ★★★ REPLACE with your actual headshot ★★★ -->
     <img src="images/gallery/Mango_2.jpg" alt="Naseef P P" />
     <div class="frame-corner tl"></div>
     <div class="frame-corner tr"></div>
@@ -495,777 +143,695 @@
   </div>
 </section>
 
-<!-- ════════════════════════ TICKER ══════════════════════════ -->
-<div class="ticker-wrap" aria-hidden="true">
-  <div class="ticker-track">
-    <span class="ticker-item">Soothravakyam <span class="ticker-sep">✦</span></span>
-    <span class="ticker-item">Shilpa <span class="ticker-sep">✦</span></span>
-    <span class="ticker-item">Oru Middleclass Padam <span class="ticker-sep">✦</span></span>
-    <span class="ticker-item">Favorite Spot <span class="ticker-sep">✦</span></span>
-    <span class="ticker-item">Manaath <span class="ticker-sep">✦</span></span>
-    <span class="ticker-item">Thamah <span class="ticker-sep">✦</span></span>
-    <span class="ticker-item">Priye <span class="ticker-sep">✦</span></span>
-    <span class="ticker-item">Nova Film Institute <span class="ticker-sep">✦</span></span>
-    <span class="ticker-item">Soothravakyam <span class="ticker-sep">✦</span></span>
-    <span class="ticker-item">Shilpa <span class="ticker-sep">✦</span></span>
-    <span class="ticker-item">Oru Middleclass Padam <span class="ticker-sep">✦</span></span>
-    <span class="ticker-item">Favorite Spot <span class="ticker-sep">✦</span></span>
-    <span class="ticker-item">Manaath <span class="ticker-sep">✦</span></span>
-    <span class="ticker-item">Thamah <span class="ticker-sep">✦</span></span>
-    <span class="ticker-item">Priye <span class="ticker-sep">✦</span></span>
-    <span class="ticker-item">Nova Film Institute <span class="ticker-sep">✦</span></span>
-  </div>
-</div>
-
-<!-- ══════════════════════ FILMOGRAPHY ═══════════════════════ -->
+<!-- ════════════════════════════════════════════════════
+     FILMOGRAPHY
+════════════════════════════════════════════════════ -->
 <section id="filmography">
   <div class="container">
     <p class="section-label reveal">01 / Filmography</p>
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:.5rem;">
-      <h2 class="section-title reveal delay-1">On <em>Screen</em> &amp;<br />Behind the <em>Lens</em></h2>
-      <div class="reveal delay-2" style="padding-bottom:.5rem;">
-        <p style="color:#7A7060;font-size:.75rem;letter-spacing:.1em;margin-bottom:.4rem;">← Drag to explore · Click to open →</p>
-        <div style="display:flex;gap:.75rem;">
-          <span style="display:flex;align-items:center;gap:.4rem;font-size:.62rem;letter-spacing:.15em;color:#7A7060;text-transform:uppercase;"><span style="display:inline-block;width:10px;height:10px;background:#D4A953;"></span>Actor</span>
-          <span style="display:flex;align-items:center;gap:.4rem;font-size:.62rem;letter-spacing:.15em;color:#7A7060;text-transform:uppercase;"><span style="display:inline-block;width:10px;height:10px;background:#C0392B;"></span>Director</span>
-        </div>
-      </div>
-    </div>
   </div>
 
-  <!-- Full-width scroll wrapper with feather fades (widths set by JS) -->
+  <!-- Full-width scroll with feather fades -->
   <div class="scroll-section-outer">
     <div class="scroll-feather feather-left"></div>
     <div class="scroll-feather feather-right"></div>
+
     <div class="film-scroll-container" id="filmScroll">
       <div class="film-scroll-track" id="filmTrack">
 
-        <!-- 1. Soothravakyam -->
-        <div class="film-card reveal" data-href="https://www.imdb.com/title/tt34335405/">
+        <!-- 1. Soothravakyam ─────────────────────────── -->
+        <div class="film-card reveal"
+             data-href="https://www.imdb.com/title/tt34335405/">
           <div class="film-card-img">
             <img src="images/featured-soothravakyam-poster.jpg" alt="Soothravakyam" />
-            <div class="film-card-overlay">
-              <p style="font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;color:#F5EDD8;line-height:1.5;">Lead role in a dramatic Malayalam feature</p>
-            </div>
           </div>
-          <span class="film-badge badge-feature">Feature</span>
-          <div class="film-card-body">
-            <p class="film-year">2025</p>
-            <h3 class="film-title">Soothravakyam</h3>
-            <p class="film-role">Lead Role · Malayalam Feature</p>
+          <div class="film-card-overlay">
+            <p class="film-overlay-year">2025</p>
+            <h3 class="film-overlay-title">Soothravakyam</h3>
+            <p class="film-overlay-role">Lead Role · Malayalam Feature</p>
           </div>
         </div>
 
-        <!-- 2. Shilpa -->
-        <div class="film-card reveal delay-1" data-href="https://youtu.be/Pho5Cjrw6_U">
+        <!-- 2. Shilpa ────────────────────────────────── -->
+        <div class="film-card reveal delay-1"
+             data-href="https://youtu.be/Pho5Cjrw6_U">
           <div class="film-card-img">
             <img src="images/poster_shilpa.jpeg" alt="Shilpa" />
-            <div class="film-card-overlay">
-              <p style="font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;color:#F5EDD8;line-height:1.5;">Hero in a Tamil language short film</p>
-            </div>
           </div>
-          <span class="film-badge badge-short">Short</span>
-          <div class="film-card-body">
-            <p class="film-year">2026</p>
-            <h3 class="film-title">Shilpa</h3>
-            <p class="film-role">Hero · Tamil Short Film</p>
+          <div class="film-card-overlay">
+            <p class="film-overlay-year">2026</p>
+            <h3 class="film-overlay-title">Shilpa</h3>
+            <p class="film-overlay-role">Hero · Tamil Short Film</p>
           </div>
         </div>
 
-        <!-- 3. Oru Middleclass Padam -->
-        <div class="film-card reveal delay-2" data-href="https://youtu.be/0GG3pB6Z4kk">
+        <!-- 3. Oru Middleclass Padam ─────────────────── -->
+        <div class="film-card reveal delay-2"
+             data-href="https://youtu.be/0GG3pB6Z4kk">
           <div class="film-card-img">
             <img src="images/poster_orumiddleclasspadam_02.jpeg" alt="Oru Middleclass Padam" />
-            <div class="film-card-overlay">
-              <p style="font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;color:#F5EDD8;line-height:1.5;">Hero in a slice-of-life Malayalam short</p>
-            </div>
           </div>
-          <span class="film-badge badge-short">Short</span>
-          <div class="film-card-body">
-            <p class="film-year">2026</p>
-            <h3 class="film-title">Oru Middleclass Padam</h3>
-            <p class="film-role">Hero · Malayalam Short</p>
+          <div class="film-card-overlay">
+            <p class="film-overlay-year">2026</p>
+            <h3 class="film-overlay-title">Oru Middleclass Padam</h3>
+            <p class="film-overlay-role">Hero · Malayalam Short</p>
           </div>
         </div>
 
-        <!-- 4. Favorite Spot -->
-        <div class="film-card reveal delay-3" data-href="https://youtu.be/OAc6fc6zDJc">
+        <!-- 4. Favorite Spot ─────────────────────────── -->
+        <div class="film-card reveal delay-3"
+             data-href="https://youtu.be/OAc6fc6zDJc">
           <div class="film-card-img">
             <img src="images/featured-favorite-spot-still.jpg" alt="Favorite Spot" />
-            <div class="film-card-overlay">
-              <p style="font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;color:#F5EDD8;line-height:1.5;">Lead in an intimate personal story</p>
-            </div>
           </div>
-          <span class="film-badge badge-short">Short</span>
-          <div class="film-card-body">
-            <p class="film-year">2025</p>
-            <h3 class="film-title">Favorite Spot</h3>
-            <p class="film-role">Lead Role · Malayalam Short</p>
+          <div class="film-card-overlay">
+            <p class="film-overlay-year">2025</p>
+            <h3 class="film-overlay-title">Favorite Spot</h3>
+            <p class="film-overlay-role">Lead Role · Malayalam Short</p>
           </div>
         </div>
 
-        <!-- 5. Priye — Director -->
-        <div class="film-card dir-card reveal delay-4" data-href="https://youtu.be/5O6OqYF0g7I">
+        <!-- 5. Priye — Director ───────────────────────── -->
+        <div class="film-card dir-card reveal delay-4"
+             data-href="https://youtu.be/5O6OqYF0g7I">
           <div class="film-card-img">
             <img src="images/poster_priye.jpg" alt="Priye" />
-            <div class="film-card-overlay">
-              <p style="font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;color:#F5EDD8;line-height:1.5;">A lyrical visual poem blending music and cinema</p>
-            </div>
           </div>
-          <span class="film-badge badge-music">Music Video</span>
-          <div class="film-card-body">
-            <p class="film-year">2024</p>
-            <h3 class="film-title">Priye</h3>
-            <p class="film-role">Director · Musical Video</p>
+          <div class="film-card-overlay">
+            <p class="film-overlay-year">2024</p>
+            <h3 class="film-overlay-title">Priye</h3>
+            <p class="film-overlay-role">Director · Musical Video</p>
           </div>
         </div>
 
-        <!-- 6. Manaath — Director -->
-        <div class="film-card dir-card reveal delay-5" data-href="https://youtu.be/q0ZJHnDP7sY">
+        <!-- 6. Manaath — Director ────────────────────── -->
+        <div class="film-card dir-card reveal delay-5"
+             data-href="https://youtu.be/q0ZJHnDP7sY">
           <div class="film-card-img">
             <img src="images/poster_manaath.jpg" alt="Manaath" />
-            <div class="film-card-overlay">
-              <p style="font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;color:#F5EDD8;line-height:1.5;">Directorial debut — longing and memory in silence</p>
-            </div>
           </div>
-          <span class="film-badge badge-short">Short</span>
-          <div class="film-card-body">
-            <p class="film-year">2022</p>
-            <h3 class="film-title">Manaath</h3>
-            <p class="film-role">Director · Malayalam Short</p>
+          <div class="film-card-overlay">
+            <p class="film-overlay-year">2022</p>
+            <h3 class="film-overlay-title">Manaath</h3>
+            <p class="film-overlay-role">Director · Malayalam Short</p>
           </div>
         </div>
 
-        <!-- 7. Thamah — Director -->
-        <div class="film-card dir-card reveal delay-6" data-href="https://youtu.be/hODJEWsuwpY">
+        <!-- 7. Thamah — Director ─────────────────────── -->
+        <div class="film-card dir-card reveal delay-6"
+             data-href="https://youtu.be/hODJEWsuwpY">
           <div class="film-card-img">
             <img src="images/poster_thamah.jpg" alt="Thamah" />
-            <div class="film-card-overlay">
-              <p style="font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;color:#F5EDD8;line-height:1.5;">Ambition and its silent cost — in stark visuals</p>
-            </div>
           </div>
-          <span class="film-badge badge-short">Short</span>
-          <div class="film-card-body">
-            <p class="film-year">2023</p>
-            <h3 class="film-title">Thamah</h3>
-            <p class="film-role">Director · Malayalam Short</p>
+          <div class="film-card-overlay">
+            <p class="film-overlay-year">2023</p>
+            <h3 class="film-overlay-title">Thamah</h3>
+            <p class="film-overlay-role">Director · Malayalam Short</p>
           </div>
         </div>
 
+        <!-- Right padding spacer -->
         <div style="flex:0 0 1px;"></div>
-      </div>
+      </div><!-- /filmTrack -->
+    </div><!-- /filmScroll -->
+  </div><!-- /scroll-section-outer -->
+
+  <!-- Dot indicator — visible on mobile only -->
+  <div class="container">
+    <div class="film-dots" id="filmDots">
+      <button class="film-dot active" aria-label="Card 1"></button>
+      <button class="film-dot" aria-label="Card 2"></button>
+      <button class="film-dot" aria-label="Card 3"></button>
+      <button class="film-dot" aria-label="Card 4"></button>
+      <button class="film-dot" aria-label="Card 5"></button>
+      <button class="film-dot" aria-label="Card 6"></button>
+      <button class="film-dot" aria-label="Card 7"></button>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════ ABOUT ═══════════════════════════ -->
+<!-- ════════════════════════════════════════════════════
+     ABOUT
+════════════════════════════════════════════════════ -->
 <section id="about">
   <div class="container">
-    <div class="two-col">
+    <p class="section-label reveal">02 / About</p>
+
+    <div class="two-col" style="margin-top:2.5rem;">
+
+      <!-- LEFT: Physical Profile → Languages ─────────── -->
       <div>
-        <p class="section-label reveal">02 / About</p>
-        <h2 class="section-title reveal delay-1">A Face Built<br />for the <em>Screen</em></h2>
-        <div class="gold-divider reveal delay-2"></div>
-        <p class="reveal delay-2" style="color:#7A7060;font-size:.95rem;line-height:1.9;margin-bottom:1.25rem;">
-          Naseef P P is a young, versatile actor and filmmaker from Kerala, India — trained in screen acting and shaped by a deep love for authentic storytelling. With a striking screen presence, commanding emotional range, and fluency across four languages, he brings characters to life with raw honesty and cinematic precision.
-        </p>
-        <p class="reveal delay-3" style="color:#7A7060;font-size:.95rem;line-height:1.9;margin-bottom:1.75rem;">
-          Having led roles across Malayalam feature films, Tamil short films, and Malayalam shorts, Naseef is building a multi-lingual, multi-genre career that bridges regional and international cinema. He has also served as a recurring model for <strong style="color:#F5EDD8;">Saral Home's advertising campaign</strong>, bringing the same screen presence to brand storytelling.
-        </p>
-        <!-- Language badges — clickable, open intro videos -->
-        <div class="reveal delay-4" style="margin-bottom:1.75rem;">
-          <p style="font-size:.65rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:#7A7060;margin-bottom:.4rem;">Languages</p>
+        <!-- Physical Profile -->
+        <div class="profile-table reveal delay-1">
+          <p style="font-size:.6rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:#D4A953;margin-bottom:1rem;">Physical Profile</p>
+          <div class="profile-row">
+            <span class="profile-key">Age Range</span>
+            <span class="profile-val">18 – 28 years</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-key">Height</span>
+            <span class="profile-val">173 cm</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-key">Build</span>
+            <span class="profile-val">Medium / Slender</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-key">Hair</span>
+            <span class="profile-val">Curly Black</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-key">Eyes</span>
+            <span class="profile-val">Dark Brown</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-key">Nationality</span>
+            <span class="profile-val">Indian</span>
+          </div>
+        </div>
+
+        <!-- Languages -->
+        <div class="reveal delay-2" style="margin-top:1.75rem;">
+          <p style="font-size:.6rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:#7A7060;margin-bottom:.5rem;">Languages</p>
           <p style="font-size:.62rem;color:rgba(122,112,96,.55);letter-spacing:.06em;margin-bottom:.75rem;">Click to hear an introduction</p>
           <div style="display:flex;flex-wrap:wrap;gap:.5rem;">
-            <span class="lang-badge" data-videoid="c6k5ZNzTsw0" data-label="English Introduction">🇬🇧 English</span>
-            <span class="lang-badge" data-videoid="tHgNfsobaJc" data-label="Malayalam Introduction">🇮🇳 Malayalam</span>
-            <span class="lang-badge" data-videoid="aGizTuPs9fY" data-label="Hindi Introduction">🇮🇳 Hindi</span>
-            <span class="lang-badge" data-videoid="mGeZB0aWpm4" data-label="Tamil Introduction">🇮🇳 Tamil</span>
+            <span class="lang-badge"
+                  data-videoid="c6k5ZNzTsw0"
+                  data-label="English Introduction">
+              🇬🇧 English
+            </span>
+            <span class="lang-badge"
+                  data-videoid="tHgNfsobaJc"
+                  data-label="Malayalam Introduction">
+              🇮🇳 Malayalam
+            </span>
+            <span class="lang-badge"
+                  data-videoid="aGizTuPs9fY"
+                  data-label="Hindi Introduction">
+              🇮🇳 Hindi
+            </span>
+            <span class="lang-badge"
+                  data-videoid="mGeZB0aWpm4"
+                  data-label="Tamil Introduction">
+              🇮🇳 Tamil
+            </span>
           </div>
         </div>
-        <!-- Training mini-box -->
-        <div class="about-training-box reveal delay-5">
-          <p style="font-size:.6rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:#D4A953;margin-bottom:.5rem;">Training</p>
-          <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;color:#F5EDD8;margin-bottom:.2rem;">Screen Acting Course</p>
-          <p style="font-size:.75rem;color:#7A7060;">Nova Film Institute, Ernakulam</p>
-        </div>
       </div>
+
+      <!-- RIGHT: Stat Boxes → Training expand box ─────── -->
       <div>
-        <!-- Stat cards — cursor stays default -->
-        <div class="reveal delay-1" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem;">
-          <div class="stat-card"><div class="stat-number count-num" data-target="4">0</div><div class="stat-label">Screen Credits</div></div>
-          <div class="stat-card"><div class="stat-number count-num" data-target="4">0</div><div class="stat-label">Languages</div></div>
-          <div class="stat-card"><div class="stat-number count-num" data-target="3">0</div><div class="stat-label">Films Directed</div></div>
-          <div class="stat-card"><div class="stat-number count-num" data-target="3">0</div><div class="stat-label">Years Active</div></div>
+        <!-- Stat boxes -->
+        <div class="reveal delay-1"
+             style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:0;">
+          <div class="stat-card">
+            <div class="stat-number count-num" data-target="4">0</div>
+            <div class="stat-label">Screen Credits</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number count-num" data-target="4">0</div>
+            <div class="stat-label">Languages</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number count-num" data-target="3">0</div>
+            <div class="stat-label">Films Directed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number count-num" data-target="3">0</div>
+            <div class="stat-label">Years Active</div>
+          </div>
         </div>
-        <!-- Physical profile — hover treatment, default cursor -->
-        <div class="profile-table reveal delay-2">
-          <p style="font-size:.6rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:#D4A953;margin-bottom:1rem;">Physical Profile</p>
-          <div class="profile-row"><span class="profile-key">Age Range</span><span class="profile-val">18 – 28 years</span></div>
-          <div class="profile-row"><span class="profile-key">Height</span><span class="profile-val">173 cm</span></div>
-          <div class="profile-row"><span class="profile-key">Build</span><span class="profile-val">Medium / Slender</span></div>
-          <div class="profile-row"><span class="profile-key">Hair</span><span class="profile-val">Curly Black</span></div>
-          <div class="profile-row"><span class="profile-key">Eyes</span><span class="profile-val">Dark Brown</span></div>
-          <div class="profile-row"><span class="profile-key">Nationality</span><span class="profile-val">Indian</span></div>
+
+        <!-- Training expand box — click to reveal certificate -->
+        <div class="training-expand-box reveal delay-2"
+             role="button"
+             aria-expanded="false"
+             aria-label="Training — click to expand and see certificate">
+          <div class="training-expand-header">
+            <div>
+              <p style="font-size:.6rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:#D4A953;margin-bottom:.5rem;">Training</p>
+              <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;color:#F5EDD8;margin-bottom:.2rem;">Screen Acting Course</p>
+              <p style="font-size:.75rem;color:#7A7060;">Nova Film Institute, Ernakulam</p>
+            </div>
+            <svg class="training-expand-icon" width="20" height="20" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="1.5">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </div>
+          <!-- Collapsible certificate area -->
+          <div class="training-cert-area">
+            <div class="certificate-wrap">
+              <div class="cert-corner tl"></div>
+              <div class="cert-corner tr"></div>
+              <div class="cert-corner bl"></div>
+              <div class="cert-corner br"></div>
+              <!-- ★★★ REPLACE with your actual certificate scan ★★★ -->
+              <img src="images/certificate-nova-acting-course.jpg"
+                   alt="Nova Film Institute — Screen Acting Certificate" />
+            </div>
+            <p class="cert-caption">Nova Film Institute · Ernakulam · Screen Acting</p>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+
+    </div><!-- /two-col -->
+  </div><!-- /container -->
 </section>
 
-<!-- ═══════════════════ STILLS & FRAMES ══════════════════════ -->
-<section id="lookbook">
+<!-- ════════════════════════════════════════════════════
+     STILLS & FRAMES
+════════════════════════════════════════════════════ -->
+<section id="stills">
   <div class="container">
     <p class="section-label reveal">03 / Stills &amp; Frames</p>
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem;">
-      <h2 class="section-title reveal delay-1">Lookbook</h2>
-      <p class="reveal delay-2" style="color:#7A7060;font-size:.8rem;letter-spacing:.1em;padding-bottom:.5rem;">← Drag to explore · Click to expand →</p>
+
+    <!-- Tab navigation -->
+    <div class="stills-tabs-wrap reveal delay-1">
+      <div class="stills-tabs" role="tablist">
+        <button class="stills-tab active" role="tab" aria-selected="true">On Screen</button>
+        <button class="stills-tab"        role="tab" aria-selected="false">Candid</button>
+        <button class="stills-tab"        role="tab" aria-selected="false">Campaign</button>
+        <button class="stills-tab"        role="tab" aria-selected="false">Portrait</button>
+        <button class="stills-tab"        role="tab" aria-selected="false">Photoshoot</button>
+        <button class="stills-tab"        role="tab" aria-selected="false">Portrait II</button>
+      </div>
+      <!-- Sliding gold indicator line -->
+      <div class="tab-indicator"></div>
     </div>
-  </div>
 
-  <div class="scroll-section-outer">
-    <div class="scroll-feather feather-left"></div>
-    <div class="scroll-feather feather-right"></div>
-    <div class="lookbook-scroll-outer" id="lookScroll">
-      <div class="lookbook-track">
+    <!-- Stills panels — slide viewport -->
+    <div class="stills-viewport reveal delay-2" id="stillsViewport">
+      <div class="stills-track" id="stillsTrack">
 
-        <!-- PANEL 1 — Single candid -->
-        <div class="lb-panel lb-panel-1">
-          <div class="lb-cell" data-src="images/gallery/Swing_1.jpeg" data-tag="Candid">
-            <img src="images/gallery/Swing_1.jpeg" alt="Candid" loading="lazy" />
-            <div class="lb-overlay"><span class="lb-tag">Candid</span></div>
-          </div>
-        </div>
+        <!-- ── PANEL 1: ON SCREEN — Soothravakyam 2×2 ── -->
+        <div class="stills-panel" role="tabpanel">
+          <div class="grid-onscreen">
 
-        <!-- PANEL 2 — Photoshoot 1: tall left + two stacked right -->
-        <div class="lb-panel lb-panel-2">
-          <div class="lb-col-a">
-            <div class="lb-cell" data-src="images/gallery/Cigg_1.jpg" data-tag="Photoshoot">
-              <img src="images/gallery/Cigg_1.jpg" alt="Photoshoot" loading="lazy" />
-              <div class="lb-overlay"><span class="lb-tag">Photoshoot</span></div>
+            <div class="si"
+                 data-src="images/gallery/sv_1.png"
+                 data-tag="On Screen — Soothravakyam">
+              <img src="images/gallery/sv_1.png" alt="Soothravakyam" loading="lazy" />
+              <div class="si-overlay"><span class="si-tag">On Screen</span></div>
             </div>
-          </div>
-          <div class="lb-col-b">
-            <div class="lb-cell" data-src="images/gallery/Cigg_3.jpg" data-tag="Photoshoot">
-              <img src="images/gallery/Cigg_3.jpg" alt="Photoshoot" loading="lazy" />
-              <div class="lb-overlay"><span class="lb-tag">Photoshoot</span></div>
+
+            <div class="si"
+                 data-src="images/gallery/sv_2.png"
+                 data-tag="On Screen — Soothravakyam">
+              <img src="images/gallery/sv_2.png" alt="Soothravakyam" loading="lazy" />
+              <div class="si-overlay"><span class="si-tag">On Screen</span></div>
             </div>
-            <div class="lb-cell" data-src="images/gallery/Cigg_4.jpg" data-tag="Photoshoot">
-              <img src="images/gallery/Cigg_4.jpg" alt="Photoshoot" loading="lazy" />
-              <div class="lb-overlay"><span class="lb-tag">Photoshoot</span></div>
+
+            <div class="si"
+                 data-src="images/gallery/sv_3.png"
+                 data-tag="On Screen — Soothravakyam">
+              <img src="images/gallery/sv_3.png" alt="Soothravakyam" loading="lazy" />
+              <div class="si-overlay"><span class="si-tag">On Screen</span></div>
             </div>
+
+            <div class="si"
+                 data-src="images/gallery/sv_4.png"
+                 data-tag="On Screen — Soothravakyam">
+              <img src="images/gallery/sv_4.png" alt="Soothravakyam" loading="lazy" />
+              <div class="si-overlay"><span class="si-tag">On Screen</span></div>
+            </div>
+
           </div>
         </div>
 
-        <!-- PANEL 3 — Ad Photoshoot 2: side by side -->
-        <div class="lb-panel lb-panel-3">
-          <div class="lb-cell" data-src="images/gallery/Mango_1.jpg" data-tag="Campaign">
-            <img src="images/gallery/Mango_1.jpg" alt="Campaign" loading="lazy" />
-            <div class="lb-overlay"><span class="lb-tag">Campaign</span></div>
-          </div>
-          <div class="lb-cell" data-src="images/gallery/Mango_3.jpg" data-tag="Campaign">
-            <img src="images/gallery/Mango_3.jpg" alt="Campaign" loading="lazy" />
-            <div class="lb-overlay"><span class="lb-tag">Campaign</span></div>
+        <!-- ── PANEL 2: CANDID — Swing. tall left + 3 ── -->
+        <div class="stills-panel" role="tabpanel">
+          <div class="grid-candid">
+
+            <div class="si"
+                 data-src="images/gallery/Swing_1.jpeg"
+                 data-tag="Candid">
+              <img src="images/gallery/Swing_1.jpeg" alt="Candid" loading="lazy" />
+              <div class="si-overlay"><span class="si-tag">Candid</span></div>
+            </div>
+
+            <div class="si"
+                 data-src="images/gallery/Swing_2.jpeg"
+                 data-tag="Candid">
+              <img src="images/gallery/Swing_2.jpeg" alt="Candid" loading="lazy" />
+              <div class="si-overlay"><span class="si-tag">Candid</span></div>
+            </div>
+
+            <div class="si"
+                 data-src="images/gallery/Swing_3.jpeg"
+                 data-tag="Candid">
+              <img src="images/gallery/Swing_3.jpeg" alt="Candid" loading="lazy" />
+              <div class="si-overlay"><span class="si-tag">Candid</span></div>
+            </div>
+
+            <div class="si"
+                 data-src="images/gallery/Swing_4.jpeg"
+                 data-tag="Candid">
+              <img src="images/gallery/Swing_4.jpeg" alt="Candid" loading="lazy" />
+              <div class="si-overlay"><span class="si-tag">Candid</span></div>
+            </div>
+
           </div>
         </div>
 
-        <!-- PANEL 4 — Soothravakyam: 2×2 contact sheet -->
-        <div class="lb-panel lb-panel-4">
-          <div class="lb-cell" data-src="images/gallery/sv_1.png" data-tag="On Screen — Soothravakyam">
-            <img src="images/gallery/sv_1.png" alt="Soothravakyam" loading="lazy" />
-            <div class="lb-overlay"><span class="lb-tag">On Screen</span></div>
-          </div>
-          <div class="lb-cell" data-src="images/gallery/sv_2.png" data-tag="On Screen — Soothravakyam">
-            <img src="images/gallery/sv_2.png" alt="Soothravakyam" loading="lazy" />
-            <div class="lb-overlay"><span class="lb-tag">On Screen</span></div>
-          </div>
-          <div class="lb-cell" data-src="images/gallery/sv_3.png" data-tag="On Screen — Soothravakyam">
-            <img src="images/gallery/sv_3.png" alt="Soothravakyam" loading="lazy" />
-            <div class="lb-overlay"><span class="lb-tag">On Screen</span></div>
-          </div>
-          <div class="lb-cell" data-src="images/gallery/sv_4.png" data-tag="On Screen — Soothravakyam">
-            <img src="images/gallery/sv_4.png" alt="Soothravakyam" loading="lazy" />
-            <div class="lb-overlay"><span class="lb-tag">On Screen</span></div>
-          </div>
-        </div>
+        <!-- ── PANEL 3: CAMPAIGN — Saral Home, 4 equal ─ -->
+        <div class="stills-panel" role="tabpanel">
+          <div class="grid-campaign">
 
-        <!-- PANEL 5 — Finale: asymmetric mix -->
-        <div class="lb-panel lb-panel-5">
-          <div class="lb-cell lb-cell-wide" data-src="images/hero-bg-image.jpg" data-tag="Candid">
-            <img src="images/hero-bg-image.jpg" alt="Candid" loading="lazy" />
-            <div class="lb-overlay"><span class="lb-tag">Candid</span></div>
-          </div>
-          <div class="lb-col-mid">
-            <div class="lb-cell" data-src="images/gallery/Naseef_01.jpeg" data-tag="Campaign">
+            <div class="si"
+                 data-src="images/gallery/Naseef_01.jpeg"
+                 data-tag="Campaign — Saral Home">
               <img src="images/gallery/Naseef_01.jpeg" alt="Campaign" loading="lazy" />
-              <div class="lb-overlay"><span class="lb-tag">Campaign</span></div>
+              <div class="si-overlay"><span class="si-tag">Campaign</span></div>
             </div>
-            <div class="lb-cell" data-src="images/gallery/Naseef_02.jpeg" data-tag="Campaign">
+
+            <div class="si"
+                 data-src="images/gallery/Naseef_02.jpeg"
+                 data-tag="Campaign — Saral Home">
               <img src="images/gallery/Naseef_02.jpeg" alt="Campaign" loading="lazy" />
-              <div class="lb-overlay"><span class="lb-tag">Campaign</span></div>
+              <div class="si-overlay"><span class="si-tag">Campaign</span></div>
             </div>
-          </div>
-          <div class="lb-cell lb-cell-tall" data-src="images/gallery/Naseef_CS_03.jpg" data-tag="Candid">
-            <img src="images/gallery/Naseef_CS_03.jpg" alt="Candid" loading="lazy" />
-            <div class="lb-overlay"><span class="lb-tag">Candid</span></div>
+
+            <div class="si"
+                 data-src="images/gallery/Naseef_03.jpeg"
+                 data-tag="Campaign — Saral Home">
+              <img src="images/gallery/Naseef_03.jpeg" alt="Campaign" loading="lazy" />
+              <div class="si-overlay"><span class="si-tag">Campaign</span></div>
+            </div>
+
+            <div class="si"
+                 data-src="images/gallery/Naseef_04.jpeg"
+                 data-tag="Campaign — Saral Home">
+              <img src="images/gallery/Naseef_04.jpeg" alt="Campaign" loading="lazy" />
+              <div class="si-overlay"><span class="si-tag">Campaign</span></div>
+            </div>
+
           </div>
         </div>
 
-        <div style="flex:0 0 1px;"></div>
-      </div>
-    </div>
-  </div>
-  <div id="lookbook-bottom-pad"></div>
+        <!-- ── PANEL 4: PORTRAIT — Mango. 1 large + 3 ── -->
+        <div class="stills-panel" role="tabpanel">
+          <div class="grid-portrait">
+
+            <div class="si"
+                 data-src="images/gallery/Mango_1.jpg"
+                 data-tag="Portrait">
+              <img src="images/gallery/Mango_1.jpg" alt="Portrait" loading="lazy" />
+              <div class="si-overlay"><span class="si-tag">Portrait</span></div>
+            </div>
+
+            <div class="si"
+                 data-src="images/gallery/Mango_2.jpg"
+                 data-tag="Portrait">
+              <img src="images/gallery/Mango_2.jpg" alt="Portrait" loading="lazy" />
+              <div class="si-overlay"><span class="si-tag">Portrait</span></div>
+            </div>
+
+            <div class="si"
+                 data-src="images/gallery/Mango_3.jpg"
+                 data-tag="Portrait">
+              <img src="images/gallery/Mango_3.jpg" alt="Portrait" loading="lazy" />
+              <div class="si-overlay"><span class="si-tag">Portrait</span></div>
+            </div>
+
+            <div class="si"
+                 data-src="images/gallery/Mango_4.jpg"
+                 data-tag="Portrait">
+              <img src="images/gallery/Mango_4.jpg" alt="Portrait" loading="lazy" />
+              <div class="si-overlay"><span class="si-tag">Portrait</span></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── PANEL 5: PHOTOSHOOT — asymmetric ─────── -->
+        <div class="stills-panel" role="tabpanel">
+          <div class="grid-photoshoot">
+
+            <div class="si"
+                 data-src="images/gallery/Cigg_1.jpg"
+                 data-tag="Photoshoot">
+              <img src="images/gallery/Cigg_1.jpg" alt="Photoshoot" loading="lazy" />
+              <div class="si-overlay"><span class="si-tag">Photoshoot</span></div>
+            </div>
+
+            <div class="si"
+                 data-src="images/gallery/Cigg_2.jpg"
+                 data-tag="Photoshoot">
+              <img src="images/gallery/Cigg_2.jpg" alt="Photoshoot" loading="lazy" />
+              <div class="si-overlay"><span class="si-tag">Photoshoot</span></div>
+            </div>
+
+            <div class="si"
+                 data-src="images/gallery/Cigg_3.jpg"
+                 data-tag="Photoshoot">
+              <img src="images/gallery/Cigg_3.jpg" alt="Photoshoot" loading="lazy" />
+              <div class="si-overlay"><span class="si-tag">Photoshoot</span></div>
+            </div>
+
+            <div class="si"
+                 data-src="images/gallery/Cigg_4.jpg"
+                 data-tag="Photoshoot">
+              <img src="images/gallery/Cigg_4.jpg" alt="Photoshoot" loading="lazy" />
+              <div class="si-overlay"><span class="si-tag">Photoshoot</span></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── PANEL 6: PORTRAIT II — center focus ───── -->
+        <div class="stills-panel" role="tabpanel">
+          <div class="grid-portrait2">
+
+            <div class="si"
+                 data-src="images/gallery/Naseef_CS_01.jpg"
+                 data-tag="Portrait II">
+              <img src="images/gallery/Naseef_CS_01.jpg" alt="Portrait II" loading="lazy" />
+              <div class="si-overlay"><span class="si-tag">Portrait II</span></div>
+            </div>
+
+            <div class="si"
+                 data-src="images/gallery/Naseef_CS_02.jpg"
+                 data-tag="Portrait II">
+              <img src="images/gallery/Naseef_CS_02.jpg" alt="Portrait II" loading="lazy" />
+              <div class="si-overlay"><span class="si-tag">Portrait II</span></div>
+            </div>
+
+            <div class="si"
+                 data-src="images/gallery/Naseef_CS_03.jpg"
+                 data-tag="Portrait II">
+              <img src="images/gallery/Naseef_CS_03.jpg" alt="Portrait II" loading="lazy" />
+              <div class="si-overlay"><span class="si-tag">Portrait II</span></div>
+            </div>
+
+            <div class="si"
+                 data-src="images/gallery/Naseef_CS_04.jpg"
+                 data-tag="Portrait II">
+              <img src="images/gallery/Naseef_CS_04.jpg" alt="Portrait II" loading="lazy" />
+              <div class="si-overlay"><span class="si-tag">Portrait II</span></div>
+            </div>
+
+          </div>
+        </div>
+
+      </div><!-- /stillsTrack -->
+    </div><!-- /stillsViewport -->
+
+  </div><!-- /container -->
 </section>
 
-<!-- ════════════════════════ TRAINING ════════════════════════ -->
-<section id="training">
-  <div class="container">
-    <p class="section-label reveal">04 / Training</p>
-    <h2 class="section-title reveal delay-1" style="margin-bottom:3rem;">The <em>Craft</em></h2>
-    <div class="two-col">
-      <!-- LEFT: Certificate -->
-      <div class="reveal delay-1">
-        <p style="font-size:.6rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:#7A7060;margin-bottom:1rem;">Certificate of Completion</p>
-        <div class="certificate-wrap">
-          <div class="cert-corner tl"></div><div class="cert-corner tr"></div>
-          <div class="cert-corner bl"></div><div class="cert-corner br"></div>
-          <img src="images/certificate-nova-acting-course.jpg" alt="Nova Film Institute Certificate" />
-        </div>
-        <p style="font-size:.7rem;color:#7A7060;text-align:center;margin-top:.75rem;letter-spacing:.1em;">Nova Film Institute · Ernakulam · Screen Acting</p>
-      </div>
-      <!-- RIGHT: Training box + Quote -->
-      <div>
-        <div class="training-box reveal delay-2">
-          <p style="font-size:.6rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:#D4A953;margin-bottom:.75rem;">Formal Training</p>
-          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:700;color:#F5EDD8;margin-bottom:.35rem;">Screen Acting Course</h3>
-          <p style="font-size:.82rem;color:#7A7060;margin-bottom:1.5rem;">Nova Film Institute, Ernakulam, Kerala</p>
-          <div style="display:flex;flex-wrap:wrap;gap:.5rem;">
-            <span class="skill-tag">Camera Technique</span>
-            <span class="skill-tag">Blocking</span>
-            <span class="skill-tag">Emotional Memory</span>
-            <span class="skill-tag">Dialogue Delivery</span>
-            <span class="skill-tag">Scene Study</span>
-            <span class="skill-tag">Screen Presence</span>
-          </div>
-        </div>
-        <div class="quote-box reveal delay-3">
-          <p style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-style:italic;color:#F5EDD8;line-height:1.65;margin-bottom:.75rem;">
-            "The camera doesn't lie. You either live the moment or you don't."
-          </p>
-          <p style="font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#7A7060;">— Naseef's Acting Philosophy</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════ CONTACT ═════════════════════════ -->
+<!-- ════════════════════════════════════════════════════
+     CONTACT
+════════════════════════════════════════════════════ -->
 <section id="contact">
   <div class="container">
     <div class="two-col">
+
+      <!-- Left: heading + contact links ─────────────── -->
       <div>
-        <p class="section-label reveal">05 / Contact</p>
-        <h2 class="section-title reveal delay-1">Let's Make<br /><em>Something</em><br />Together</h2>
+        <p class="section-label reveal">04 / Contact</p>
+        <h2 class="section-title reveal delay-1">
+          Let's Make<br /><em>Something</em><br />Together
+        </h2>
         <div class="gold-divider reveal delay-2"></div>
-        <p class="reveal delay-2" style="color:#7A7060;font-size:.92rem;line-height:1.85;margin-bottom:2.5rem;">
-          Open to feature films, short films, web series, commercial projects, and brand campaigns across Malayalam, Tamil, Hindi, and English. Based in Kerala — available to travel.
+        <p class="reveal delay-2"
+           style="color:#7A7060;font-size:.92rem;line-height:1.85;margin-bottom:2.5rem;">
+          Open to feature films, short films, web series, commercial projects,
+          and brand campaigns across Malayalam, Tamil, Hindi, and English.
+          Based in Kerala — available to travel.
         </p>
+
         <div style="display:flex;flex-direction:column;gap:.75rem;">
+
           <a href="mailto:naseefppactor@gmail.com" class="contact-link reveal delay-2">
-            <div class="contact-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-            <div><p class="contact-link-label">Email</p><p class="contact-link-val">naseefppactor@gmail.com</p></div>
+            <div class="contact-link-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="1.5">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div>
+              <p class="contact-link-label">Email</p>
+              <p class="contact-link-val">naseefppactor@gmail.com</p>
+            </div>
           </a>
-          <a href="https://wa.me/917907885626" target="_blank" rel="noopener" class="contact-link reveal delay-3">
-            <div class="contact-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
-            <div><p class="contact-link-label">WhatsApp</p><p class="contact-link-val">+91 79078 85626</p></div>
+
+          <a href="https://wa.me/917907885626" target="_blank" rel="noopener"
+             class="contact-link reveal delay-3">
+            <div class="contact-link-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="1.5">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="contact-link-label">WhatsApp</p>
+              <p class="contact-link-val">+91 79078 85626</p>
+            </div>
           </a>
-          <a href="https://www.instagram.com/naseef_pp/" target="_blank" rel="noopener" class="contact-link reveal delay-4">
-            <div class="contact-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
-            <div><p class="contact-link-label">Instagram</p><p class="contact-link-val">@naseef_pp</p></div>
+
+          <a href="https://www.instagram.com/naseef_pp/" target="_blank" rel="noopener"
+             class="contact-link reveal delay-4">
+            <div class="contact-link-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="1.5">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </div>
+            <div>
+              <p class="contact-link-label">Instagram</p>
+              <p class="contact-link-val">@naseef_pp</p>
+            </div>
           </a>
+
         </div>
       </div>
+
+      <!-- Right: Formspree contact form ──────────────── -->
       <div class="reveal delay-2">
-        <form onsubmit="handleForm(event)">
+        <!-- Formspree endpoint: https://formspree.io/f/meevdwkp
+             Vanilla JS Ajax — no page redirect on submit     -->
+        <form id="contact-form" novalidate>
+
           <div class="form-group">
-            <label style="font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#7A7060;display:block;margin-bottom:.5rem;">Your Name</label>
-            <input type="text" class="form-input" placeholder="Casting Director / Producer" required />
+            <label style="font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#7A7060;display:block;margin-bottom:.5rem;">
+              Your Name
+            </label>
+            <input type="text" name="name" class="form-input"
+                   placeholder="Casting Director / Producer" required />
           </div>
+
           <div class="form-group">
-            <label style="font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#7A7060;display:block;margin-bottom:.5rem;">Email Address</label>
-            <input type="email" class="form-input" placeholder="your@email.com" required />
+            <label style="font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#7A7060;display:block;margin-bottom:.5rem;">
+              Email Address
+            </label>
+            <input type="email" name="email" class="form-input"
+                   placeholder="your@email.com" required />
           </div>
+
           <div class="form-group">
-            <label style="font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#7A7060;display:block;margin-bottom:.5rem;">Project / Opportunity</label>
-            <input type="text" class="form-input" placeholder="Feature film, short film, commercial..." />
+            <label style="font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#7A7060;display:block;margin-bottom:.5rem;">
+              Project / Opportunity
+            </label>
+            <input type="text" name="project" class="form-input"
+                   placeholder="Feature film, short film, commercial..." />
           </div>
+
           <div class="form-group">
-            <label style="font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#7A7060;display:block;margin-bottom:.5rem;">Message</label>
-            <textarea class="form-input" placeholder="Tell me about the project..."></textarea>
+            <label style="font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#7A7060;display:block;margin-bottom:.5rem;">
+              Message
+            </label>
+            <textarea name="message" class="form-input"
+                      placeholder="Tell me about the project..."></textarea>
           </div>
-          <button type="submit" class="btn-primary" style="width:100%;justify-content:center;margin-top:.5rem;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+
+          <button type="submit" class="btn-primary"
+                  style="width:100%;justify-content:center;margin-top:.5rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
             Send Message
           </button>
-          <p id="form-success" style="display:none;text-align:center;color:#D4A953;font-size:.8rem;letter-spacing:.1em;margin-top:1rem;">✓ Message sent! I'll get back to you soon.</p>
+
+          <!-- Success / error messages -->
+          <p id="form-success" class="form-success-msg">
+            ✓ Message sent! I'll get back to you soon.
+          </p>
+          <p id="form-error" class="form-error-msg">
+            Something went wrong. Please email me directly at naseefppactor@gmail.com
+          </p>
+
         </form>
       </div>
-    </div>
-  </div>
+
+    </div><!-- /two-col -->
+  </div><!-- /container -->
 </section>
 
-<!-- ════════════════════════ FOOTER ══════════════════════════ -->
+<!-- ════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════ -->
 <footer>
   <!-- Left: tagline -->
   <div class="footer-tagline">Actor · Director</div>
 
-  <!-- Center: social icons
-       mobile-btt lives here, positioned absolutely at far right -->
+  <!-- Center: social icons + mobile back-to-top -->
   <div class="footer-center">
-    <a href="mailto:naseefppactor@gmail.com" class="social-icon" title="Email" aria-label="Email">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    <a href="mailto:naseefppactor@gmail.com" class="social-icon"
+       title="Email" aria-label="Email">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+      </svg>
     </a>
-    <a href="https://wa.me/917907885626" target="_blank" rel="noopener" class="social-icon" title="WhatsApp" aria-label="WhatsApp">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+    <a href="https://wa.me/917907885626" target="_blank" rel="noopener"
+       class="social-icon" title="WhatsApp" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+      </svg>
     </a>
-    <a href="https://www.instagram.com/naseef_pp/" target="_blank" rel="noopener" class="social-icon" title="Instagram" aria-label="Instagram">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+    <a href="https://www.instagram.com/naseef_pp/" target="_blank" rel="noopener"
+       class="social-icon" title="Instagram" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+      </svg>
     </a>
-    <a href="https://www.linkedin.com/in/naseef-pp/" target="_blank" rel="noopener" class="social-icon" title="LinkedIn" aria-label="LinkedIn">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+    <a href="https://www.linkedin.com/in/naseef-pp/" target="_blank" rel="noopener"
+       class="social-icon" title="LinkedIn" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+        <rect x="2" y="9" width="4" height="12"/>
+        <circle cx="4" cy="4" r="2"/>
+      </svg>
     </a>
-    <!-- MOBILE ONLY: back-to-top at far right of this row -->
+    <!-- Mobile only: back-to-top sits at far right of this row -->
     <a href="#hero" class="back-to-top mobile-btt" aria-label="Back to top">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2">
+        <polyline points="18 15 12 9 6 15"/>
+      </svg>
     </a>
   </div>
 
-  <!-- Right: copyright + DESKTOP ONLY back-to-top -->
+  <!-- Right: copyright + desktop back-to-top -->
   <div class="footer-right">
     <span class="footer-copy">© 2025 Naseef P P</span>
     <a href="#hero" class="back-to-top desktop-btt" aria-label="Back to top">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2">
+        <polyline points="18 15 12 9 6 15"/>
+      </svg>
     </a>
   </div>
 </footer>
 
-<!-- ════════════════════════ JAVASCRIPT ══════════════════════ -->
-<script>
-/* ══ CURSOR ════════════════════════════════════════════════ */
-const curO = document.getElementById('cursor-outer');
-const curI = document.getElementById('cursor-inner');
-let ox=0,oy=0,tx=0,ty=0;
-document.addEventListener('mousemove', e=>{
-  tx=e.clientX; ty=e.clientY;
-  curI.style.left=tx+'px'; curI.style.top=ty+'px';
-});
-(function loop(){
-  ox+=(tx-ox)*.12; oy+=(ty-oy)*.12;
-  curO.style.left=ox+'px'; curO.style.top=oy+'px';
-  requestAnimationFrame(loop);
-})();
-/* Cursor scale — interactive elements only
-   NOT: stat cards, skill tags, profile table */
-document.querySelectorAll('a,button,.film-card,.lb-cell,.lang-badge').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{ curO.style.transform='translate(-50%,-50%) scale(1.8)'; curO.style.borderColor='#C0392B'; });
-  el.addEventListener('mouseleave',()=>{ curO.style.transform='translate(-50%,-50%) scale(1)'; curO.style.borderColor='#D4A953'; });
-});
-
-/* ══ NAV ═══════════════════════════════════════════════════ */
-const nav=document.getElementById('navbar');
-window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60),{passive:true});
-
-/* ══ MOBILE MENU ═══════════════════════════════════════════ */
-function toggleMenu(){
-  document.getElementById('mobile-menu').classList.toggle('open');
-  document.getElementById('hamburger').classList.toggle('active');
-}
-
-/* ══ TYPEWRITER ════════════════════════════════════════════ */
-const roles=['Lead in Soothravakyam','Hero in Shilpa','Hero in Oru Middleclass Padam','Lead in Favorite Spot'];
-let ri=0,tci=0,del=false;
-const tw=document.getElementById('typewriter');
-function type(){
-  const cur=roles[ri];
-  if(!del){ tw.textContent=cur.substring(0,tci+1); tci++; if(tci===cur.length){del=true;setTimeout(type,1800);return;} setTimeout(type,65); }
-  else{ tw.textContent=cur.substring(0,tci-1); tci--; if(tci===0){del=false;ri=(ri+1)%roles.length;setTimeout(type,300);return;} setTimeout(type,30); }
-}
-setTimeout(type,1200);
-
-/* ══ SCROLL REVEAL ═════════════════════════════════════════ */
-const revObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);} });
-},{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
-
-/* ══ COUNT-UP ══════════════════════════════════════════════ */
-const cntObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(!e.isIntersecting)return;
-    const t=parseInt(e.target.getAttribute('data-target'));let c=0;
-    const tmr=setInterval(()=>{ c+=t/40; if(c>=t){c=t;clearInterval(tmr);} e.target.textContent=Math.floor(c)+'+'; },35);
-    cntObs.unobserve(e.target);
-  });
-},{threshold:.5});
-document.querySelectorAll('.count-num').forEach(el=>cntObs.observe(el));
-
-/* ══ SCROLL TRACK PADDING + FEATHER SYNC ══════════════════
-   Reads the container's actual left offset from the viewport
-   and applies that as padding-left/right to both scroll tracks
-   and as width to the feather overlay divs.
-   This ensures cards start exactly at the title's left edge. */
-function syncScrollPadding(){
-  const ref=document.querySelector('.container');
-  if(!ref)return;
-  const leftPad=Math.max(Math.round(ref.getBoundingClientRect().left),16);
-  const filmTrack=document.getElementById('filmTrack');
-  const lookTrack=document.querySelector('.lookbook-track');
-  if(filmTrack){ filmTrack.style.paddingLeft=leftPad+'px'; filmTrack.style.paddingRight=leftPad+'px'; }
-  if(lookTrack){ lookTrack.style.paddingLeft=leftPad+'px'; lookTrack.style.paddingRight=leftPad+'px'; }
-  document.querySelectorAll('.scroll-feather').forEach(f=>{ f.style.width=leftPad+'px'; });
-}
-syncScrollPadding();
-window.addEventListener('resize',syncScrollPadding);
-
-/* ══ YOUTUBE IFRAME API ════════════════════════════════════
-   Using the official YT IFrame API to detect video end.
-   onYouTubeIframeAPIReady is called automatically by the
-   YouTube script when it finishes loading.               */
-let ytAPIReady=false;
-let ytPlayer=null;
-
-window.onYouTubeIframeAPIReady=function(){ ytAPIReady=true; };
-
-const langModal   =document.getElementById('lang-modal');
-const langLabel   =document.getElementById('lang-modal-label');
-const langModalClose=document.getElementById('lang-modal-close');
-
-function openLangModal(videoId,label){
-  langModal.classList.add('open');
-  document.body.style.overflow='hidden';
-  langLabel.textContent=label;
-  // Reset container — destroy previous player
-  if(ytPlayer){ try{ytPlayer.destroy();}catch(e){} ytPlayer=null; }
-  document.getElementById('yt-player-container').innerHTML='<div id="yt-player"></div>';
-  if(ytAPIReady){
-    ytPlayer=new YT.Player('yt-player',{
-      videoId:videoId,
-      width:'100%',height:'100%',
-      playerVars:{autoplay:1,rel:0,playsinline:1,modestbranding:1},
-      events:{
-        onStateChange:function(event){
-          // YT.PlayerState.ENDED === 0
-          if(event.data===0) closeLangModal();
-        }
-      }
-    });
-  } else {
-    // Fallback: plain iframe if API hasn't loaded yet
-    document.getElementById('yt-player-container').innerHTML=
-      '<iframe src="https://www.youtube.com/embed/'+videoId+'?autoplay=1&rel=0&playsinline=1" '+
-      'allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" '+
-      'allowfullscreen style="width:100%;height:100%;border:none;"></iframe>';
-  }
-}
-function closeLangModal(){
-  langModal.classList.remove('open');
-  document.body.style.overflow='';
-  if(ytPlayer){ try{ytPlayer.stopVideo();}catch(e){} }
-  // Clear iframe to stop audio
-  document.getElementById('yt-player-container').innerHTML='<div id="yt-player"></div>';
-}
-document.querySelectorAll('.lang-badge').forEach(b=>{
-  b.addEventListener('click',()=>openLangModal(b.getAttribute('data-videoid'),b.getAttribute('data-label')));
-});
-langModalClose.addEventListener('click',closeLangModal);
-langModal.addEventListener('click',e=>{ if(e.target===langModal)closeLangModal(); });
-/* ESC key — works when focus is outside the iframe */
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'&&langModal.classList.contains('open')) closeLangModal();
-});
-
-/* ══ FILMOGRAPHY — ACTIVE CARD SYSTEM ═════════════════════ */
-const filmCards=Array.from(document.querySelectorAll('.film-card'));
-const filmScroll=document.getElementById('filmScroll');
-let filmMouseDX=0,filmDragged=false;
-let filmScrollRAF=null;
-
-function setActiveFilm(card){
-  filmCards.forEach(c=>c.classList.remove('active'));
-  if(card) card.classList.add('active');
-}
-/* First card active on load */
-setActiveFilm(filmCards[0]);
-
-/* Desktop: hover transfers, persists on mouse leave */
-filmCards.forEach(card=>{
-  card.addEventListener('mouseenter',()=>{
-    if(window.innerWidth>900) setActiveFilm(card);
-  });
-});
-
-/* Click to open link — only if not a drag */
-filmScroll.addEventListener('mousedown',e=>{ filmMouseDX=e.clientX; filmDragged=false; });
-filmScroll.addEventListener('mousemove',e=>{ if(Math.abs(e.clientX-filmMouseDX)>5)filmDragged=true; });
-filmScroll.addEventListener('click',e=>{
-  if(filmDragged)return;
-  const card=e.target.closest('.film-card');
-  if(!card)return;
-  const href=card.getAttribute('data-href');
-  if(href) window.open(href,'_blank','noopener');
-});
-
-/* Drag to scroll — filmography */
-let fIsDown=false,fStartX,fScrollLeft;
-filmScroll.addEventListener('mousedown',e=>{ fIsDown=true; fStartX=e.pageX-filmScroll.offsetLeft; fScrollLeft=filmScroll.scrollLeft; });
-filmScroll.addEventListener('mouseleave',()=>fIsDown=false);
-filmScroll.addEventListener('mouseup',()=>fIsDown=false);
-filmScroll.addEventListener('mousemove',e=>{
-  if(!fIsDown)return; e.preventDefault();
-  filmScroll.scrollLeft=fScrollLeft-(e.pageX-filmScroll.offsetLeft-fStartX)*1.8;
-});
-
-/* Mobile: center card detection — rAF throttled for performance
-   Edge fix: at scroll=0 → first card active; at max scroll → last card active */
-function _doFilmActiveUpdate(){
-  filmScrollRAF=null;
-  if(window.innerWidth>900)return;
-  const sl=filmScroll.scrollLeft;
-  const maxSl=filmScroll.scrollWidth-filmScroll.clientWidth;
-  // Edge cases
-  if(sl<=8){ setActiveFilm(filmCards[0]); return; }
-  if(sl>=maxSl-8){ setActiveFilm(filmCards[filmCards.length-1]); return; }
-  const rect=filmScroll.getBoundingClientRect();
-  const center=rect.left+rect.width/2;
-  let closest=null,minDist=Infinity;
-  filmCards.forEach(card=>{
-    const cr=card.getBoundingClientRect();
-    const dist=Math.abs(cr.left+cr.width/2-center);
-    if(dist<minDist){minDist=dist;closest=card;}
-  });
-  if(closest) setActiveFilm(closest);
-}
-function updateFilmActive(){
-  if(filmScrollRAF)return;
-  filmScrollRAF=requestAnimationFrame(_doFilmActiveUpdate);
-}
-filmScroll.addEventListener('scroll',updateFilmActive,{passive:true});
-filmScroll.addEventListener('touchmove',updateFilmActive,{passive:true});
-filmScroll.addEventListener('touchend',()=>setTimeout(_doFilmActiveUpdate,80));
-
-/* ══ LOOKBOOK — ACTIVE SYSTEM ══════════════════════════════
-   Desktop: hover on cell → that cell active, persists on leave.
-            First cell active on load.
-   Mobile:  Panel-level activation — when a panel's center
-            is closest to screen center, ALL cells in that
-            panel become active (handles stacked images).
-            rAF-throttled for performance.
-            Edge fix: scroll start → panel[0]; scroll end → last panel. */
-const lbCells=Array.from(document.querySelectorAll('.lb-cell'));
-const lbPanels=Array.from(document.querySelectorAll('.lb-panel'));
-const lookScroll=document.getElementById('lookScroll');
-let lbScrollRAF=null;
-
-function setActiveLbCell(cell){
-  lbCells.forEach(c=>c.classList.remove('active'));
-  if(cell) cell.classList.add('active');
-}
-function setActiveLbPanel(panel){
-  lbCells.forEach(c=>c.classList.remove('active'));
-  if(panel) panel.querySelectorAll('.lb-cell').forEach(c=>c.classList.add('active'));
-}
-
-/* Desktop: first cell active on load */
-if(window.innerWidth>900) setActiveLbCell(lbCells[0]);
-/* Mobile: first panel active on load */
-else setActiveLbPanel(lbPanels[0]);
-
-/* Desktop hover */
-lbCells.forEach(cell=>{
-  cell.addEventListener('mouseenter',()=>{
-    if(window.innerWidth>900) setActiveLbCell(cell);
-  });
-});
-
-function _doLbActiveUpdate(){
-  lbScrollRAF=null;
-  if(window.innerWidth>900)return;
-  const sl=lookScroll.scrollLeft;
-  const maxSl=lookScroll.scrollWidth-lookScroll.clientWidth;
-  // Edge cases
-  if(sl<=8){ setActiveLbPanel(lbPanels[0]); return; }
-  if(sl>=maxSl-8){ setActiveLbPanel(lbPanels[lbPanels.length-1]); return; }
-  const rect=lookScroll.getBoundingClientRect();
-  const center=rect.left+rect.width/2;
-  let closestPanel=null,minDist=Infinity;
-  lbPanels.forEach(panel=>{
-    const pr=panel.getBoundingClientRect();
-    const dist=Math.abs(pr.left+pr.width/2-center);
-    if(dist<minDist){minDist=dist;closestPanel=panel;}
-  });
-  if(closestPanel) setActiveLbPanel(closestPanel);
-}
-function updateLbActive(){
-  if(lbScrollRAF)return;
-  lbScrollRAF=requestAnimationFrame(_doLbActiveUpdate);
-}
-lookScroll.addEventListener('scroll',updateLbActive,{passive:true});
-lookScroll.addEventListener('touchmove',updateLbActive,{passive:true});
-lookScroll.addEventListener('touchend',()=>setTimeout(_doLbActiveUpdate,80));
-
-/* ══ LIGHTBOX ══════════════════════════════════════════════ */
-const lb=document.getElementById('lightbox');
-const lbImg=document.getElementById('lb-img');
-const lbCap=document.getElementById('lb-caption');
-let lbCur=0,lbMouseDX=0,lbDragged=false;
-
-function openLB(i){ lbCur=i; lbImg.src=lbCells[i].getAttribute('data-src'); lbCap.textContent=lbCells[i].getAttribute('data-tag'); lb.classList.add('open'); document.body.style.overflow='hidden'; }
-function closeLB(){ lb.classList.remove('open'); document.body.style.overflow=''; }
-
-lookScroll.addEventListener('mousedown',e=>{ lbMouseDX=e.clientX; lbDragged=false; });
-lookScroll.addEventListener('mousemove',e=>{ if(Math.abs(e.clientX-lbMouseDX)>5)lbDragged=true; });
-lookScroll.addEventListener('click',e=>{
-  if(lbDragged)return;
-  const cell=e.target.closest('.lb-cell');
-  if(!cell)return;
-  const idx=lbCells.indexOf(cell);
-  if(idx>-1)openLB(idx);
-});
-document.getElementById('lb-close').addEventListener('click',closeLB);
-document.getElementById('lb-prev').addEventListener('click',()=>openLB((lbCur-1+lbCells.length)%lbCells.length));
-document.getElementById('lb-next').addEventListener('click',()=>openLB((lbCur+1)%lbCells.length));
-lb.addEventListener('click',e=>{ if(e.target===lb)closeLB(); });
-document.addEventListener('keydown',e=>{
-  if(!lb.classList.contains('open'))return;
-  if(e.key==='Escape') closeLB();
-  if(e.key==='ArrowLeft') openLB((lbCur-1+lbCells.length)%lbCells.length);
-  if(e.key==='ArrowRight') openLB((lbCur+1)%lbCells.length);
-});
-
-/* Drag to scroll — lookbook */
-let lkIsDown=false,lkStartX,lkScrollLeft;
-lookScroll.addEventListener('mousedown',e=>{ lkIsDown=true; lkStartX=e.pageX-lookScroll.offsetLeft; lkScrollLeft=lookScroll.scrollLeft; });
-lookScroll.addEventListener('mouseleave',()=>lkIsDown=false);
-lookScroll.addEventListener('mouseup',()=>lkIsDown=false);
-lookScroll.addEventListener('mousemove',e=>{
-  if(!lkIsDown)return; e.preventDefault();
-  lookScroll.scrollLeft=lkScrollLeft-(e.pageX-lookScroll.offsetLeft-lkStartX)*1.8;
-});
-
-/* ══ HERO PARALLAX ═════════════════════════════════════════ */
-window.addEventListener('scroll',()=>{
-  const img=document.querySelector('.hero-image-panel img');
-  if(img) img.style.transform=`translateY(${window.scrollY*.18}px)`;
-},{passive:true});
-
-/* ══ FORM ══════════════════════════════════════════════════ */
-function handleForm(e){
-  e.preventDefault();
-  const btn=e.target.querySelector('button[type="submit"]');
-  btn.textContent='Sending...'; btn.disabled=true;
-  setTimeout(()=>{ btn.textContent='✓ Sent'; document.getElementById('form-success').style.display='block'; e.target.reset(); },1200);
-}
-</script>
+<!-- ── SCRIPT ──────────────────────────────────────────── -->
+<script src="script.js"></script>
 </body>
 </html>
