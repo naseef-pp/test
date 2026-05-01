@@ -4,133 +4,89 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Naseef P P — Actor · Director</title>
-
-  <!-- YouTube IFrame API — required for language intro videos -->
-  <script src="https://www.youtube.com/iframe_api"></script>
-
-  <!-- Tailwind CSS -->
+  <script defer src="https://www.youtube.com/iframe_api"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            void:'#080810', reel:'#0E0E1C', gold:'#D4A953',
-            crimson:'#C0392B', ivory:'#F5EDD8', ash:'#7A7060'
-          },
-          fontFamily: {
-            display:['"Cormorant Garamond"','serif'],
-            poster:['"Bebas Neue"','cursive'],
-            body:['"DM Sans"','sans-serif']
-          }
-        }
-      }
-    }
+    tailwind.config={theme:{extend:{colors:{void:'#080810',reel:'#0E0E1C',gold:'#D4A953',crimson:'#C0392B',ivory:'#F5EDD8',ash:'#7A7060'},fontFamily:{display:['"Cormorant Garamond"','serif'],poster:['"Bebas Neue"','cursive'],body:['"DM Sans"','sans-serif']}}}}
   </script>
-
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
-  <!-- Stylesheet -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<!-- ── FILM GRAIN ──────────────────────────────────────── -->
 <div id="grain"></div>
-
-<!-- ── CUSTOM CURSOR ──────────────────────────────────── -->
 <div id="cursor-outer"></div>
 <div id="cursor-inner"></div>
 
-<!-- ════════════════════════════════════════════════════
-     LANGUAGE VIDEO MODAL
-════════════════════════════════════════════════════ -->
+<!-- LANGUAGE VIDEO MODAL -->
 <div id="lang-modal" role="dialog" aria-modal="true" aria-label="Language Introduction">
   <div class="lang-modal-inner">
     <button id="lang-modal-close" aria-label="Close">&#10005;</button>
     <div class="lang-modal-video">
-      <div id="yt-player-container">
-        <div id="yt-player"></div>
-      </div>
+      <div id="yt-player-container"><div id="yt-player"></div></div>
     </div>
     <p class="lang-modal-label" id="lang-modal-label"></p>
   </div>
 </div>
 
-<!-- ════════════════════════════════════════════════════
-     LIGHTBOX
-════════════════════════════════════════════════════ -->
+<!-- LIGHTBOX -->
 <div id="lightbox" role="dialog" aria-modal="true">
   <button id="lb-close" aria-label="Close">&times;</button>
   <button id="lb-prev" aria-label="Previous">&#8592;</button>
-  <img id="lb-img" src="" alt="Gallery" />
+  <div class="lightbox-img-wrap">
+    <img id="lb-img" src="" alt="Gallery" />
+  </div>
   <button id="lb-next" aria-label="Next">&#8594;</button>
   <p class="lb-caption" id="lb-caption"></p>
 </div>
 
-<!-- ════════════════════════════════════════════════════
-     NAVIGATION
-════════════════════════════════════════════════════ -->
+<!-- NAV -->
 <nav id="navbar">
   <a href="#hero" class="nav-logo">
     <span class="glitch" data-text="Naseef">Naseef</span> <span>P P</span>
   </a>
-
-  <!-- Desktop nav -->
   <div class="desktop-nav" style="display:flex;align-items:center;gap:2rem;">
+    <a href="#hero"        class="nav-link">Home</a>
     <a href="#filmography" class="nav-link">Filmography</a>
     <a href="#about"       class="nav-link">About</a>
     <a href="#stills"      class="nav-link">Stills &amp; Frames</a>
     <a href="#contact"     class="nav-link">Contact</a>
   </div>
-
   <button id="hamburger" onclick="toggleMenu()" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- Mobile menu -->
 <div id="mobile-menu">
+  <a href="#hero"        class="mobile-nav-link" onclick="toggleMenu()">Home</a>
   <a href="#filmography" class="mobile-nav-link" onclick="toggleMenu()">Filmography</a>
   <a href="#about"       class="mobile-nav-link" onclick="toggleMenu()">About</a>
   <a href="#stills"      class="mobile-nav-link" onclick="toggleMenu()">Stills &amp; Frames</a>
   <a href="#contact"     class="mobile-nav-link" onclick="toggleMenu()">Contact</a>
 </div>
 
-<!-- ════════════════════════════════════════════════════
-     HERO
-════════════════════════════════════════════════════ -->
+<!-- HERO -->
 <section id="hero">
   <div class="hero-top-grad"></div>
   <div class="hero-bg-overlay"></div>
-
-  <!-- Left line — hidden on mobile -->
   <div class="hero-line hero-line-left" style="left:33.3%;"></div>
-  <!-- Right line — always visible -->
   <div class="hero-line hero-line-right" style="left:66.6%;"></div>
 
-  <!-- Content -->
   <div class="hero-content">
     <h1 class="hero-name">Naseef<br /><em>P P</em></h1>
-    <!-- Actor & Filmmaker now sits under name -->
-    <p class="hero-subtitle">Actor &amp; Filmmaker</p>
+    <p class="hero-eyebrow">Actor &amp; Filmmaker</p>
     <div class="hero-cta-group">
       <a href="#filmography" class="btn-primary">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polygon points="5 3 19 12 5 21 5 3"/>
-        </svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
         View Filmography
       </a>
       <a href="#contact" class="btn-secondary">Get in Touch</a>
     </div>
   </div>
 
-  <!-- Hero image -->
   <div class="hero-image-panel">
-    <!-- ★★★ REPLACE with your actual headshot ★★★ -->
     <img src="images/gallery/Mango_2.jpg" alt="Naseef P P" />
     <div class="frame-corner tl"></div>
     <div class="frame-corner tr"></div>
@@ -143,25 +99,21 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════════
-     FILMOGRAPHY
-════════════════════════════════════════════════════ -->
+<!-- FILMOGRAPHY -->
 <section id="filmography">
   <div class="container">
     <p class="section-label reveal">01 / Filmography</p>
   </div>
 
-  <!-- Full-width scroll with feather fades -->
-  <div class="scroll-section-outer">
-    <div class="scroll-feather feather-left"></div>
-    <div class="scroll-feather feather-right"></div>
+  <div class="film-outer">
+    <div class="film-feather film-feather-left"></div>
+    <div class="film-feather film-feather-right"></div>
 
     <div class="film-scroll-container" id="filmScroll">
       <div class="film-scroll-track" id="filmTrack">
 
-        <!-- 1. Soothravakyam ─────────────────────────── -->
-        <div class="film-card reveal"
-             data-href="https://www.imdb.com/title/tt34335405/">
+        <!-- 1. Soothravakyam -->
+        <div class="film-card reveal" data-href="https://www.imdb.com/title/tt34335405/">
           <div class="film-card-img">
             <img src="images/featured-soothravakyam-poster.jpg" alt="Soothravakyam" />
           </div>
@@ -172,9 +124,8 @@
           </div>
         </div>
 
-        <!-- 2. Shilpa ────────────────────────────────── -->
-        <div class="film-card reveal delay-1"
-             data-href="https://youtu.be/Pho5Cjrw6_U">
+        <!-- 2. Shilpa -->
+        <div class="film-card reveal delay-1" data-href="https://youtu.be/Pho5Cjrw6_U">
           <div class="film-card-img">
             <img src="images/poster_shilpa.jpeg" alt="Shilpa" />
           </div>
@@ -185,9 +136,8 @@
           </div>
         </div>
 
-        <!-- 3. Oru Middleclass Padam ─────────────────── -->
-        <div class="film-card reveal delay-2"
-             data-href="https://youtu.be/0GG3pB6Z4kk">
+        <!-- 3. Oru Middleclass Padam -->
+        <div class="film-card reveal delay-2" data-href="https://youtu.be/0GG3pB6Z4kk">
           <div class="film-card-img">
             <img src="images/poster_orumiddleclasspadam_02.jpeg" alt="Oru Middleclass Padam" />
           </div>
@@ -198,9 +148,8 @@
           </div>
         </div>
 
-        <!-- 4. Favorite Spot ─────────────────────────── -->
-        <div class="film-card reveal delay-3"
-             data-href="https://youtu.be/OAc6fc6zDJc">
+        <!-- 4. Favorite Spot -->
+        <div class="film-card reveal delay-3" data-href="https://youtu.be/OAc6fc6zDJc">
           <div class="film-card-img">
             <img src="images/featured-favorite-spot-still.jpg" alt="Favorite Spot" />
           </div>
@@ -211,9 +160,8 @@
           </div>
         </div>
 
-        <!-- 5. Priye — Director ───────────────────────── -->
-        <div class="film-card dir-card reveal delay-4"
-             data-href="https://youtu.be/5O6OqYF0g7I">
+        <!-- 5. Priye — Director -->
+        <div class="film-card dir-card reveal delay-4" data-href="https://youtu.be/5O6OqYF0g7I">
           <div class="film-card-img">
             <img src="images/poster_priye.jpg" alt="Priye" />
           </div>
@@ -224,9 +172,8 @@
           </div>
         </div>
 
-        <!-- 6. Manaath — Director ────────────────────── -->
-        <div class="film-card dir-card reveal delay-5"
-             data-href="https://youtu.be/q0ZJHnDP7sY">
+        <!-- 6. Manaath — Director -->
+        <div class="film-card dir-card reveal delay-5" data-href="https://youtu.be/q0ZJHnDP7sY">
           <div class="film-card-img">
             <img src="images/poster_manaath.jpg" alt="Manaath" />
           </div>
@@ -237,9 +184,8 @@
           </div>
         </div>
 
-        <!-- 7. Thamah — Director ─────────────────────── -->
-        <div class="film-card dir-card reveal delay-6"
-             data-href="https://youtu.be/hODJEWsuwpY">
+        <!-- 7. Thamah — Director -->
+        <div class="film-card dir-card reveal delay-6" data-href="https://youtu.be/hODJEWsuwpY">
           <div class="film-card-img">
             <img src="images/poster_thamah.jpg" alt="Thamah" />
           </div>
@@ -250,13 +196,12 @@
           </div>
         </div>
 
-        <!-- Right padding spacer -->
         <div style="flex:0 0 1px;"></div>
-      </div><!-- /filmTrack -->
-    </div><!-- /filmScroll -->
-  </div><!-- /scroll-section-outer -->
+      </div>
+    </div>
+  </div>
 
-  <!-- Dot indicator — visible on mobile only -->
+  <!-- Dot indicator — mobile only -->
   <div class="container">
     <div class="film-dots" id="filmDots">
       <button class="film-dot active" aria-label="Card 1"></button>
@@ -270,568 +215,315 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════════
-     ABOUT
-════════════════════════════════════════════════════ -->
+<!-- ABOUT -->
 <section id="about">
   <div class="container">
     <p class="section-label reveal">02 / About</p>
-
     <div class="two-col" style="margin-top:2.5rem;">
 
-      <!-- LEFT: Physical Profile → Languages ─────────── -->
+      <!-- LEFT: Physical Profile + Languages -->
       <div>
-        <!-- Physical Profile -->
         <div class="profile-table reveal delay-1">
           <p style="font-size:.6rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:#D4A953;margin-bottom:1rem;">Physical Profile</p>
-          <div class="profile-row">
-            <span class="profile-key">Age Range</span>
-            <span class="profile-val">18 – 28 years</span>
-          </div>
-          <div class="profile-row">
-            <span class="profile-key">Height</span>
-            <span class="profile-val">173 cm</span>
-          </div>
-          <div class="profile-row">
-            <span class="profile-key">Build</span>
-            <span class="profile-val">Medium / Slender</span>
-          </div>
-          <div class="profile-row">
-            <span class="profile-key">Hair</span>
-            <span class="profile-val">Curly Black</span>
-          </div>
-          <div class="profile-row">
-            <span class="profile-key">Eyes</span>
-            <span class="profile-val">Dark Brown</span>
-          </div>
-          <div class="profile-row">
-            <span class="profile-key">Nationality</span>
-            <span class="profile-val">Indian</span>
-          </div>
+          <div class="profile-row"><span class="profile-key">Age Range</span><span class="profile-val">18 – 28 years</span></div>
+          <div class="profile-row"><span class="profile-key">Height</span><span class="profile-val">173 cm</span></div>
+          <div class="profile-row"><span class="profile-key">Build</span><span class="profile-val">Medium / Slender</span></div>
+          <div class="profile-row"><span class="profile-key">Hair</span><span class="profile-val">Curly Black</span></div>
+          <div class="profile-row"><span class="profile-key">Eyes</span><span class="profile-val">Dark Brown</span></div>
+          <div class="profile-row"><span class="profile-key">Nationality</span><span class="profile-val">Indian</span></div>
         </div>
 
-        <!-- Languages -->
         <div class="reveal delay-2" style="margin-top:1.75rem;">
-          <p style="font-size:.6rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:#7A7060;margin-bottom:.5rem;">Languages</p>
+          <p style="font-size:.6rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:#7A7060;margin-bottom:.4rem;">Languages</p>
           <p style="font-size:.62rem;color:rgba(122,112,96,.55);letter-spacing:.06em;margin-bottom:.75rem;">Click to hear an introduction</p>
           <div style="display:flex;flex-wrap:wrap;gap:.5rem;">
-            <span class="lang-badge"
-                  data-videoid="c6k5ZNzTsw0"
-                  data-label="English Introduction">
-              🇬🇧 English
-            </span>
-            <span class="lang-badge"
-                  data-videoid="tHgNfsobaJc"
-                  data-label="Malayalam Introduction">
-              🇮🇳 Malayalam
-            </span>
-            <span class="lang-badge"
-                  data-videoid="aGizTuPs9fY"
-                  data-label="Hindi Introduction">
-              🇮🇳 Hindi
-            </span>
-            <span class="lang-badge"
-                  data-videoid="mGeZB0aWpm4"
-                  data-label="Tamil Introduction">
-              🇮🇳 Tamil
-            </span>
+            <span class="lang-badge" data-videoid="c6k5ZNzTsw0" data-label="English Introduction">🇬🇧 English</span>
+            <span class="lang-badge" data-videoid="tHgNfsobaJc" data-label="Malayalam Introduction">🇮🇳 Malayalam</span>
+            <span class="lang-badge" data-videoid="aGizTuPs9fY" data-label="Hindi Introduction">🇮🇳 Hindi</span>
+            <span class="lang-badge" data-videoid="mGeZB0aWpm4" data-label="Tamil Introduction">🇮🇳 Tamil</span>
           </div>
         </div>
       </div>
 
-      <!-- RIGHT: Stat Boxes → Training expand box ─────── -->
+      <!-- RIGHT: Stats + Training expand -->
       <div>
-        <!-- Stat boxes -->
-        <div class="reveal delay-1"
-             style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:0;">
-          <div class="stat-card">
-            <div class="stat-number count-num" data-target="4">0</div>
-            <div class="stat-label">Screen Credits</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number count-num" data-target="4">0</div>
-            <div class="stat-label">Languages</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number count-num" data-target="3">0</div>
-            <div class="stat-label">Films Directed</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number count-num" data-target="3">0</div>
-            <div class="stat-label">Years Active</div>
-          </div>
+        <div class="reveal delay-1" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+          <div class="stat-card"><div class="stat-number count-num" data-target="4">0</div><div class="stat-label">Screen Credits</div></div>
+          <div class="stat-card"><div class="stat-number count-num" data-target="4">0</div><div class="stat-label">Languages</div></div>
+          <div class="stat-card"><div class="stat-number count-num" data-target="3">0</div><div class="stat-label">Films Directed</div></div>
+          <div class="stat-card"><div class="stat-number count-num" data-target="3">0</div><div class="stat-label">Years Active</div></div>
         </div>
 
-        <!-- Training expand box — click to reveal certificate -->
-        <div class="training-expand-box reveal delay-2"
-             role="button"
-             aria-expanded="false"
-             aria-label="Training — click to expand and see certificate">
+        <!-- Training expand box -->
+        <div class="training-expand-box reveal delay-2" role="button" aria-expanded="false" aria-label="Training — click to expand">
           <div class="training-expand-header">
             <div>
               <p style="font-size:.6rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:#D4A953;margin-bottom:.5rem;">Training</p>
               <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;color:#F5EDD8;margin-bottom:.2rem;">Screen Acting Course</p>
               <p style="font-size:.75rem;color:#7A7060;">Nova Film Institute, Ernakulam</p>
             </div>
-            <svg class="training-expand-icon" width="20" height="20" viewBox="0 0 24 24"
-                 fill="none" stroke="currentColor" stroke-width="1.5">
+            <svg class="training-expand-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <polyline points="6 9 12 15 18 9"/>
             </svg>
           </div>
-          <!-- Collapsible certificate area -->
           <div class="training-cert-area">
             <div class="certificate-wrap">
-              <div class="cert-corner tl"></div>
-              <div class="cert-corner tr"></div>
-              <div class="cert-corner bl"></div>
-              <div class="cert-corner br"></div>
-              <!-- ★★★ REPLACE with your actual certificate scan ★★★ -->
-              <img src="images/certificate-nova-acting-course.jpg"
-                   alt="Nova Film Institute — Screen Acting Certificate" />
+              <div class="cert-corner tl"></div><div class="cert-corner tr"></div>
+              <div class="cert-corner bl"></div><div class="cert-corner br"></div>
+              <img src="images/certificate-nova-acting-course.jpg" alt="Nova Film Institute — Screen Acting Certificate" />
             </div>
             <p class="cert-caption">Nova Film Institute · Ernakulam · Screen Acting</p>
           </div>
         </div>
       </div>
 
-    </div><!-- /two-col -->
-  </div><!-- /container -->
+    </div>
+  </div>
 </section>
 
-<!-- ════════════════════════════════════════════════════
-     STILLS & FRAMES
-════════════════════════════════════════════════════ -->
+<!-- STILLS & FRAMES -->
 <section id="stills">
   <div class="container">
     <p class="section-label reveal">03 / Stills &amp; Frames</p>
 
-    <!-- Tab navigation -->
+    <!-- Tabs — wrap to 2 lines if needed, no overflow -->
     <div class="stills-tabs-wrap reveal delay-1">
       <div class="stills-tabs" role="tablist">
-        <button class="stills-tab active" role="tab" aria-selected="true">On Screen</button>
-        <button class="stills-tab"        role="tab" aria-selected="false">Candid</button>
-        <button class="stills-tab"        role="tab" aria-selected="false">Campaign</button>
-        <button class="stills-tab"        role="tab" aria-selected="false">Portrait</button>
-        <button class="stills-tab"        role="tab" aria-selected="false">Photoshoot</button>
-        <button class="stills-tab"        role="tab" aria-selected="false">Portrait II</button>
+        <button class="stills-tab active" role="tab">Photoshoot</button>
+        <button class="stills-tab"        role="tab">Portrait</button>
+        <button class="stills-tab"        role="tab">On Screen</button>
+        <button class="stills-tab"        role="tab">Candid</button>
+        <button class="stills-tab"        role="tab">Campaign</button>
+        <button class="stills-tab"        role="tab">Clean Shave</button>
       </div>
-      <!-- Sliding gold indicator line -->
       <div class="tab-indicator"></div>
     </div>
 
-    <!-- Stills panels — slide viewport -->
+    <!-- Stills viewport — panels fade in/out, no swipe -->
     <div class="stills-viewport reveal delay-2" id="stillsViewport">
-      <div class="stills-track" id="stillsTrack">
 
-        <!-- ── PANEL 1: ON SCREEN — Soothravakyam 2×2 ── -->
-        <div class="stills-panel" role="tabpanel">
-          <div class="grid-onscreen">
-
-            <div class="si"
-                 data-src="images/gallery/sv_1.png"
-                 data-tag="On Screen — Soothravakyam">
-              <img src="images/gallery/sv_1.png" alt="Soothravakyam" loading="lazy" />
-              <div class="si-overlay"><span class="si-tag">On Screen</span></div>
-            </div>
-
-            <div class="si"
-                 data-src="images/gallery/sv_2.png"
-                 data-tag="On Screen — Soothravakyam">
-              <img src="images/gallery/sv_2.png" alt="Soothravakyam" loading="lazy" />
-              <div class="si-overlay"><span class="si-tag">On Screen</span></div>
-            </div>
-
-            <div class="si"
-                 data-src="images/gallery/sv_3.png"
-                 data-tag="On Screen — Soothravakyam">
-              <img src="images/gallery/sv_3.png" alt="Soothravakyam" loading="lazy" />
-              <div class="si-overlay"><span class="si-tag">On Screen</span></div>
-            </div>
-
-            <div class="si"
-                 data-src="images/gallery/sv_4.png"
-                 data-tag="On Screen — Soothravakyam">
-              <img src="images/gallery/sv_4.png" alt="Soothravakyam" loading="lazy" />
-              <div class="si-overlay"><span class="si-tag">On Screen</span></div>
-            </div>
-
+      <!-- PANEL 0: PHOTOSHOOT — tall outer cols, two center stacked -->
+      <div class="stills-panel">
+        <div class="grid-photoshoot">
+          <div class="si" data-src="images/gallery/Cigg_1.jpg" data-tag="Photoshoot">
+            <img src="images/gallery/Cigg_1.jpg" alt="Photoshoot" loading="lazy" />
+            <div class="si-overlay"><span class="si-tag">Photoshoot</span></div>
+          </div>
+          <div class="si" data-src="images/gallery/Cigg_2.jpg" data-tag="Photoshoot">
+            <img src="images/gallery/Cigg_2.jpg" alt="Photoshoot" loading="lazy" />
+            <div class="si-overlay"><span class="si-tag">Photoshoot</span></div>
+          </div>
+          <div class="si" data-src="images/gallery/Cigg_3.jpg" data-tag="Photoshoot">
+            <img src="images/gallery/Cigg_3.jpg" alt="Photoshoot" loading="lazy" />
+            <div class="si-overlay"><span class="si-tag">Photoshoot</span></div>
+          </div>
+          <div class="si" data-src="images/gallery/Cigg_4.jpg" data-tag="Photoshoot">
+            <img src="images/gallery/Cigg_4.jpg" alt="Photoshoot" loading="lazy" />
+            <div class="si-overlay"><span class="si-tag">Photoshoot</span></div>
           </div>
         </div>
+      </div>
 
-        <!-- ── PANEL 2: CANDID — Swing. tall left + 3 ── -->
-        <div class="stills-panel" role="tabpanel">
-          <div class="grid-candid">
-
-            <div class="si"
-                 data-src="images/gallery/Swing_1.jpeg"
-                 data-tag="Candid">
-              <img src="images/gallery/Swing_1.jpeg" alt="Candid" loading="lazy" />
-              <div class="si-overlay"><span class="si-tag">Candid</span></div>
-            </div>
-
-            <div class="si"
-                 data-src="images/gallery/Swing_2.jpeg"
-                 data-tag="Candid">
-              <img src="images/gallery/Swing_2.jpeg" alt="Candid" loading="lazy" />
-              <div class="si-overlay"><span class="si-tag">Candid</span></div>
-            </div>
-
-            <div class="si"
-                 data-src="images/gallery/Swing_3.jpeg"
-                 data-tag="Candid">
-              <img src="images/gallery/Swing_3.jpeg" alt="Candid" loading="lazy" />
-              <div class="si-overlay"><span class="si-tag">Candid</span></div>
-            </div>
-
-            <div class="si"
-                 data-src="images/gallery/Swing_4.jpeg"
-                 data-tag="Candid">
-              <img src="images/gallery/Swing_4.jpeg" alt="Candid" loading="lazy" />
-              <div class="si-overlay"><span class="si-tag">Candid</span></div>
-            </div>
-
+      <!-- PANEL 1: PORTRAIT — large left + 3 stacked right -->
+      <div class="stills-panel">
+        <div class="grid-portrait">
+          <div class="si" data-src="images/gallery/Mango_1.jpg" data-tag="Portrait">
+            <img src="images/gallery/Mango_1.jpg" alt="Portrait" loading="lazy" />
+            <div class="si-overlay"><span class="si-tag">Portrait</span></div>
+          </div>
+          <div class="si" data-src="images/gallery/Mango_2.jpg" data-tag="Portrait">
+            <img src="images/gallery/Mango_2.jpg" alt="Portrait" loading="lazy" />
+            <div class="si-overlay"><span class="si-tag">Portrait</span></div>
+          </div>
+          <div class="si" data-src="images/gallery/Mango_3.jpg" data-tag="Portrait">
+            <img src="images/gallery/Mango_3.jpg" alt="Portrait" loading="lazy" />
+            <div class="si-overlay"><span class="si-tag">Portrait</span></div>
+          </div>
+          <div class="si" data-src="images/gallery/Mango_4.jpg" data-tag="Portrait">
+            <img src="images/gallery/Mango_4.jpg" alt="Portrait" loading="lazy" />
+            <div class="si-overlay"><span class="si-tag">Portrait</span></div>
           </div>
         </div>
+      </div>
 
-        <!-- ── PANEL 3: CAMPAIGN — Saral Home, 4 equal ─ -->
-        <div class="stills-panel" role="tabpanel">
-          <div class="grid-campaign">
-
-            <div class="si"
-                 data-src="images/gallery/Naseef_01.jpeg"
-                 data-tag="Campaign — Saral Home">
-              <img src="images/gallery/Naseef_01.jpeg" alt="Campaign" loading="lazy" />
-              <div class="si-overlay"><span class="si-tag">Campaign</span></div>
-            </div>
-
-            <div class="si"
-                 data-src="images/gallery/Naseef_02.jpeg"
-                 data-tag="Campaign — Saral Home">
-              <img src="images/gallery/Naseef_02.jpeg" alt="Campaign" loading="lazy" />
-              <div class="si-overlay"><span class="si-tag">Campaign</span></div>
-            </div>
-
-            <div class="si"
-                 data-src="images/gallery/Naseef_03.jpeg"
-                 data-tag="Campaign — Saral Home">
-              <img src="images/gallery/Naseef_03.jpeg" alt="Campaign" loading="lazy" />
-              <div class="si-overlay"><span class="si-tag">Campaign</span></div>
-            </div>
-
-            <div class="si"
-                 data-src="images/gallery/Naseef_04.jpeg"
-                 data-tag="Campaign — Saral Home">
-              <img src="images/gallery/Naseef_04.jpeg" alt="Campaign" loading="lazy" />
-              <div class="si-overlay"><span class="si-tag">Campaign</span></div>
-            </div>
-
+      <!-- PANEL 2: ON SCREEN — 2x2 contact sheet -->
+      <div class="stills-panel">
+        <div class="grid-onscreen">
+          <div class="si" data-src="images/gallery/sv_1.png" data-tag="On Screen — Soothravakyam">
+            <img src="images/gallery/sv_1.png" alt="Soothravakyam" loading="lazy" />
+            <div class="si-overlay"><span class="si-tag">On Screen</span></div>
+          </div>
+          <div class="si" data-src="images/gallery/sv_2.png" data-tag="On Screen — Soothravakyam">
+            <img src="images/gallery/sv_2.png" alt="Soothravakyam" loading="lazy" />
+            <div class="si-overlay"><span class="si-tag">On Screen</span></div>
+          </div>
+          <div class="si" data-src="images/gallery/sv_3.png" data-tag="On Screen — Soothravakyam">
+            <img src="images/gallery/sv_3.png" alt="Soothravakyam" loading="lazy" />
+            <div class="si-overlay"><span class="si-tag">On Screen</span></div>
+          </div>
+          <div class="si" data-src="images/gallery/sv_4.png" data-tag="On Screen — Soothravakyam">
+            <img src="images/gallery/sv_4.png" alt="Soothravakyam" loading="lazy" />
+            <div class="si-overlay"><span class="si-tag">On Screen</span></div>
           </div>
         </div>
+      </div>
 
-        <!-- ── PANEL 4: PORTRAIT — Mango. 1 large + 3 ── -->
-        <div class="stills-panel" role="tabpanel">
-          <div class="grid-portrait">
-
-            <div class="si"
-                 data-src="images/gallery/Mango_1.jpg"
-                 data-tag="Portrait">
-              <img src="images/gallery/Mango_1.jpg" alt="Portrait" loading="lazy" />
-              <div class="si-overlay"><span class="si-tag">Portrait</span></div>
-            </div>
-
-            <div class="si"
-                 data-src="images/gallery/Mango_2.jpg"
-                 data-tag="Portrait">
-              <img src="images/gallery/Mango_2.jpg" alt="Portrait" loading="lazy" />
-              <div class="si-overlay"><span class="si-tag">Portrait</span></div>
-            </div>
-
-            <div class="si"
-                 data-src="images/gallery/Mango_3.jpg"
-                 data-tag="Portrait">
-              <img src="images/gallery/Mango_3.jpg" alt="Portrait" loading="lazy" />
-              <div class="si-overlay"><span class="si-tag">Portrait</span></div>
-            </div>
-
-            <div class="si"
-                 data-src="images/gallery/Mango_4.jpg"
-                 data-tag="Portrait">
-              <img src="images/gallery/Mango_4.jpg" alt="Portrait" loading="lazy" />
-              <div class="si-overlay"><span class="si-tag">Portrait</span></div>
-            </div>
-
+      <!-- PANEL 3: CANDID — tall left + top-right + wide bottom-right -->
+      <div class="stills-panel">
+        <div class="grid-candid">
+          <div class="si" data-src="images/gallery/Swing_1.jpeg" data-tag="Candid">
+            <img src="images/gallery/Swing_1.jpeg" alt="Candid" loading="lazy" />
+            <div class="si-overlay"><span class="si-tag">Candid</span></div>
+          </div>
+          <div class="si" data-src="images/gallery/Swing_2.jpeg" data-tag="Candid">
+            <img src="images/gallery/Swing_2.jpeg" alt="Candid" loading="lazy" />
+            <div class="si-overlay"><span class="si-tag">Candid</span></div>
+          </div>
+          <div class="si" data-src="images/gallery/Swing_3.jpeg" data-tag="Candid">
+            <img src="images/gallery/Swing_3.jpeg" alt="Candid" loading="lazy" />
+            <div class="si-overlay"><span class="si-tag">Candid</span></div>
+          </div>
+          <div class="si" data-src="images/gallery/Swing_4.jpeg" data-tag="Candid">
+            <img src="images/gallery/Swing_4.jpeg" alt="Candid" loading="lazy" />
+            <div class="si-overlay"><span class="si-tag">Candid</span></div>
           </div>
         </div>
+      </div>
 
-        <!-- ── PANEL 5: PHOTOSHOOT — asymmetric ─────── -->
-        <div class="stills-panel" role="tabpanel">
-          <div class="grid-photoshoot">
-
-            <div class="si"
-                 data-src="images/gallery/Cigg_1.jpg"
-                 data-tag="Photoshoot">
-              <img src="images/gallery/Cigg_1.jpg" alt="Photoshoot" loading="lazy" />
-              <div class="si-overlay"><span class="si-tag">Photoshoot</span></div>
-            </div>
-
-            <div class="si"
-                 data-src="images/gallery/Cigg_2.jpg"
-                 data-tag="Photoshoot">
-              <img src="images/gallery/Cigg_2.jpg" alt="Photoshoot" loading="lazy" />
-              <div class="si-overlay"><span class="si-tag">Photoshoot</span></div>
-            </div>
-
-            <div class="si"
-                 data-src="images/gallery/Cigg_3.jpg"
-                 data-tag="Photoshoot">
-              <img src="images/gallery/Cigg_3.jpg" alt="Photoshoot" loading="lazy" />
-              <div class="si-overlay"><span class="si-tag">Photoshoot</span></div>
-            </div>
-
-            <div class="si"
-                 data-src="images/gallery/Cigg_4.jpg"
-                 data-tag="Photoshoot">
-              <img src="images/gallery/Cigg_4.jpg" alt="Photoshoot" loading="lazy" />
-              <div class="si-overlay"><span class="si-tag">Photoshoot</span></div>
-            </div>
-
+      <!-- PANEL 4: CAMPAIGN — 4 equal horizontal strip -->
+      <div class="stills-panel">
+        <div class="grid-campaign">
+          <div class="si" data-src="images/gallery/Naseef_01.jpeg" data-tag="Campaign — Saral Home">
+            <img src="images/gallery/Naseef_01.jpeg" alt="Campaign" loading="lazy" />
+            <div class="si-overlay"><span class="si-tag">Campaign</span></div>
+          </div>
+          <div class="si" data-src="images/gallery/Naseef_02.jpeg" data-tag="Campaign — Saral Home">
+            <img src="images/gallery/Naseef_02.jpeg" alt="Campaign" loading="lazy" />
+            <div class="si-overlay"><span class="si-tag">Campaign</span></div>
+          </div>
+          <div class="si" data-src="images/gallery/Naseef_03.jpeg" data-tag="Campaign — Saral Home">
+            <img src="images/gallery/Naseef_03.jpeg" alt="Campaign" loading="lazy" />
+            <div class="si-overlay"><span class="si-tag">Campaign</span></div>
+          </div>
+          <div class="si" data-src="images/gallery/Naseef_04.jpg" data-tag="Campaign — Saral Home">
+            <img src="images/gallery/Naseef_04.jpg" alt="Campaign" loading="lazy" />
+            <div class="si-overlay"><span class="si-tag">Campaign</span></div>
           </div>
         </div>
+      </div>
 
-        <!-- ── PANEL 6: PORTRAIT II — center focus ───── -->
-        <div class="stills-panel" role="tabpanel">
-          <div class="grid-portrait2">
-
-            <div class="si"
-                 data-src="images/gallery/Naseef_CS_01.jpg"
-                 data-tag="Portrait II">
-              <img src="images/gallery/Naseef_CS_01.jpg" alt="Portrait II" loading="lazy" />
-              <div class="si-overlay"><span class="si-tag">Portrait II</span></div>
-            </div>
-
-            <div class="si"
-                 data-src="images/gallery/Naseef_CS_02.jpg"
-                 data-tag="Portrait II">
-              <img src="images/gallery/Naseef_CS_02.jpg" alt="Portrait II" loading="lazy" />
-              <div class="si-overlay"><span class="si-tag">Portrait II</span></div>
-            </div>
-
-            <div class="si"
-                 data-src="images/gallery/Naseef_CS_03.jpg"
-                 data-tag="Portrait II">
-              <img src="images/gallery/Naseef_CS_03.jpg" alt="Portrait II" loading="lazy" />
-              <div class="si-overlay"><span class="si-tag">Portrait II</span></div>
-            </div>
-
-            <div class="si"
-                 data-src="images/gallery/Naseef_CS_04.jpg"
-                 data-tag="Portrait II">
-              <img src="images/gallery/Naseef_CS_04.jpg" alt="Portrait II" loading="lazy" />
-              <div class="si-overlay"><span class="si-tag">Portrait II</span></div>
-            </div>
-
+      <!-- PANEL 5: CLEAN SHAVE — tall center, flanked left/right -->
+      <div class="stills-panel">
+        <div class="grid-cleanshave">
+          <div class="si" data-src="images/gallery/Naseef_CS_01.jpg" data-tag="Clean Shave">
+            <img src="images/gallery/Naseef_CS_01.jpg" alt="Clean Shave" loading="lazy" />
+            <div class="si-overlay"><span class="si-tag">Clean Shave</span></div>
+          </div>
+          <div class="si" data-src="images/gallery/Naseef_CS_02.jpg" data-tag="Clean Shave">
+            <img src="images/gallery/Naseef_CS_02.jpg" alt="Clean Shave" loading="lazy" />
+            <div class="si-overlay"><span class="si-tag">Clean Shave</span></div>
+          </div>
+          <div class="si" data-src="images/gallery/Naseef_CS_03.jpg" data-tag="Clean Shave">
+            <img src="images/gallery/Naseef_CS_03.jpg" alt="Clean Shave" loading="lazy" />
+            <div class="si-overlay"><span class="si-tag">Clean Shave</span></div>
+          </div>
+          <div class="si" data-src="images/gallery/Naseef_CS_04.jpg" data-tag="Clean Shave">
+            <img src="images/gallery/Naseef_CS_04.jpg" alt="Clean Shave" loading="lazy" />
+            <div class="si-overlay"><span class="si-tag">Clean Shave</span></div>
           </div>
         </div>
+      </div>
 
-      </div><!-- /stillsTrack -->
-    </div><!-- /stillsViewport -->
-
+    </div><!-- /stills-viewport -->
   </div><!-- /container -->
 </section>
 
-<!-- ════════════════════════════════════════════════════
-     CONTACT
-════════════════════════════════════════════════════ -->
+<!-- CONTACT -->
 <section id="contact">
   <div class="container">
     <div class="two-col">
-
-      <!-- Left: heading + contact links ─────────────── -->
       <div>
         <p class="section-label reveal">04 / Contact</p>
-        <h2 class="section-title reveal delay-1">
-          Let's Make<br /><em>Something</em><br />Together
-        </h2>
+        <h2 class="section-title reveal delay-1">Let's Make<br /><em>Something</em><br />Together</h2>
         <div class="gold-divider reveal delay-2"></div>
-        <p class="reveal delay-2"
-           style="color:#7A7060;font-size:.92rem;line-height:1.85;margin-bottom:2.5rem;">
-          Open to feature films, short films, web series, commercial projects,
-          and brand campaigns across Malayalam, Tamil, Hindi, and English.
-          Based in Kerala — available to travel.
+        <p class="reveal delay-2" style="color:#7A7060;font-size:.92rem;line-height:1.85;margin-bottom:2.5rem;">
+          Open to feature films, short films, web series, commercial projects, and brand campaigns across Malayalam, Tamil, Hindi, and English. Based in Kerala — available to travel.
         </p>
-
         <div style="display:flex;flex-direction:column;gap:.75rem;">
-
           <a href="mailto:naseefppactor@gmail.com" class="contact-link reveal delay-2">
-            <div class="contact-link-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                   stroke="currentColor" stroke-width="1.5">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                <polyline points="22,6 12,13 2,6"/>
-              </svg>
-            </div>
-            <div>
-              <p class="contact-link-label">Email</p>
-              <p class="contact-link-val">naseefppactor@gmail.com</p>
-            </div>
+            <div class="contact-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div><p class="contact-link-label">Email</p><p class="contact-link-val">naseefppactor@gmail.com</p></div>
           </a>
-
-          <a href="https://wa.me/917907885626" target="_blank" rel="noopener"
-             class="contact-link reveal delay-3">
-            <div class="contact-link-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                   stroke="currentColor" stroke-width="1.5">
-                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-              </svg>
-            </div>
-            <div>
-              <p class="contact-link-label">WhatsApp</p>
-              <p class="contact-link-val">+91 79078 85626</p>
-            </div>
+          <a href="https://wa.me/917907885626" target="_blank" rel="noopener" class="contact-link reveal delay-3">
+            <div class="contact-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+            <div><p class="contact-link-label">WhatsApp</p><p class="contact-link-val">+91 79078 85626</p></div>
           </a>
-
-          <a href="https://www.instagram.com/naseef_pp/" target="_blank" rel="noopener"
-             class="contact-link reveal delay-4">
-            <div class="contact-link-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                   stroke="currentColor" stroke-width="1.5">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-              </svg>
-            </div>
-            <div>
-              <p class="contact-link-label">Instagram</p>
-              <p class="contact-link-val">@naseef_pp</p>
-            </div>
+          <a href="https://www.instagram.com/naseef_pp/" target="_blank" rel="noopener" class="contact-link reveal delay-4">
+            <div class="contact-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+            <div><p class="contact-link-label">Instagram</p><p class="contact-link-val">@naseef_pp</p></div>
           </a>
-
         </div>
       </div>
 
-      <!-- Right: Formspree contact form ──────────────── -->
       <div class="reveal delay-2">
-        <!-- Formspree endpoint: https://formspree.io/f/meevdwkp
-             Vanilla JS Ajax — no page redirect on submit     -->
         <form id="contact-form" novalidate>
-
           <div class="form-group">
-            <label style="font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#7A7060;display:block;margin-bottom:.5rem;">
-              Your Name
-            </label>
-            <input type="text" name="name" class="form-input"
-                   placeholder="Casting Director / Producer" required />
+            <label style="font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#7A7060;display:block;margin-bottom:.5rem;">Your Name</label>
+            <input type="text" name="name" class="form-input" placeholder="Casting Director / Producer" required />
           </div>
-
           <div class="form-group">
-            <label style="font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#7A7060;display:block;margin-bottom:.5rem;">
-              Email Address
-            </label>
-            <input type="email" name="email" class="form-input"
-                   placeholder="your@email.com" required />
+            <label style="font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#7A7060;display:block;margin-bottom:.5rem;">Email Address</label>
+            <input type="email" name="email" class="form-input" placeholder="your@email.com" required />
           </div>
-
           <div class="form-group">
-            <label style="font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#7A7060;display:block;margin-bottom:.5rem;">
-              Project / Opportunity
-            </label>
-            <input type="text" name="project" class="form-input"
-                   placeholder="Feature film, short film, commercial..." />
+            <label style="font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#7A7060;display:block;margin-bottom:.5rem;">Project / Opportunity</label>
+            <input type="text" name="project" class="form-input" placeholder="Feature film, short film, commercial..." />
           </div>
-
           <div class="form-group">
-            <label style="font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#7A7060;display:block;margin-bottom:.5rem;">
-              Message
-            </label>
-            <textarea name="message" class="form-input"
-                      placeholder="Tell me about the project..."></textarea>
+            <label style="font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#7A7060;display:block;margin-bottom:.5rem;">Message</label>
+            <textarea name="message" class="form-input" placeholder="Tell me about the project..."></textarea>
           </div>
-
-          <button type="submit" class="btn-primary"
-                  style="width:100%;justify-content:center;margin-top:.5rem;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2">
-              <line x1="22" y1="2" x2="11" y2="13"/>
-              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-            </svg>
+          <button type="submit" class="btn-primary" style="width:100%;justify-content:center;margin-top:.5rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
             Send Message
           </button>
-
-          <!-- Success / error messages -->
-          <p id="form-success" class="form-success-msg">
-            ✓ Message sent! I'll get back to you soon.
-          </p>
-          <p id="form-error" class="form-error-msg">
-            Something went wrong. Please email me directly at naseefppactor@gmail.com
-          </p>
-
+          <p id="form-success" class="form-success-msg">✓ Message sent! I'll get back to you soon.</p>
+          <p id="form-error" class="form-error-msg">Something went wrong. Please email me directly at naseefppactor@gmail.com</p>
         </form>
       </div>
-
-    </div><!-- /two-col -->
-  </div><!-- /container -->
+    </div>
+  </div>
 </section>
 
-<!-- ════════════════════════════════════════════════════
-     FOOTER
-════════════════════════════════════════════════════ -->
+<!-- FOOTER -->
 <footer>
-  <!-- Left: tagline -->
   <div class="footer-tagline">Actor · Director</div>
-
-  <!-- Center: social icons + mobile back-to-top -->
   <div class="footer-center">
-    <a href="mailto:naseefppactor@gmail.com" class="social-icon"
-       title="Email" aria-label="Email">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-        <polyline points="22,6 12,13 2,6"/>
-      </svg>
+    <a href="mailto:naseefppactor@gmail.com" class="social-icon" title="Email" aria-label="Email">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
     </a>
-    <a href="https://wa.me/917907885626" target="_blank" rel="noopener"
-       class="social-icon" title="WhatsApp" aria-label="WhatsApp">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-      </svg>
+    <a href="https://wa.me/917907885626" target="_blank" rel="noopener" class="social-icon" title="WhatsApp" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
     </a>
-    <a href="https://www.instagram.com/naseef_pp/" target="_blank" rel="noopener"
-       class="social-icon" title="Instagram" aria-label="Instagram">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-      </svg>
+    <a href="https://www.instagram.com/naseef_pp/" target="_blank" rel="noopener" class="social-icon" title="Instagram" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
     </a>
-    <a href="https://www.linkedin.com/in/naseef-pp/" target="_blank" rel="noopener"
-       class="social-icon" title="LinkedIn" aria-label="LinkedIn">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-        <rect x="2" y="9" width="4" height="12"/>
-        <circle cx="4" cy="4" r="2"/>
-      </svg>
+    <a href="https://www.linkedin.com/in/naseef-pp/" target="_blank" rel="noopener" class="social-icon" title="LinkedIn" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
     </a>
-    <!-- Mobile only: back-to-top sits at far right of this row -->
+    <!-- Mobile only: back-to-top at far right -->
     <a href="#hero" class="back-to-top mobile-btt" aria-label="Back to top">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
-           stroke="currentColor" stroke-width="2">
-        <polyline points="18 15 12 9 6 15"/>
-      </svg>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
     </a>
   </div>
-
-  <!-- Right: copyright + desktop back-to-top -->
   <div class="footer-right">
     <span class="footer-copy">© 2025 Naseef P P</span>
     <a href="#hero" class="back-to-top desktop-btt" aria-label="Back to top">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
-           stroke="currentColor" stroke-width="2">
-        <polyline points="18 15 12 9 6 15"/>
-      </svg>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
     </a>
   </div>
 </footer>
 
-<!-- ── SCRIPT ──────────────────────────────────────────── -->
 <script src="script.js"></script>
 </body>
 </html>
