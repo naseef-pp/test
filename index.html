@@ -16,10 +16,6 @@
 </head>
 <body>
 
-<div id="grain"></div>
-<div id="cursor-outer"></div>
-<div id="cursor-inner"></div>
-
 <!-- LANGUAGE VIDEO MODAL -->
 <div id="lang-modal" role="dialog" aria-modal="true" aria-label="Language Introduction">
   <div class="lang-modal-inner">
@@ -51,7 +47,7 @@
     <a href="#hero"        class="nav-link">Home</a>
     <a href="#filmography" class="nav-link">Filmography</a>
     <a href="#about"       class="nav-link">About</a>
-    <a href="#stills"      class="nav-link">Stills &amp; Frames</a>
+    <a href="#lookbook"    class="nav-link">Lookbook</a>
     <a href="#contact"     class="nav-link">Contact</a>
   </div>
   <button id="hamburger" onclick="toggleMenu()" aria-label="Open menu">
@@ -63,11 +59,13 @@
   <a href="#hero"        class="mobile-nav-link" onclick="toggleMenu()">Home</a>
   <a href="#filmography" class="mobile-nav-link" onclick="toggleMenu()">Filmography</a>
   <a href="#about"       class="mobile-nav-link" onclick="toggleMenu()">About</a>
-  <a href="#stills"      class="mobile-nav-link" onclick="toggleMenu()">Stills &amp; Frames</a>
+  <a href="#lookbook"    class="mobile-nav-link" onclick="toggleMenu()">Lookbook</a>
   <a href="#contact"     class="mobile-nav-link" onclick="toggleMenu()">Contact</a>
 </div>
 
-<!-- HERO -->
+<!-- ════════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════ -->
 <section id="hero">
   <div class="hero-top-grad"></div>
   <div class="hero-bg-overlay"></div>
@@ -99,7 +97,9 @@
   </div>
 </section>
 
-<!-- FILMOGRAPHY -->
+<!-- ════════════════════════════════════════════════════
+     FILMOGRAPHY
+════════════════════════════════════════════════════ -->
 <section id="filmography">
   <div class="container">
     <p class="section-label reveal">01 / Filmography</p>
@@ -108,14 +108,13 @@
   <div class="film-outer">
     <div class="film-feather film-feather-left"></div>
     <div class="film-feather film-feather-right"></div>
-
     <div class="film-scroll-container" id="filmScroll">
       <div class="film-scroll-track" id="filmTrack">
 
         <!-- 1. Soothravakyam -->
         <div class="film-card reveal" data-href="https://www.imdb.com/title/tt34335405/">
           <div class="film-card-img">
-            <img src="images/featured-soothravakyam-poster.jpg" alt="Soothravakyam" />
+            <img src="images/featured-soothravakyam-poster.jpg" alt="Soothravakyam" loading="lazy" />
           </div>
           <div class="film-card-overlay">
             <p class="film-overlay-year">2025</p>
@@ -127,7 +126,7 @@
         <!-- 2. Shilpa -->
         <div class="film-card reveal delay-1" data-href="https://youtu.be/Pho5Cjrw6_U">
           <div class="film-card-img">
-            <img src="images/poster_shilpa.jpeg" alt="Shilpa" />
+            <img src="images/poster_shilpa.jpeg" alt="Shilpa" loading="lazy" />
           </div>
           <div class="film-card-overlay">
             <p class="film-overlay-year">2026</p>
@@ -139,7 +138,7 @@
         <!-- 3. Oru Middleclass Padam -->
         <div class="film-card reveal delay-2" data-href="https://youtu.be/0GG3pB6Z4kk">
           <div class="film-card-img">
-            <img src="images/poster_orumiddleclasspadam_02.jpeg" alt="Oru Middleclass Padam" />
+            <img src="images/poster_orumiddleclasspadam_02.jpeg" alt="Oru Middleclass Padam" loading="lazy" />
           </div>
           <div class="film-card-overlay">
             <p class="film-overlay-year">2026</p>
@@ -151,7 +150,7 @@
         <!-- 4. Favorite Spot -->
         <div class="film-card reveal delay-3" data-href="https://youtu.be/OAc6fc6zDJc">
           <div class="film-card-img">
-            <img src="images/featured-favorite-spot-still.jpg" alt="Favorite Spot" />
+            <img src="images/featured-favorite-spot-still.jpg" alt="Favorite Spot" loading="lazy" />
           </div>
           <div class="film-card-overlay">
             <p class="film-overlay-year">2025</p>
@@ -163,7 +162,7 @@
         <!-- 5. Priye — Director -->
         <div class="film-card dir-card reveal delay-4" data-href="https://youtu.be/5O6OqYF0g7I">
           <div class="film-card-img">
-            <img src="images/poster_priye.jpg" alt="Priye" />
+            <img src="images/poster_priye.jpg" alt="Priye" loading="lazy" />
           </div>
           <div class="film-card-overlay">
             <p class="film-overlay-year">2024</p>
@@ -175,7 +174,7 @@
         <!-- 6. Manaath — Director -->
         <div class="film-card dir-card reveal delay-5" data-href="https://youtu.be/q0ZJHnDP7sY">
           <div class="film-card-img">
-            <img src="images/poster_manaath.jpg" alt="Manaath" />
+            <img src="images/poster_manaath.jpg" alt="Manaath" loading="lazy" />
           </div>
           <div class="film-card-overlay">
             <p class="film-overlay-year">2022</p>
@@ -187,7 +186,7 @@
         <!-- 7. Thamah — Director -->
         <div class="film-card dir-card reveal delay-6" data-href="https://youtu.be/hODJEWsuwpY">
           <div class="film-card-img">
-            <img src="images/poster_thamah.jpg" alt="Thamah" />
+            <img src="images/poster_thamah.jpg" alt="Thamah" loading="lazy" />
           </div>
           <div class="film-card-overlay">
             <p class="film-overlay-year">2023</p>
@@ -215,7 +214,9 @@
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- ════════════════════════════════════════════════════
+     ABOUT
+════════════════════════════════════════════════════ -->
 <section id="about">
   <div class="container">
     <p class="section-label reveal">02 / About</p>
@@ -251,10 +252,10 @@
           <div class="stat-card"><div class="stat-number count-num" data-target="4">0</div><div class="stat-label">Screen Credits</div></div>
           <div class="stat-card"><div class="stat-number count-num" data-target="4">0</div><div class="stat-label">Languages</div></div>
           <div class="stat-card"><div class="stat-number count-num" data-target="3">0</div><div class="stat-label">Films Directed</div></div>
-          <div class="stat-card"><div class="stat-number count-num" data-target="3">0</div><div class="stat-label">Years Active</div></div>
+          <div class="stat-card"><div class="stat-number count-num" data-target="5">0</div><div class="stat-label">Years Active</div></div>
         </div>
 
-        <!-- Training expand box -->
+        <!-- Training expand — click reveals certificate, no caption below -->
         <div class="training-expand-box reveal delay-2" role="button" aria-expanded="false" aria-label="Training — click to expand">
           <div class="training-expand-header">
             <div>
@@ -270,9 +271,9 @@
             <div class="certificate-wrap">
               <div class="cert-corner tl"></div><div class="cert-corner tr"></div>
               <div class="cert-corner bl"></div><div class="cert-corner br"></div>
-              <img src="images/certificate-nova-acting-course.jpg" alt="Nova Film Institute — Screen Acting Certificate" />
+              <img src="images/certificate-nova-acting-course.jpg" alt="Nova Film Institute — Screen Acting Certificate" loading="lazy" />
             </div>
-            <p class="cert-caption">Nova Film Institute · Ernakulam · Screen Acting</p>
+            <!-- No caption below certificate — removed as requested -->
           </div>
         </div>
       </div>
@@ -281,12 +282,14 @@
   </div>
 </section>
 
-<!-- STILLS & FRAMES -->
-<section id="stills">
-  <div class="container">
-    <p class="section-label reveal">03 / Stills &amp; Frames</p>
+<!-- ════════════════════════════════════════════════════
+     LOOKBOOK (renamed from Stills & Frames)
+════════════════════════════════════════════════════ -->
+<section id="lookbook">
+  <div class="container" style="flex-shrink:0;">
+    <p class="section-label reveal">03 / Lookbook</p>
 
-    <!-- Tabs — wrap to 2 lines if needed, no overflow -->
+    <!-- Tabs — wrap to 2 lines if needed -->
     <div class="stills-tabs-wrap reveal delay-1">
       <div class="stills-tabs" role="tablist">
         <button class="stills-tab active" role="tab">Photoshoot</button>
@@ -298,147 +301,154 @@
       </div>
       <div class="tab-indicator"></div>
     </div>
+  </div>
 
-    <!-- Stills viewport — panels fade in/out, no swipe -->
-    <div class="stills-viewport reveal delay-2" id="stillsViewport">
+  <!-- Viewport — fills remaining vertical space, all panels stacked -->
+  <div class="stills-viewport" id="stillsViewport">
 
-      <!-- PANEL 0: PHOTOSHOOT — tall outer cols, two center stacked -->
-      <div class="stills-panel">
-        <div class="grid-photoshoot">
-          <div class="si" data-src="images/gallery/Cigg_1.jpg" data-tag="Photoshoot">
-            <img src="images/gallery/Cigg_1.jpg" alt="Photoshoot" loading="lazy" />
-            <div class="si-overlay"><span class="si-tag">Photoshoot</span></div>
-          </div>
-          <div class="si" data-src="images/gallery/Cigg_2.jpg" data-tag="Photoshoot">
-            <img src="images/gallery/Cigg_2.jpg" alt="Photoshoot" loading="lazy" />
-            <div class="si-overlay"><span class="si-tag">Photoshoot</span></div>
-          </div>
-          <div class="si" data-src="images/gallery/Cigg_3.jpg" data-tag="Photoshoot">
-            <img src="images/gallery/Cigg_3.jpg" alt="Photoshoot" loading="lazy" />
-            <div class="si-overlay"><span class="si-tag">Photoshoot</span></div>
-          </div>
-          <div class="si" data-src="images/gallery/Cigg_4.jpg" data-tag="Photoshoot">
-            <img src="images/gallery/Cigg_4.jpg" alt="Photoshoot" loading="lazy" />
-            <div class="si-overlay"><span class="si-tag">Photoshoot</span></div>
-          </div>
+    <!-- PANEL 0: PHOTOSHOOT — 4 equal columns (landscape) -->
+    <!-- Mobile: 4 equal rows (portrait) -->
+    <div class="stills-panel">
+      <div class="grid-photoshoot">
+        <div class="si" data-src="images/gallery/Cigg_1.jpg" data-tag="Photoshoot">
+          <img src="images/gallery/Cigg_1.jpg" alt="Photoshoot" loading="lazy" />
+          <div class="si-overlay"><span class="si-tag">Photoshoot</span></div>
+        </div>
+        <div class="si" data-src="images/gallery/Cigg_2.jpg" data-tag="Photoshoot">
+          <img src="images/gallery/Cigg_2.jpg" alt="Photoshoot" loading="lazy" />
+          <div class="si-overlay"><span class="si-tag">Photoshoot</span></div>
+        </div>
+        <div class="si" data-src="images/gallery/Cigg_3.jpg" data-tag="Photoshoot">
+          <img src="images/gallery/Cigg_3.jpg" alt="Photoshoot" loading="lazy" />
+          <div class="si-overlay"><span class="si-tag">Photoshoot</span></div>
+        </div>
+        <div class="si" data-src="images/gallery/Cigg_4.jpg" data-tag="Photoshoot">
+          <img src="images/gallery/Cigg_4.jpg" alt="Photoshoot" loading="lazy" />
+          <div class="si-overlay"><span class="si-tag">Photoshoot</span></div>
         </div>
       </div>
+    </div>
 
-      <!-- PANEL 1: PORTRAIT — large left + 3 stacked right -->
-      <div class="stills-panel">
-        <div class="grid-portrait">
-          <div class="si" data-src="images/gallery/Mango_1.jpg" data-tag="Portrait">
-            <img src="images/gallery/Mango_1.jpg" alt="Portrait" loading="lazy" />
-            <div class="si-overlay"><span class="si-tag">Portrait</span></div>
-          </div>
-          <div class="si" data-src="images/gallery/Mango_2.jpg" data-tag="Portrait">
-            <img src="images/gallery/Mango_2.jpg" alt="Portrait" loading="lazy" />
-            <div class="si-overlay"><span class="si-tag">Portrait</span></div>
-          </div>
-          <div class="si" data-src="images/gallery/Mango_3.jpg" data-tag="Portrait">
-            <img src="images/gallery/Mango_3.jpg" alt="Portrait" loading="lazy" />
-            <div class="si-overlay"><span class="si-tag">Portrait</span></div>
-          </div>
-          <div class="si" data-src="images/gallery/Mango_4.jpg" data-tag="Portrait">
-            <img src="images/gallery/Mango_4.jpg" alt="Portrait" loading="lazy" />
-            <div class="si-overlay"><span class="si-tag">Portrait</span></div>
-          </div>
+    <!-- PANEL 1: PORTRAIT — tall-left + wide-top-right + 2-bottom-right (landscape) -->
+    <!-- Mobile: wide-top + tall-bottom-left + 2-stacked-right (portrait) -->
+    <div class="stills-panel">
+      <div class="grid-portrait">
+        <div class="si" data-src="images/gallery/Mango_1.jpg" data-tag="Portrait">
+          <img src="images/gallery/Mango_1.jpg" alt="Portrait" loading="lazy" />
+          <div class="si-overlay"><span class="si-tag">Portrait</span></div>
+        </div>
+        <div class="si" data-src="images/gallery/Mango_2.jpg" data-tag="Portrait">
+          <img src="images/gallery/Mango_2.jpg" alt="Portrait" loading="lazy" />
+          <div class="si-overlay"><span class="si-tag">Portrait</span></div>
+        </div>
+        <div class="si" data-src="images/gallery/Mango_3.jpg" data-tag="Portrait">
+          <img src="images/gallery/Mango_3.jpg" alt="Portrait" loading="lazy" />
+          <div class="si-overlay"><span class="si-tag">Portrait</span></div>
+        </div>
+        <div class="si" data-src="images/gallery/Mango_4.jpg" data-tag="Portrait">
+          <img src="images/gallery/Mango_4.jpg" alt="Portrait" loading="lazy" />
+          <div class="si-overlay"><span class="si-tag">Portrait</span></div>
         </div>
       </div>
+    </div>
 
-      <!-- PANEL 2: ON SCREEN — 2x2 contact sheet -->
-      <div class="stills-panel">
-        <div class="grid-onscreen">
-          <div class="si" data-src="images/gallery/sv_1.png" data-tag="On Screen — Soothravakyam">
-            <img src="images/gallery/sv_1.png" alt="Soothravakyam" loading="lazy" />
-            <div class="si-overlay"><span class="si-tag">On Screen</span></div>
-          </div>
-          <div class="si" data-src="images/gallery/sv_2.png" data-tag="On Screen — Soothravakyam">
-            <img src="images/gallery/sv_2.png" alt="Soothravakyam" loading="lazy" />
-            <div class="si-overlay"><span class="si-tag">On Screen</span></div>
-          </div>
-          <div class="si" data-src="images/gallery/sv_3.png" data-tag="On Screen — Soothravakyam">
-            <img src="images/gallery/sv_3.png" alt="Soothravakyam" loading="lazy" />
-            <div class="si-overlay"><span class="si-tag">On Screen</span></div>
-          </div>
-          <div class="si" data-src="images/gallery/sv_4.png" data-tag="On Screen — Soothravakyam">
-            <img src="images/gallery/sv_4.png" alt="Soothravakyam" loading="lazy" />
-            <div class="si-overlay"><span class="si-tag">On Screen</span></div>
-          </div>
+    <!-- PANEL 2: ON SCREEN — 2×2 (same on desktop & mobile) -->
+    <div class="stills-panel">
+      <div class="grid-onscreen">
+        <div class="si" data-src="images/gallery/sv_1.png" data-tag="On Screen — Soothravakyam">
+          <img src="images/gallery/sv_1.png" alt="Soothravakyam" loading="lazy" />
+          <div class="si-overlay"><span class="si-tag">On Screen</span></div>
+        </div>
+        <div class="si" data-src="images/gallery/sv_2.png" data-tag="On Screen — Soothravakyam">
+          <img src="images/gallery/sv_2.png" alt="Soothravakyam" loading="lazy" />
+          <div class="si-overlay"><span class="si-tag">On Screen</span></div>
+        </div>
+        <div class="si" data-src="images/gallery/sv_3.png" data-tag="On Screen — Soothravakyam">
+          <img src="images/gallery/sv_3.png" alt="Soothravakyam" loading="lazy" />
+          <div class="si-overlay"><span class="si-tag">On Screen</span></div>
+        </div>
+        <div class="si" data-src="images/gallery/sv_4.png" data-tag="On Screen — Soothravakyam">
+          <img src="images/gallery/sv_4.png" alt="Soothravakyam" loading="lazy" />
+          <div class="si-overlay"><span class="si-tag">On Screen</span></div>
         </div>
       </div>
+    </div>
 
-      <!-- PANEL 3: CANDID — tall left + top-right + wide bottom-right -->
-      <div class="stills-panel">
-        <div class="grid-candid">
-          <div class="si" data-src="images/gallery/Swing_1.jpeg" data-tag="Candid">
-            <img src="images/gallery/Swing_1.jpeg" alt="Candid" loading="lazy" />
-            <div class="si-overlay"><span class="si-tag">Candid</span></div>
-          </div>
-          <div class="si" data-src="images/gallery/Swing_2.jpeg" data-tag="Candid">
-            <img src="images/gallery/Swing_2.jpeg" alt="Candid" loading="lazy" />
-            <div class="si-overlay"><span class="si-tag">Candid</span></div>
-          </div>
-          <div class="si" data-src="images/gallery/Swing_3.jpeg" data-tag="Candid">
-            <img src="images/gallery/Swing_3.jpeg" alt="Candid" loading="lazy" />
-            <div class="si-overlay"><span class="si-tag">Candid</span></div>
-          </div>
-          <div class="si" data-src="images/gallery/Swing_4.jpeg" data-tag="Candid">
-            <img src="images/gallery/Swing_4.jpeg" alt="Candid" loading="lazy" />
-            <div class="si-overlay"><span class="si-tag">Candid</span></div>
-          </div>
+    <!-- PANEL 3: CANDID — tall-left + 2-top-right + wide-bottom-right (landscape) -->
+    <!-- Mobile: wide-top + 2-left-stacked + tall-right (portrait) -->
+    <div class="stills-panel">
+      <div class="grid-candid">
+        <div class="si" data-src="images/gallery/Swing_1.jpeg" data-tag="Candid">
+          <img src="images/gallery/Swing_1.jpeg" alt="Candid" loading="lazy" />
+          <div class="si-overlay"><span class="si-tag">Candid</span></div>
+        </div>
+        <div class="si" data-src="images/gallery/Swing_2.jpeg" data-tag="Candid">
+          <img src="images/gallery/Swing_2.jpeg" alt="Candid" loading="lazy" />
+          <div class="si-overlay"><span class="si-tag">Candid</span></div>
+        </div>
+        <div class="si" data-src="images/gallery/Swing_3.jpeg" data-tag="Candid">
+          <img src="images/gallery/Swing_3.jpeg" alt="Candid" loading="lazy" />
+          <div class="si-overlay"><span class="si-tag">Candid</span></div>
+        </div>
+        <div class="si" data-src="images/gallery/Swing_4.jpeg" data-tag="Candid">
+          <img src="images/gallery/Swing_4.jpeg" alt="Candid" loading="lazy" />
+          <div class="si-overlay"><span class="si-tag">Candid</span></div>
         </div>
       </div>
+    </div>
 
-      <!-- PANEL 4: CAMPAIGN — 4 equal horizontal strip -->
-      <div class="stills-panel">
-        <div class="grid-campaign">
-          <div class="si" data-src="images/gallery/Naseef_01.jpeg" data-tag="Campaign — Saral Home">
-            <img src="images/gallery/Naseef_01.jpeg" alt="Campaign" loading="lazy" />
-            <div class="si-overlay"><span class="si-tag">Campaign</span></div>
-          </div>
-          <div class="si" data-src="images/gallery/Naseef_02.jpeg" data-tag="Campaign — Saral Home">
-            <img src="images/gallery/Naseef_02.jpeg" alt="Campaign" loading="lazy" />
-            <div class="si-overlay"><span class="si-tag">Campaign</span></div>
-          </div>
-          <div class="si" data-src="images/gallery/Naseef_03.jpeg" data-tag="Campaign — Saral Home">
-            <img src="images/gallery/Naseef_03.jpeg" alt="Campaign" loading="lazy" />
-            <div class="si-overlay"><span class="si-tag">Campaign</span></div>
-          </div>
-          <div class="si" data-src="images/gallery/Naseef_04.jpg" data-tag="Campaign — Saral Home">
-            <img src="images/gallery/Naseef_04.jpg" alt="Campaign" loading="lazy" />
-            <div class="si-overlay"><span class="si-tag">Campaign</span></div>
-          </div>
+    <!-- PANEL 4: CAMPAIGN — tall-left + 3-stacked-right (landscape) -->
+    <!-- Mobile: wide-top + 3-equal-bottom-row (portrait) -->
+    <div class="stills-panel">
+      <div class="grid-campaign">
+        <div class="si" data-src="images/gallery/Naseef_01.jpeg" data-tag="Campaign — Saral Home">
+          <img src="images/gallery/Naseef_01.jpeg" alt="Campaign" loading="lazy" />
+          <div class="si-overlay"><span class="si-tag">Campaign</span></div>
+        </div>
+        <div class="si" data-src="images/gallery/Naseef_02.jpeg" data-tag="Campaign — Saral Home">
+          <img src="images/gallery/Naseef_02.jpeg" alt="Campaign" loading="lazy" />
+          <div class="si-overlay"><span class="si-tag">Campaign</span></div>
+        </div>
+        <div class="si" data-src="images/gallery/Naseef_03.jpeg" data-tag="Campaign — Saral Home">
+          <img src="images/gallery/Naseef_03.jpeg" alt="Campaign" loading="lazy" />
+          <div class="si-overlay"><span class="si-tag">Campaign</span></div>
+        </div>
+        <div class="si" data-src="images/gallery/Naseef_04.jpeg" data-tag="Campaign — Saral Home">
+          <img src="images/gallery/Naseef_04.jpeg" alt="Campaign" loading="lazy" />
+          <div class="si-overlay"><span class="si-tag">Campaign</span></div>
         </div>
       </div>
+    </div>
 
-      <!-- PANEL 5: CLEAN SHAVE — tall center, flanked left/right -->
-      <div class="stills-panel">
-        <div class="grid-cleanshave">
-          <div class="si" data-src="images/gallery/Naseef_CS_01.jpg" data-tag="Clean Shave">
-            <img src="images/gallery/Naseef_CS_01.jpg" alt="Clean Shave" loading="lazy" />
-            <div class="si-overlay"><span class="si-tag">Clean Shave</span></div>
-          </div>
-          <div class="si" data-src="images/gallery/Naseef_CS_02.jpg" data-tag="Clean Shave">
-            <img src="images/gallery/Naseef_CS_02.jpg" alt="Clean Shave" loading="lazy" />
-            <div class="si-overlay"><span class="si-tag">Clean Shave</span></div>
-          </div>
-          <div class="si" data-src="images/gallery/Naseef_CS_03.jpg" data-tag="Clean Shave">
-            <img src="images/gallery/Naseef_CS_03.jpg" alt="Clean Shave" loading="lazy" />
-            <div class="si-overlay"><span class="si-tag">Clean Shave</span></div>
-          </div>
-          <div class="si" data-src="images/gallery/Naseef_CS_04.jpg" data-tag="Clean Shave">
-            <img src="images/gallery/Naseef_CS_04.jpg" alt="Clean Shave" loading="lazy" />
-            <div class="si-overlay"><span class="si-tag">Clean Shave</span></div>
-          </div>
+    <!-- PANEL 5: CLEAN SHAVE — 4 equal cols in one row (landscape) -->
+    <!-- Mobile: wide-top hero + hero-middle + 2-bottom-row (portrait) -->
+    <div class="stills-panel">
+      <div class="grid-cleanshave">
+        <div class="si" data-src="images/gallery/Naseef_CS_01.jpg" data-tag="Clean Shave">
+          <img src="images/gallery/Naseef_CS_01.jpg" alt="Clean Shave" loading="lazy" />
+          <div class="si-overlay"><span class="si-tag">Clean Shave</span></div>
+        </div>
+        <div class="si" data-src="images/gallery/Naseef_CS_02.jpg" data-tag="Clean Shave">
+          <img src="images/gallery/Naseef_CS_02.jpg" alt="Clean Shave" loading="lazy" />
+          <div class="si-overlay"><span class="si-tag">Clean Shave</span></div>
+        </div>
+        <div class="si" data-src="images/gallery/Naseef_CS_03.jpg" data-tag="Clean Shave">
+          <img src="images/gallery/Naseef_CS_03.jpg" alt="Clean Shave" loading="lazy" />
+          <div class="si-overlay"><span class="si-tag">Clean Shave</span></div>
+        </div>
+        <div class="si" data-src="images/gallery/Naseef_CS_04.jpg" data-tag="Clean Shave">
+          <img src="images/gallery/Naseef_CS_04.jpg" alt="Clean Shave" loading="lazy" />
+          <div class="si-overlay"><span class="si-tag">Clean Shave</span></div>
         </div>
       </div>
+    </div>
 
-    </div><!-- /stills-viewport -->
-  </div><!-- /container -->
+  </div><!-- /stills-viewport -->
 </section>
 
-<!-- CONTACT -->
+<!-- ════════════════════════════════════════════════════
+     CONTACT
+════════════════════════════════════════════════════ -->
 <section id="contact">
   <div class="container">
     <div class="two-col">
@@ -495,7 +505,9 @@
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════ -->
 <footer>
   <div class="footer-tagline">Actor · Director</div>
   <div class="footer-center">
@@ -511,7 +523,7 @@
     <a href="https://www.linkedin.com/in/naseef-pp/" target="_blank" rel="noopener" class="social-icon" title="LinkedIn" aria-label="LinkedIn">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
     </a>
-    <!-- Mobile only: back-to-top at far right -->
+    <!-- Mobile only: back-to-top at far right of this row -->
     <a href="#hero" class="back-to-top mobile-btt" aria-label="Back to top">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
     </a>
