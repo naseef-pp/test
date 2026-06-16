@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Scrub Test</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,400&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAF7F2; --ink:#3A332B; --ink-light:#6B6258; --terra:#C4714A;
+    --fd:'Cormorant Garamond',Georgia,serif; --fh:'Caveat',cursive;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--cream);font-family:var(--fd);color:var(--ink)}
+
+  /* ── filler sections so you can scroll INTO and OUT OF the scrub area ── */
+  .spacer{height:100vh;display:flex;align-items:center;justify-content:center;
+    text-align:center;padding:40px}
+  .spacer h1{font-weight:300;font-size:clamp(28px,7vw,42px);margin:0 0 10px}
+  .spacer p{font-family:var(--fh);font-size:18px;color:var(--ink-light);margin:0}
+
+  /* ── the scrub section itself ── */
+  #scrub-section{height:1000vh;position:relative;background:#000}
+  #scrub-sticky{position:sticky;top:0;height:100vh;width:100%;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;background:#000}
+  #scrub-canvas{display:block;width:100%;height:100%}
+
+  #scrub-vignette{position:absolute;inset:0;pointer-events:none;z-index:2;
+    background:linear-gradient(to bottom,rgba(0,0,0,0.35) 0%,transparent 18%,
+      transparent 78%,rgba(0,0,0,0.45) 100%)}
+
+  #scrub-loader{position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;background:#000;color:#fff;
+    transition:opacity 0.5s ease;z-index:5;gap:14px}
+  #scrub-loader.hidden{opacity:0;pointer-events:none}
+  #scrub-loader .lbl{font-family:var(--fh);font-size:18px;letter-spacing:0.04em}
+  .loader-bar{width:160px;height:2px;background:rgba(255,255,255,0.2);
+    border-radius:2px;overflow:hidden}
+  .loader-fill{height:100%;width:0%;background:var(--terra);transition:width 0.15s ease}
+  #scrub-loader .pct{font-size:12px;color:rgba(255,255,255,0.55);letter-spacing:0.08em}
+
+  /* ── debug readout, remove this whole block once you're happy with the feel ── */
+  #debug-hud{position:fixed;bottom:14px;left:14px;background:rgba(0,0,0,0.6);
+    color:#fff;font:12px/1.4 'SF Mono',Consolas,monospace;padding:8px 12px;
+    border-radius:6px;z-index:50;pointer-events:none;letter-spacing:0.02em}
+</style>
+</head>
+<body>
+
+  <div class="spacer">
+    <div>
+      <h1>Scroll down ↓</h1>
+      <p>the scrub section starts right after this</p>
+    </div>
+  </div>
+
+  <section id="scrub-section">
+    <div id="scrub-sticky">
+      <canvas id="scrub-canvas"></canvas>
+      <div id="scrub-vignette"></div>
+      <div id="scrub-loader">
+        <div class="lbl">loading the scene…</div>
+        <div class="loader-bar"><div class="loader-fill" id="loader-fill"></div></div>
+        <div class="pct" id="loader-pct">0%</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="spacer">
+    <div>
+      <h1>End of test</h1>
+      <p>that's the bottom — scroll back up to try again</p>
+    </div>
+  </div>
+
+  <div id="debug-hud">frame 1 / 360 · 0%</div>
+
+<script>
+(function(){
+  // ── CONFIG ──────────────────────────────────────────────
+  const TOTAL      = 360;                  // total number of frames
+  const STEP = 3;
+  const PAD         = 3;                   // 001.png, 002.png, ...
+  const FRAME_PATH  = 'Web_assets/Frames_3/'; // relative to this html file
+
+  const canvas      = document.getElementById('scrub-canvas');
+  const ctx          = canvas.getContext('2d');
+  const section      = document.getElementById('scrub-section');
+  const loader        = document.getElementById('scrub-loader');
+  const loaderFill   = document.getElementById('loader-fill');
+  const loaderPct    = document.getElementById('loader-pct');
+  const hud          = document.getElementById('debug-hud');
+
+  const images = new Array(TOTAL);
+  let loadedCount = 0;
+  let currentFrame = 1;
+  let ready = false;
+
+  function pad(n){ return String(n).padStart(PAD,'0'); }
+
+  // Draws a frame "cover" style so it always fills the screen without distortion,
+  // matching what object-fit:cover would do for a <video>.
+  function drawFrame(idx){
+    const img = images[idx-1];
+    if(!img || !img.complete || !img.naturalWidth) return;
+
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const cw = canvas.clientWidth, ch = canvas.clientHeight;
+    const wantW = Math.round(cw*dpr), wantH = Math.round(ch*dpr);
+    if(canvas.width !== wantW || canvas.height !== wantH){
+      canvas.width = wantW; canvas.height = wantH;
+    }
+
+    const iw = img.naturalWidth, ih = img.naturalHeight;
+    const scale = Math.max(canvas.width/iw, canvas.height/ih);
+    const dw = iw*scale, dh = ih*scale;
+    const dx = (canvas.width-dw)/2, dy = (canvas.height-dh)/2;
+
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.drawImage(img, dx, dy, dw, dh);
+  }
+
+  function preload(){
+    for(let i=1;i<=TOTAL;i++){
+      const img = new Image();
+      img.onload = img.onerror = function(){
+        loadedCount++;
+        const pct = Math.round((loadedCount/TOTAL)*100);
+        loaderFill.style.width = pct+'%';
+        loaderPct.textContent = pct+'%';
+        if(i===1) drawFrame(1);
+        if(loadedCount===TOTAL){
+          ready = true;
+          loader.classList.add('hidden');
+          drawFrame(currentFrame); // jump to wherever the user already scrolled to
+        }
+      };
+      img.src = FRAME_PATH + pad(i) + '.webp';
+      images[i-1] = img;
+    }
+  }
+
+  function getProgress(){
+    const rect = section.getBoundingClientRect();
+    const total = section.offsetHeight - window.innerHeight;
+    if(total<=0) return 0;
+    return Math.max(0, Math.min(1, -rect.top/total));
+  }
+
+  let ticking = false;
+  function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(update); } }
+
+  function update(){
+    ticking = false;
+    const prog = getProgress();
+    const raw = Math.min(TOTAL, Math.max(1, Math.round(prog*(TOTAL-1))+1));
+    const idx = Math.max(1, Math.round(raw/STEP)*STEP);
+    hud.textContent = `frame ${idx} / ${TOTAL} · ${Math.round(prog*100)}%`;
+    if(idx !== currentFrame){
+      currentFrame = idx;
+      if(ready) drawFrame(idx);
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', ()=>{ if(ready) drawFrame(currentFrame); });
+
+  preload();
+  update();
+})();
+</script>
+</body>
+</html>
